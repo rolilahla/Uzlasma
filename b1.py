@@ -7,8 +7,9 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from vtbgln import VbagKur
 
-class Ui_Uzlasma(object):
+class Ui_Uzlasma(VbagKur):
     def setupUi(self, Uzlasma):
         Uzlasma.setObjectName("Uzlasma")
         Uzlasma.resize(308, 243)
@@ -53,8 +54,20 @@ class Ui_Uzlasma(object):
         self.lineEdit_6.setObjectName("lineEdit_6")
 
         self.retranslateUi(Uzlasma)
-        self.pushButton.clicked.connect(Uzlasma.close)
+        self.pushButton.clicked.connect(self.vt_yaz)
         QtCore.QMetaObject.connectSlotsByName(Uzlasma)
+
+    def vt_yaz(self):
+        self.db = VbagKur()
+        sorusturma_no = self.lineEdit.text()
+        uzlasma_no = self.lineEdit_2.text()
+        mahkeme_no = self.lineEdit_3.text()
+        suc = self.lineEdit_4.text()
+        teklif_tarihi = self.lineEdit_5.text()
+        taraf_sayisi =  self.lineEdit_6.text()
+
+        self.db.uzlasma_olustur(sorusturma_no, uzlasma_no, mahkeme_no, suc, teklif_tarihi, taraf_sayisi)
+        print("Bilgileri Kaydedildi.")
 
     def retranslateUi(self, Uzlasma):
         _translate = QtCore.QCoreApplication.translate

@@ -12,10 +12,15 @@ class VbagKur(object):
 
     def uzlasma_olustur(self,a1,a2,a3,a4,a5,a6):
         """
-            Veritabanında Satış Excell dosyasının temelini oluşturacak
+            Dosya Bilgisini Veritabanına ekleme
         """
         self.im.execute("""INSERT INTO uzlasma VALUES(NULL, '{}','{}','{}','{}','{}','{}')""".format(a1, a2, a3, a4, a5, a6))
         self.vt.commit()
+
+    def sorgu_no_bul(self):
+        self.im.execute("select sorno from uzlasma")
+        veriler = self.im.fetchall()
+        return veriler
 
     def gemi_guncelle(self, l):
         """

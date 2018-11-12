@@ -13,24 +13,6 @@ class MainWindow(QMainWindow,Ui_MainWindow):
     	super().__init__()
     	self.ui = Ui_MainWindow()
     	self.ui.setupUi(self)
-    	"""
-    	#toolbar yapımı
-    	self.toolbar = self.addToolBar("Exit")
-
-    	#uzlaşmacı butonu
-    	self.exitAct = QAction(QIcon('lib/icon/w.png'), 'Uzlaşmacı Ayarla', self)
-    	self.exitAct.setShortcut('Ctrl + Q')
-    	self.exitAct.triggered.connect(self.uzw)
-    	self.toolbar.addAction(self.exitAct)
-
-    	#Yeni Uzlaşma Butonu
-    	self.yeni_uz = QAction(QIcon('lib/icon/kayit.png'), 'Yeni Uzlaşma', self)
-    	self.yeni_uz.setShortcut('Ctrl + N')
-    	self.yeni_uz.triggered.connect(self.uekl)
-    	self.toolbar.addAction(self.yeni_uz)
-    	"""
-
-    
 
 app = QApplication(sys.argv)
 form = MainWindow()
