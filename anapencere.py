@@ -97,6 +97,7 @@ class Ui_MainWindow(object):
             self.comboBox.addItem(sor[i][0])
 
     def taraf_bilgisi_duzenle(self):
+        "ssd"
         pass
 
     def retranslateUi(self, MainWindow):
