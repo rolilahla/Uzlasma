@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="iconlar">
+    <file>icon/kayit.png</file>
+    <file>icon/uzlasma.png</file>
+    <file>icon/uzol.png</file>
+    <file>icon/w.png</file>
+  </qresource>
+</RCC>

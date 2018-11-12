@@ -9,6 +9,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from b1 import Ui_Uzlasma
 from vtbgln import VbagKur
+from bilgirisi import Ui_Bilgi
 
 class Ui_MainWindow(object):
     def uekl(self):
@@ -16,6 +17,13 @@ class Ui_MainWindow(object):
         self.ui_b1 = Ui_Uzlasma()
         self.ui_b1.setupUi(self.b1)
         self.b1.show()
+
+    def bilgigiris(self):
+        self.bilgi_tavan = QtWidgets.QMainWindow()
+        self.ui_bilgi = Ui_Bilgi()
+        self.ui_bilgi.setupUi(self.bilgi_tavan)
+        self.bilgi_tavan.show()
+
 
     def setupUi(self, MainWindow):
         self.db = VbagKur()
@@ -87,6 +95,9 @@ class Ui_MainWindow(object):
         sor = self.db.sorgu_no_bul()
         for i in range(len(sor)):
             self.comboBox.addItem(sor[i][0])
+
+    def taraf_bilgisi_duzenle(self):
+        pass
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
