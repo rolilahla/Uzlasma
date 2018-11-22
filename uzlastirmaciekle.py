@@ -7,11 +7,18 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from vtbgln import VbagKur
+from mico import bilgilendir
 
 class Ui_UzlastirmaciEkle(object):
     def setupUi(self, UzlastirmaciEkle):
+        self.db = VbagKur()
+
         UzlastirmaciEkle.setObjectName("UzlastirmaciEkle")
         UzlastirmaciEkle.resize(441, 257)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("lib/icon/credentials-preferences.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        UzlastirmaciEkle.setWindowIcon(icon)
         self.label = QtWidgets.QLabel(UzlastirmaciEkle)
         self.label.setGeometry(QtCore.QRect(160, 10, 90, 20))
         self.label.setObjectName("label")
@@ -48,12 +55,35 @@ class Ui_UzlastirmaciEkle(object):
         self.label_6 = QtWidgets.QLabel(UzlastirmaciEkle)
         self.label_6.setGeometry(QtCore.QRect(20, 30, 121, 121))
         self.label_6.setText("")
-        self.label_6.setPixmap(QtGui.QPixmap("../../../Downloads/faenza-icon-theme-master/Faenza/apps/96/credentials-preferences.png"))
+        self.label_6.setPixmap(QtGui.QPixmap("lib/icon/credentials-preferences.png"))
         self.label_6.setObjectName("label_6")
 
         self.retranslateUi(UzlastirmaciEkle)
-        self.pushButton.clicked.connect(UzlastirmaciEkle.close)
+        self.pushButton.clicked.connect(self.uz_ekle)
         QtCore.QMetaObject.connectSlotsByName(UzlastirmaciEkle)
+
+    def uz_ekle(self):
+        ad = self.lineEdit.text()
+        sicil = self.lineEdit_2.text()
+        telefon = self.lineEdit_3.text()
+        sehir = self.lineEdit_4.text()
+        adres = self.textEdit.toPlainText()
+
+        #bilgileri veritabbanına gönder
+        if self.db.uzlastirmaci_ekle(ad, sicil, telefon, sehir, adres) == True:
+            baslik = "Uzlaştırmacı Eklendi"
+            mesaj = ad + " İsimli uzlaştırmacı veritabanına başarıyla eklendi"
+            bilgilendir(mesaj, baslik)
+            self.lineEdit.clear()
+            self.lineEdit_2.clear()
+            self.lineEdit_3.clear()
+            self.lineEdit_4.clear()
+            self.textEdit.clear()
+        else:
+            baslik = "Uzlaştırmacı Ekleme Hatası"
+            mesaj = ad +" İsimli uzlaştırmacı veritabanına eklenemedi"
+            bilgilendir(mesaj, baslik)
+
 
     def retranslateUi(self, UzlastirmaciEkle):
         _translate = QtCore.QCoreApplication.translate

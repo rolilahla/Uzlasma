@@ -4,17 +4,30 @@
 #Pycharm
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from dosyaolustur import Ui_DosyaOlustur
+from dosyaolustur import DosyaOlustur
+from uzlastirmaciekle import Ui_UzlastirmaciEkle
+from PyQt5.QtCore import pyqtSlot
+import modul as mdl
 
 class Ui_MainWindow(object):
-    def dosya_olustur_gui_hazirla(self):
-        pass
+    def gui_dosya_olustur(self):
+        self.p = DosyaOlustur()
+        self.make_connection(self.p)
+        self.p.show()
+        self.p.exec_()
+
+    def gui_uzlastirmaci_ekle(self):
+        UzlastirmaciEkle = QtWidgets.QDialog()
+        ui = Ui_UzlastirmaciEkle()
+        ui.setupUi(UzlastirmaciEkle)
+        UzlastirmaciEkle.show()
+        UzlastirmaciEkle.exec_()
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(929, 490)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../../Downloads/faenza-icon-theme-master/Faenza/places/48/distributor-logo-ubuntu.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("lib/icon/uzlastırma.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -176,7 +189,30 @@ class Ui_MainWindow(object):
         self.pushButton_2.clicked.connect(self.statusbar.close)
         self.pushButton_3.clicked.connect(self.statusbar.close)
 
+        self.triggerfinger()
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def triggerfinger(self):
+        self.actionUzla_mac_Bilgisi_ekle.triggered.connect(self.gui_uzlastirmaci_ekle)
+        self.actionDosya_Ekle.triggered.connect(self.gui_dosya_olustur)
+        self.dosya_tara()
+
+    def make_connection(self, dosyaolustur_object):
+        dosyaolustur_object.clicked.connect(self.get_signal_dosya)
+
+    @pyqtSlot(bool)
+    def get_signal_dosya(self, val):
+        if val == False:
+            self.comboBox.clear()
+            self.comboBox.addItem("Dosya Seç")
+            self.dosya_tara()
+        else:
+            print("Sinyal gelmedi")
+
+    def dosya_tara(self):
+        sor = mdl.tekli_demet_coz(mdl.dosya_tara())
+        for i in range(len(sor)):
+            self.comboBox.addItem(sor[i])
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate

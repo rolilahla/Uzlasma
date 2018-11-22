@@ -13,7 +13,7 @@ class Ui_TarafEkle(object):
         TarafEkle.setObjectName("TarafEkle")
         TarafEkle.resize(570, 479)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../../Downloads/faenza-icon-theme-master/Faenza/stock/48/stock_people.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("lib/icon/stock_people.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         TarafEkle.setWindowIcon(icon)
         self.label = QtWidgets.QLabel(TarafEkle)
         self.label.setGeometry(QtCore.QRect(10, 10, 90, 20))

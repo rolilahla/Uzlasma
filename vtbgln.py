@@ -9,18 +9,43 @@ class VbagKur(object):
         self.vt = sqlite3.connect('lib/database/rolilahla.sqlite')
         self.im = self.vt.cursor()
 
-
-    def uzlasma_olustur(self,a1,a2,a3,a4,a5,a6):
-        """
-            Dosya Bilgisini Veritabanına ekleme
-        """
-        self.im.execute("""INSERT INTO uzlasma VALUES(NULL, '{}','{}','{}','{}','{}','{}')""".format(a1, a2, a3, a4, a5, a6))
+    """Uzlaştırmacı Ekle
+    
+    :param      :a1 = Ad Soyad (str)
+    :param      :a2 = Sicil No (str)
+    :param      :a3 = Telefon No (str)
+    :param      :a4 = Bağlı bulunduğu şehir (str)
+    :param      :a5 = Adres (str)
+    """
+    def uzlastirmaci_ekle(self, a1, a2, a3, a4, a5):
+        self.im.execute(
+            """INSERT INTO uzlasmaci VALUES(NULL, '{}','{}','{}','{}','{}')""".format(a1, a2, a3, a4, a5))
         self.vt.commit()
+        return True
+
+    def dosya_ekle(self, a1, a2, a3, a4, a5, a6, a7):
+        """ Dosya Bilgilerini veritabanına ekle
+
+        :param: a1 : Soruşturma No (str)
+        :param: a2 : Uzlaşma No (str)
+        :param: a3 : Mahkeme Esas No (str)
+        :param: a4 : Suç/Suçlar (str)
+        :param: a5 : Teklif Tarihi (str)
+        :param: a6 : Taraf Sayısı (int)
+        :param: a7 : Olay Özeti (str)
+
+        """
+        self.im.execute("""INSERT INTO dosyalar VALUES(NULL, '{}','{}','{}','{}','{}','{}', '{}')""".format(a1, a2, a3, a4, a5, a6, a7))
+        self.vt.commit()
+        return True
 
     def sorgu_no_bul(self):
-        self.im.execute("select sorno from uzlasma")
+        self.im.execute("select sorno from dosyalar")
         veriler = self.im.fetchall()
         return veriler
+
+    def taraf_cek(self):
+        self.im.execute("select ")
 
     def gemi_guncelle(self, l):
         """
