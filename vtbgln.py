@@ -26,21 +26,29 @@ class VbagKur(object):
     def dosya_ekle(self, a1, a2, a3, a4, a5, a6, a7):
         """ Dosya Bilgilerini veritabanına ekle
 
-        :param: a1 : Soruşturma No (str)
-        :param: a2 : Uzlaşma No (str)
+        :param: a1 : Uzlaşma No (str)
+        :param: a2 : Sorgulama No (str)
         :param: a3 : Mahkeme Esas No (str)
         :param: a4 : Suç/Suçlar (str)
         :param: a5 : Teklif Tarihi (str)
-        :param: a6 : Taraf Sayısı (int)
-        :param: a7 : Olay Özeti (str)
+        :param: a6 : Tevdi Teslim Tarihi (str)
+        :param: a7 : Dosya Durumu (int)
 
         """
         self.im.execute("""INSERT INTO dosyalar VALUES(NULL, '{}','{}','{}','{}','{}','{}', '{}')""".format(a1, a2, a3, a4, a5, a6, a7))
         self.vt.commit()
         return True
 
-    def sorgu_no_bul(self):
-        self.im.execute("select sorno from dosyalar")
+    def dosya_sil(self, arg):
+        """ Dosya Sil
+
+        :param arg:  uzlaşma no(str)
+        :return: true
+        """
+        self.im.execute("delete * from dosyalar where uzno == arg")
+
+    def kolon_oku(self, sutun, tablo):
+        self.im.execute("select {} from {}".format(sutun, tablo))
         veriler = self.im.fetchall()
         return veriler
 

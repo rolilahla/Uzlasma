@@ -1,30 +1,33 @@
-# -*- coding: utf-8 -*-
+# -*- coding:utf-8 -*-
+from PyQt5 import QtGui, QtCore, QtWidgets
+from PyQt5.QtCore import pyqtSignal
+from vtbgln import VbagKur
+from mico import bilgilendir
 
-# Form implementation generated from reading ui file 'tarafekle.ui'
-#
-# Created by: PyQt5 UI code generator 5.6
-#
-# WARNING! All changes made in this file will be lost!
+class TarafEkle(QtWidgets.QDialog):
+    # Added a signal
+    clicked = pyqtSignal(bool)
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+    def __init__(self):
+        super(TarafEkle, self).__init__()
 
-class Ui_TarafEkle(object):
-    def setupUi(self, TarafEkle):
-        TarafEkle.setObjectName("TarafEkle")
-        TarafEkle.resize(570, 479)
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("lib/icon/stock_people.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        TarafEkle.setWindowIcon(icon)
-        self.label = QtWidgets.QLabel(TarafEkle)
+    def init_ui(self, uno):
+        self.dosya_uzlasma_no = uno
+        print(self.dosya_uzlasma_no)
+        self.resize(277, 475)
+        self.icon = QtGui.QIcon()
+        self.icon.addPixmap(QtGui.QPixmap("lib/icon/stock_people.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.setWindowIcon(self.icon)
+        self.label = QtWidgets.QLabel(self)
         self.label.setGeometry(QtCore.QRect(10, 10, 90, 20))
         self.label.setObjectName("label")
-        self.lineEdit = QtWidgets.QLineEdit(TarafEkle)
+        self.lineEdit = QtWidgets.QLineEdit(self)
         self.lineEdit.setGeometry(QtCore.QRect(80, 10, 182, 20))
         self.lineEdit.setObjectName("lineEdit")
-        self.label_2 = QtWidgets.QLabel(TarafEkle)
+        self.label_2 = QtWidgets.QLabel(self)
         self.label_2.setGeometry(QtCore.QRect(10, 40, 90, 20))
         self.label_2.setObjectName("label_2")
-        self.comboBox = QtWidgets.QComboBox(TarafEkle)
+        self.comboBox = QtWidgets.QComboBox(self)
         self.comboBox.setGeometry(QtCore.QRect(80, 40, 182, 22))
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("")
@@ -32,84 +35,92 @@ class Ui_TarafEkle(object):
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
-        self.label_3 = QtWidgets.QLabel(TarafEkle)
+        self.label_3 = QtWidgets.QLabel(self)
         self.label_3.setGeometry(QtCore.QRect(10, 70, 90, 20))
         self.label_3.setObjectName("label_3")
-        self.lineEdit_2 = QtWidgets.QLineEdit(TarafEkle)
+        self.lineEdit_2 = QtWidgets.QLineEdit(self)
         self.lineEdit_2.setGeometry(QtCore.QRect(80, 70, 182, 20))
         self.lineEdit_2.setObjectName("lineEdit_2")
-        self.label_4 = QtWidgets.QLabel(TarafEkle)
+        self.label_4 = QtWidgets.QLabel(self)
         self.label_4.setGeometry(QtCore.QRect(10, 100, 90, 20))
         self.label_4.setObjectName("label_4")
-        self.lineEdit_3 = QtWidgets.QLineEdit(TarafEkle)
+        self.lineEdit_3 = QtWidgets.QLineEdit(self)
         self.lineEdit_3.setGeometry(QtCore.QRect(80, 100, 182, 20))
         self.lineEdit_3.setObjectName("lineEdit_3")
-        self.label_5 = QtWidgets.QLabel(TarafEkle)
+        self.label_5 = QtWidgets.QLabel(self)
         self.label_5.setGeometry(QtCore.QRect(10, 130, 90, 20))
         self.label_5.setObjectName("label_5")
-        self.lineEdit_4 = QtWidgets.QLineEdit(TarafEkle)
+        self.lineEdit_4 = QtWidgets.QLineEdit(self)
         self.lineEdit_4.setGeometry(QtCore.QRect(80, 130, 182, 20))
         self.lineEdit_4.setObjectName("lineEdit_4")
-        self.lineEdit_5 = QtWidgets.QLineEdit(TarafEkle)
+        self.lineEdit_5 = QtWidgets.QLineEdit(self)
         self.lineEdit_5.setGeometry(QtCore.QRect(80, 160, 182, 20))
         self.lineEdit_5.setObjectName("lineEdit_5")
-        self.label_6 = QtWidgets.QLabel(TarafEkle)
+        self.label_6 = QtWidgets.QLabel(self)
         self.label_6.setGeometry(QtCore.QRect(10, 160, 90, 20))
         self.label_6.setObjectName("label_6")
-        self.label_7 = QtWidgets.QLabel(TarafEkle)
+        self.label_7 = QtWidgets.QLabel(self)
         self.label_7.setGeometry(QtCore.QRect(10, 190, 90, 20))
         self.label_7.setObjectName("label_7")
-        self.lineEdit_6 = QtWidgets.QLineEdit(TarafEkle)
+        self.lineEdit_6 = QtWidgets.QLineEdit(self)
         self.lineEdit_6.setGeometry(QtCore.QRect(80, 190, 182, 20))
         self.lineEdit_6.setText("")
         self.lineEdit_6.setObjectName("lineEdit_6")
-        self.lineEdit_7 = QtWidgets.QLineEdit(TarafEkle)
+
+        self.lineEdit_7 = QtWidgets.QLineEdit(self)
         self.lineEdit_7.setGeometry(QtCore.QRect(80, 250, 182, 20))
         self.lineEdit_7.setText("")
         self.lineEdit_7.setObjectName("lineEdit_7")
-        self.label_8 = QtWidgets.QLabel(TarafEkle)
+
+        self.comboBox_3 = QtWidgets.QComboBox(self)
+        self.comboBox.setGeometry(QtCore.QRect(80, 280, 182, 22))
+        self.comboBox.setObjectName("comboBox_3")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+
+        self.label_8 = QtWidgets.QLabel(self)
         self.label_8.setGeometry(QtCore.QRect(10, 250, 90, 20))
         self.label_8.setObjectName("label_8")
-        self.label_9 = QtWidgets.QLabel(TarafEkle)
-        self.label_9.setGeometry(QtCore.QRect(10, 280, 90, 20))
+        self.label_9 = QtWidgets.QLabel(self)
+        self.label_9.setGeometry(QtCore.QRect(10, 310, 90, 20))
         self.label_9.setObjectName("label_9")
-        self.textEdit = QtWidgets.QTextEdit(TarafEkle)
-        self.textEdit.setGeometry(QtCore.QRect(80, 280, 181, 91))
+        self.textEdit = QtWidgets.QTextEdit(self)
+        self.textEdit.setGeometry(QtCore.QRect(80, 310, 181, 91))
         self.textEdit.setObjectName("textEdit")
-        self.label_10 = QtWidgets.QLabel(TarafEkle)
-        self.label_10.setGeometry(QtCore.QRect(10, 380, 90, 20))
+        self.label_10 = QtWidgets.QLabel(self)
+        self.label_10.setGeometry(QtCore.QRect(10, 410, 90, 20))
         self.label_10.setObjectName("label_10")
-        self.radioButton = QtWidgets.QRadioButton(TarafEkle)
-        self.radioButton.setGeometry(QtCore.QRect(100, 380, 82, 17))
+        self.radioButton = QtWidgets.QRadioButton(self)
+        self.radioButton.setGeometry(QtCore.QRect(100, 410, 82, 17))
         self.radioButton.setChecked(True)
         self.radioButton.setObjectName("radioButton")
-        self.radioButton_2 = QtWidgets.QRadioButton(TarafEkle)
-        self.radioButton_2.setGeometry(QtCore.QRect(150, 380, 82, 17))
+        self.radioButton_2 = QtWidgets.QRadioButton(self)
+        self.radioButton_2.setGeometry(QtCore.QRect(150, 410, 82, 17))
         self.radioButton_2.setObjectName("radioButton_2")
-        self.pushButton = QtWidgets.QPushButton(TarafEkle)
-        self.pushButton.setGeometry(QtCore.QRect(190, 440, 75, 23))
+        self.pushButton = QtWidgets.QPushButton(self)
+        self.pushButton.setGeometry(QtCore.QRect(190, 500, 75, 23))
         self.pushButton.setObjectName("pushButton")
-        self.label_11 = QtWidgets.QLabel(TarafEkle)
-        self.label_11.setGeometry(QtCore.QRect(10, 410, 90, 20))
+        self.label_11 = QtWidgets.QLabel(self)
+        self.label_11.setGeometry(QtCore.QRect(10, 500, 90, 20))
         self.label_11.setObjectName("label_11")
-        self.checkBox = QtWidgets.QCheckBox(TarafEkle)
-        self.checkBox.setGeometry(QtCore.QRect(100, 410, 70, 17))
+        self.checkBox = QtWidgets.QCheckBox(self)
+        self.checkBox.setGeometry(QtCore.QRect(100, 500, 70, 17))
         self.checkBox.setChecked(True)
         self.checkBox.setObjectName("checkBox")
-        self.checkBox_2 = QtWidgets.QCheckBox(TarafEkle)
-        self.checkBox_2.setGeometry(QtCore.QRect(150, 410, 70, 17))
+        self.checkBox_2 = QtWidgets.QCheckBox(self)
+        self.checkBox_2.setGeometry(QtCore.QRect(150, 500, 70, 17))
         self.checkBox_2.setObjectName("checkBox_2")
-        self.line = QtWidgets.QFrame(TarafEkle)
+        self.line = QtWidgets.QFrame(self)
         self.line.setGeometry(QtCore.QRect(270, 0, 16, 441))
         self.line.setFrameShape(QtWidgets.QFrame.VLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line.setObjectName("line")
-        self.widget = QtWidgets.QWidget(TarafEkle)
-        self.widget.setEnabled(False)
+        self.widget = QtWidgets.QWidget(self)
+        self.widget.setEnabled(True)
         self.widget.setGeometry(QtCore.QRect(280, 10, 281, 431))
         self.widget.setObjectName("widget")
         self.groupBox = QtWidgets.QGroupBox(self.widget)
-        self.groupBox.setEnabled(False)
+        self.groupBox.setEnabled(True)
         self.groupBox.setGeometry(QtCore.QRect(0, 10, 271, 171))
         self.groupBox.setObjectName("groupBox")
         self.label_13 = QtWidgets.QLabel(self.groupBox)
@@ -140,7 +151,7 @@ class Ui_TarafEkle(object):
         self.textEdit_2.setGeometry(QtCore.QRect(70, 110, 182, 51))
         self.textEdit_2.setObjectName("textEdit_2")
         self.groupBox_2 = QtWidgets.QGroupBox(self.widget)
-        self.groupBox_2.setEnabled(False)
+        self.groupBox_2.setEnabled(True)
         self.groupBox_2.setGeometry(QtCore.QRect(0, 190, 271, 161))
         self.groupBox_2.setObjectName("groupBox_2")
         self.label_17 = QtWidgets.QLabel(self.groupBox_2)
@@ -163,27 +174,17 @@ class Ui_TarafEkle(object):
         self.textEdit_3 = QtWidgets.QTextEdit(self.groupBox_2)
         self.textEdit_3.setGeometry(QtCore.QRect(70, 80, 182, 71))
         self.textEdit_3.setObjectName("textEdit_3")
-        self.label_12 = QtWidgets.QLabel(TarafEkle)
+        self.label_12 = QtWidgets.QLabel(self)
         self.label_12.setGeometry(QtCore.QRect(10, 220, 90, 20))
         self.label_12.setObjectName("label_12")
-        self.comboBox_2 = QtWidgets.QComboBox(TarafEkle)
+        self.comboBox_2 = QtWidgets.QComboBox(self)
         self.comboBox_2.setGeometry(QtCore.QRect(80, 220, 182, 22))
         self.comboBox_2.setObjectName("comboBox_2")
         self.comboBox_2.addItem("")
         self.comboBox_2.addItem("")
         self.comboBox_2.addItem("")
-
-        self.retranslateUi(TarafEkle)
-        self.radioButton_2.clicked.connect(self.groupBox.show)
-        self.checkBox_2.clicked.connect(self.groupBox_2.show)
-        self.radioButton_2.clicked.connect(self.widget.show)
-        self.checkBox_2.clicked.connect(self.widget.show)
-        self.pushButton.clicked.connect(TarafEkle.close)
-        QtCore.QMetaObject.connectSlotsByName(TarafEkle)
-
-    def retranslateUi(self, TarafEkle):
         _translate = QtCore.QCoreApplication.translate
-        TarafEkle.setWindowTitle(_translate("TarafEkle", "Taraf Ekle"))
+        self.setWindowTitle(_translate("TarafEkle", "Taraf Ekle"))
         self.label.setText(_translate("TarafEkle", "Ad Soyad"))
         self.label_2.setText(_translate("TarafEkle", "Taraf"))
         self.comboBox.setItemText(0, _translate("TarafEkle", "Taraf Seç"))
@@ -218,4 +219,57 @@ class Ui_TarafEkle(object):
         self.comboBox_2.setItemText(0, _translate("TarafEkle", "Cinsiyet"))
         self.comboBox_2.setItemText(1, _translate("TarafEkle", "Kadın"))
         self.comboBox_2.setItemText(2, _translate("TarafEkle", "Erkek"))
+        self.groupBox.hide()
+        self.groupBox_2.hide()
 
+        self.show()
+        # Buradan sonrasına karışma
+        self.pushButton.clicked.connect(self.buton_birinci_gorev)
+
+        self.setWindowTitle("Yeni Uzlaşma Dosyası Ekle")
+        self.show()
+
+        self.radioButton_2.clicked.connect(self.temsilci_ac)
+        self.checkBox_2.clicked.connect(self.tercuman_ac)
+
+
+    def temsilci_ac(self):
+        self.resize(570, 479)
+        self.groupBox.show()
+
+    def tercuman_ac(self):
+        self.checkBox.setDisabled(True)
+        self.groupBox_2.show()
+
+    def buton_birinci_gorev(self):
+        ad = self.lineEdit.text()
+        sifat = self.comboBox.currentText()
+        tc = self.lineEdit_2.text()
+        baba = self.lineEdit_3.text()
+        ana = self.lineEdit_4.text()
+        dyer = self.lineEdit_5.text()
+        dtar = self.lineEdit_6.text()
+        cins = self.comboBox_2.currentText()
+        tel = self.lineEdit_7.text()
+
+
+
+        db = VbagKur()
+        if db.dosya_ekle(sorno, uzno, meno, suc, ttarih, taraf, ozet, 0) == True:
+            baslik = "Dosya Bilgileri Eklendi"
+            mesaj = sorno + " Soruşturma No'lu dosya bilgileri veritabanına başarıyla eklendi"
+            bilgilendir(mesaj, baslik)
+            self.lineEdit.clear()
+            self.lineEdit_2.clear()
+            self.lineEdit_3.clear()
+            self.lineEdit_4.clear()
+            self.lineEdit_5.clear()
+            self.lineEdit_6.clear()
+            self.textEdit.clear()
+        else:
+            pass
+
+        self.on_changed_value(False)
+
+    def on_changed_value(self, value):
+        self.clicked.emit(value)

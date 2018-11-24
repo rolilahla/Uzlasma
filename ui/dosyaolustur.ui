@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>424</width>
-    <height>332</height>
+    <height>223</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Soruşturma No</string>
+    <string>Uzlaşma No</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit">
@@ -60,7 +60,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Uzlaşma No</string>
+    <string>Soruşturma  No</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -126,7 +126,7 @@
    <property name="geometry">
     <rect>
      <x>340</x>
-     <y>290</y>
+     <y>190</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -139,7 +139,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>0</y>
+     <y>30</y>
      <width>121</width>
      <height>121</height>
     </rect>
@@ -181,30 +181,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Taraf Sayısı</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_8">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>190</y>
-     <width>90</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Olay Özeti</string>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEdit">
-   <property name="geometry">
-    <rect>
-     <x>240</x>
-     <y>190</y>
-     <width>171</width>
-     <height>81</height>
-    </rect>
+    <string>Dosya Tevdi Tarihi</string>
    </property>
   </widget>
  </widget>

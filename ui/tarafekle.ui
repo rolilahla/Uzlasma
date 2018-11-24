@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>570</width>
-    <height>479</height>
+    <width>277</width>
+    <height>475</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -367,7 +367,7 @@
   </widget>
   <widget class="QWidget" name="widget" native="true">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="geometry">
     <rect>
@@ -379,7 +379,7 @@
    </property>
    <widget class="QGroupBox" name="groupBox">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
@@ -496,7 +496,7 @@
    </widget>
    <widget class="QGroupBox" name="groupBox_2">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>

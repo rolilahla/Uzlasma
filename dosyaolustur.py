@@ -13,14 +13,14 @@ class DosyaOlustur(QtWidgets.QDialog):
         self.init_ui()
 
     def init_ui(self):
-        self.resize(424, 332)
+        self.resize(424, 222)
         self.icon = QtGui.QIcon()
         self.icon.addPixmap(QtGui.QPixmap("lib/icon/ubuntuone.png"),
                             QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.setWindowIcon(self.icon)
         self.label = QtWidgets.QLabel(self)
         self.label.setGeometry(QtCore.QRect(130, 10, 90, 20))
-        self.label.setText("Soruşturma No")
+        self.label.setText("Uzlaşma No")
 
         self.lineEdit = QtWidgets.QLineEdit(self)
         self.lineEdit.setGeometry(QtCore.QRect(240, 10, 170, 20))
@@ -32,7 +32,7 @@ class DosyaOlustur(QtWidgets.QDialog):
 
         self.label_2 = QtWidgets.QLabel(self)
         self.label_2.setGeometry(QtCore.QRect(130, 40, 90, 20))
-        self.label_2.setText("Uzlaşma No")
+        self.label_2.setText("Soruşturma No")
 
         self.label_3 = QtWidgets.QLabel(self)
         self.label_3.setGeometry(QtCore.QRect(130, 70, 90, 20))
@@ -52,10 +52,6 @@ class DosyaOlustur(QtWidgets.QDialog):
         self.label_5.setGeometry(QtCore.QRect(130, 130, 90, 20))
         self.label_5.setText("Teklif / Davet Tarihi")
 
-        self.pushButton = QtWidgets.QPushButton(self)
-        self.pushButton.setGeometry(QtCore.QRect(340, 290, 75, 23))
-        self.pushButton.setText("Oluştur")
-
         self.label_6 = QtWidgets.QLabel(self)
         self.label_6.setGeometry(QtCore.QRect(10, 50, 121, 121))
         self.label_6.setText("")
@@ -69,13 +65,11 @@ class DosyaOlustur(QtWidgets.QDialog):
 
         self.label_7 = QtWidgets.QLabel(self)
         self.label_7.setGeometry(QtCore.QRect(130, 160, 90, 20))
-        self.label_7.setText("Taraf Sayısı")
-        self.label_8 = QtWidgets.QLabel(self)
-        self.label_8.setGeometry(QtCore.QRect(130, 190, 90, 20))
-        self.label_8.setText("Adres")
-        self.textEdit = QtWidgets.QTextEdit(self)
-        self.textEdit.setGeometry(QtCore.QRect(240, 190, 171, 81))
-        self.textEdit.setObjectName("textEdit")
+        self.label_7.setText("Dosya Tevdi Tarihi")
+
+        self.pushButton = QtWidgets.QPushButton(self)
+        self.pushButton.setGeometry(QtCore.QRect(340, 190, 75, 23))
+        self.pushButton.setText("Oluştur")
         self.show()
 
         # Setting a connection between slider position change and on_changed_value function
@@ -87,17 +81,16 @@ class DosyaOlustur(QtWidgets.QDialog):
         self.show()
 
     def buton_birinci_gorev(self):
-        sorno = self.lineEdit.text()
-        uzno = self.lineEdit_2.text()
+        uzno = self.lineEdit.text()
+        sorno = self.lineEdit_2.text()
         meno = self.lineEdit_3.text()
         suc = self.lineEdit_4.text()
         ttarih = self.lineEdit_5.text()
-        taraf = self.lineEdit_6.text()
-        ozet = self.textEdit.toPlainText()
+        tevdi = self.lineEdit_6.text()
         db = VbagKur()
-        if db.dosya_ekle(sorno, uzno, meno, suc, ttarih, taraf, ozet) == True:
+        if db.dosya_ekle(uzno, sorno, meno, suc, ttarih, tevdi, 0) == True:
             baslik = "Dosya Bilgileri Eklendi"
-            mesaj = sorno + " Soruşturma No'lu dosya bilgileri veritabanına başarıyla eklendi"
+            mesaj = uzno + " Uzlaşma No'lu dosya bilgileri veritabanına başarıyla eklendi"
             bilgilendir(mesaj, baslik)
             self.lineEdit.clear()
             self.lineEdit_2.clear()
@@ -105,7 +98,6 @@ class DosyaOlustur(QtWidgets.QDialog):
             self.lineEdit_4.clear()
             self.lineEdit_5.clear()
             self.lineEdit_6.clear()
-            self.textEdit.clear()
         else:
             pass
 

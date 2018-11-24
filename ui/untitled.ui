@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>864</width>
-    <height>547</height>
+    <width>919</width>
+    <height>495</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="1">
+    <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
        <number>0</number>
@@ -28,223 +28,158 @@
        <attribute name="title">
         <string>Dosya Bilgileri</string>
        </attribute>
-       <widget class="QLabel" name="label">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>71</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Dosya No</string>
-        </property>
-       </widget>
-       <widget class="QComboBox" name="comboBox">
-        <property name="geometry">
-         <rect>
-          <x>70</x>
-          <y>10</y>
-          <width>101</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <item>
-         <property name="text">
-          <string>Dosya Seç</string>
-         </property>
-        </item>
-       </widget>
        <widget class="QGroupBox" name="groupBox">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>230</y>
-          <width>201</width>
-          <height>220</height>
+          <x>210</x>
+          <y>20</y>
+          <width>191</width>
+          <height>201</height>
          </rect>
         </property>
         <property name="title">
          <string>Taraflar</string>
         </property>
-        <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0">
-          <widget class="QPushButton" name="pushButton_4">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>../lib/icon/new.png</normaloff>../lib/icon/new.png</iconset>
-           </property>
-           <property name="flat">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QPushButton" name="pushButton_5">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>../lib/icon/gtk-edit.png</normaloff>../lib/icon/gtk-edit.png</iconset>
-           </property>
-           <property name="flat">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QPushButton" name="pushButton_6">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>../lib/icon/gtk-no.png</normaloff>../lib/icon/gtk-no.png</iconset>
-           </property>
-           <property name="flat">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>76</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="1" column="0" colspan="4">
-          <widget class="QTableWidget" name="tableWidget">
-           <property name="maximumSize">
-            <size>
-             <width>171</width>
-             <height>157</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>8</pointsize>
-            </font>
-           </property>
-           <property name="autoScrollMargin">
-            <number>16</number>
-           </property>
-           <property name="dragDropMode">
-            <enum>QAbstractItemView::NoDragDrop</enum>
-           </property>
-           <attribute name="horizontalHeaderVisible">
-            <bool>true</bool>
-           </attribute>
-           <attribute name="horizontalHeaderCascadingSectionResizes">
-            <bool>false</bool>
-           </attribute>
-           <attribute name="horizontalHeaderDefaultSectionSize">
-            <number>94</number>
-           </attribute>
-           <attribute name="horizontalHeaderHighlightSections">
-            <bool>true</bool>
-           </attribute>
-           <attribute name="horizontalHeaderMinimumSectionSize">
-            <number>30</number>
-           </attribute>
-           <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-            <bool>false</bool>
-           </attribute>
-           <attribute name="horizontalHeaderStretchLastSection">
-            <bool>true</bool>
-           </attribute>
-           <attribute name="verticalHeaderVisible">
-            <bool>false</bool>
-           </attribute>
-           <attribute name="verticalHeaderCascadingSectionResizes">
-            <bool>false</bool>
-           </attribute>
-           <attribute name="verticalHeaderDefaultSectionSize">
-            <number>17</number>
-           </attribute>
-           <attribute name="verticalHeaderHighlightSections">
-            <bool>true</bool>
-           </attribute>
-           <attribute name="verticalHeaderMinimumSectionSize">
-            <number>19</number>
-           </attribute>
-           <row>
-            <property name="text">
-             <string>1</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>New Row</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>New Row</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>New Row</string>
-            </property>
-           </row>
-           <row>
-            <property name="text">
-             <string>New Row</string>
-            </property>
-           </row>
-           <column>
-            <property name="text">
-             <string>Ad Soyad</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Sıfat</string>
-            </property>
-           </column>
-           <item row="0" column="0">
-            <property name="text">
-             <string> fdgdfgdg dfgdfgdfg</string>
-            </property>
-           </item>
-           <item row="0" column="1">
-            <property name="text">
-             <string>cvbcvbcvb</string>
-            </property>
-           </item>
-           <item row="1" column="0">
-            <property name="text">
-             <string>cvbcvb</string>
-            </property>
-           </item>
-           <item row="1" column="1">
-            <property name="text">
-             <string>cvbcvb</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-        </layout>
+        <widget class="QPushButton" name="pushButton_4">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>23</y>
+           <width>34</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../lib/icon/new.png</normaloff>../lib/icon/new.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>22</width>
+           <height>22</height>
+          </size>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_5">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>23</y>
+           <width>34</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../lib/icon/gtk-edit.png</normaloff>../lib/icon/gtk-edit.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>22</width>
+           <height>22</height>
+          </size>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_6">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>24</y>
+           <width>34</width>
+           <height>28</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../lib/icon/gtk-no.png</normaloff>../lib/icon/gtk-no.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>22</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+        <widget class="QTableWidget" name="tableWidget">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>59</y>
+           <width>171</width>
+           <height>132</height>
+          </rect>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>171</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>8</pointsize>
+          </font>
+         </property>
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>77</number>
+         </attribute>
+         <attribute name="horizontalHeaderMinimumSectionSize">
+          <number>21</number>
+         </attribute>
+         <attribute name="verticalHeaderDefaultSectionSize">
+          <number>21</number>
+         </attribute>
+         <attribute name="verticalHeaderMinimumSectionSize">
+          <number>19</number>
+         </attribute>
+         <row>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </row>
+         <row>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </row>
+         <row>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </row>
+         <row>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </row>
+         <column>
+          <property name="text">
+           <string>Ad Soyad</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Sıfat</string>
+          </property>
+         </column>
+        </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_2">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>40</y>
-          <width>201</width>
-          <height>121</height>
+          <y>20</y>
+          <width>191</width>
+          <height>141</height>
          </rect>
         </property>
         <property name="cursor">
@@ -259,13 +194,41 @@
         <property name="checkable">
          <bool>false</bool>
         </property>
+        <widget class="QLabel" name="label">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>20</y>
+           <width>71</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Uzlaşma No</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="comboBox">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>20</y>
+           <width>91</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <item>
+          <property name="text">
+           <string>Dosya Seç</string>
+          </property>
+         </item>
+        </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_3">
         <property name="geometry">
          <rect>
           <x>10</x>
           <y>170</y>
-          <width>201</width>
+          <width>191</width>
           <height>51</height>
          </rect>
         </property>
@@ -275,10 +238,10 @@
         <widget class="QLabel" name="label_7">
          <property name="geometry">
           <rect>
-           <x>50</x>
+           <x>30</x>
            <y>20</y>
-           <width>111</width>
-           <height>20</height>
+           <width>131</width>
+           <height>31</height>
           </rect>
          </property>
          <property name="font">
@@ -292,141 +255,6 @@
           <string>Görüşme halinde</string>
          </property>
         </widget>
-       </widget>
-       <widget class="QGroupBox" name="groupBox_4">
-        <property name="geometry">
-         <rect>
-          <x>230</x>
-          <y>0</y>
-          <width>600</width>
-          <height>131</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="acceptDrops">
-         <bool>false</bool>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="title">
-         <string>Uzlaşma Görüşmeleri</string>
-        </property>
-        <widget class="QTextEdit" name="textEdit">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>23</y>
-           <width>580</width>
-           <height>88</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="pushButton">
-         <property name="geometry">
-          <rect>
-           <x>540</x>
-           <y>110</y>
-           <width>51</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Güncelle</string>
-         </property>
-        </widget>
-       </widget>
-       <widget class="QGroupBox" name="groupBox_5">
-        <property name="geometry">
-         <rect>
-          <x>230</x>
-          <y>135</y>
-          <width>600</width>
-          <height>131</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="title">
-         <string>Edim</string>
-        </property>
-        <widget class="QTextEdit" name="textEdit_2">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>23</y>
-           <width>580</width>
-           <height>88</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="pushButton_2">
-         <property name="geometry">
-          <rect>
-           <x>540</x>
-           <y>110</y>
-           <width>51</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Güncelle</string>
-         </property>
-        </widget>
-       </widget>
-       <widget class="QGroupBox" name="groupBox_6">
-        <property name="geometry">
-         <rect>
-          <x>230</x>
-          <y>270</y>
-          <width>600</width>
-          <height>141</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="title">
-         <string>Uzlaşma Başarısız Olmuşsa Sebebleri</string>
-        </property>
-        <widget class="QTextEdit" name="textEdit_3">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>23</y>
-           <width>580</width>
-           <height>88</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="pushButton_3">
-         <property name="geometry">
-          <rect>
-           <x>540</x>
-           <y>120</y>
-           <width>51</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Güncelle</string>
-         </property>
-        </widget>
-        <zorder>textEdit_3</zorder>
-        <zorder>pushButton_3</zorder>
-        <zorder>pushButton_3</zorder>
        </widget>
        <widget class="QLabel" name="label_2">
         <property name="geometry">
@@ -496,97 +324,500 @@
        <widget class="QLabel" name="label_8">
         <property name="geometry">
          <rect>
-          <x>105</x>
+          <x>100</x>
           <y>60</y>
-          <width>95</width>
+          <width>71</width>
           <height>20</height>
          </rect>
         </property>
-        <property name="frameShape">
-         <enum>QFrame::Box</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
-        </property>
         <property name="text">
-         <string>1</string>
+         <string/>
         </property>
        </widget>
        <widget class="QLabel" name="label_9">
         <property name="geometry">
          <rect>
-          <x>105</x>
+          <x>100</x>
           <y>80</y>
-          <width>95</width>
+          <width>71</width>
           <height>20</height>
          </rect>
         </property>
-        <property name="frameShape">
-         <enum>QFrame::Box</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
-        </property>
         <property name="text">
-         <string>2</string>
+         <string/>
         </property>
        </widget>
        <widget class="QLabel" name="label_10">
         <property name="geometry">
          <rect>
-          <x>105</x>
+          <x>100</x>
           <y>100</y>
-          <width>95</width>
+          <width>71</width>
           <height>20</height>
          </rect>
         </property>
-        <property name="frameShape">
-         <enum>QFrame::Box</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
-        </property>
         <property name="text">
-         <string>3</string>
+         <string/>
         </property>
        </widget>
        <widget class="QLabel" name="label_11">
         <property name="geometry">
          <rect>
-          <x>105</x>
+          <x>100</x>
           <y>120</y>
-          <width>95</width>
+          <width>71</width>
           <height>20</height>
          </rect>
         </property>
-        <property name="frameShape">
-         <enum>QFrame::Box</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
-        </property>
         <property name="text">
-         <string>4</string>
+         <string/>
         </property>
        </widget>
        <widget class="QLabel" name="label_12">
         <property name="geometry">
          <rect>
-          <x>105</x>
+          <x>100</x>
           <y>140</y>
-          <width>95</width>
+          <width>71</width>
           <height>20</height>
          </rect>
         </property>
-        <property name="frameShape">
-         <enum>QFrame::Box</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
-        </property>
         <property name="text">
-         <string>5</string>
+         <string/>
         </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_8">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>230</y>
+          <width>191</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Uzlaştırmacı</string>
+        </property>
+        <widget class="QComboBox" name="comboBox_2">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>20</y>
+           <width>141</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <item>
+          <property name="text">
+           <string>Uzlaştırmacı Seç</string>
+          </property>
+         </item>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_9">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>20</y>
+          <width>191</width>
+          <height>201</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Dosya Giderleri</string>
+        </property>
+        <widget class="QPushButton" name="pushButton_9">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>23</y>
+           <width>34</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../lib/icon/new.png</normaloff>../lib/icon/new.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>22</width>
+           <height>22</height>
+          </size>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_10">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>23</y>
+           <width>34</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../lib/icon/gtk-edit.png</normaloff>../lib/icon/gtk-edit.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>22</width>
+           <height>22</height>
+          </size>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_11">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>24</y>
+           <width>34</width>
+           <height>28</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../lib/icon/gtk-no.png</normaloff>../lib/icon/gtk-no.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>22</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+        <widget class="QListWidget" name="listWidget_2">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>60</y>
+           <width>171</width>
+           <height>131</height>
+          </rect>
+         </property>
+         <item>
+          <property name="text">
+           <string>Adanalı alsdjlaskjd</string>
+          </property>
+         </item>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_10">
+        <property name="geometry">
+         <rect>
+          <x>620</x>
+          <y>20</y>
+          <width>241</width>
+          <height>201</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Ek Dosyalar</string>
+        </property>
+        <widget class="QPushButton" name="pushButton_12">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>23</y>
+           <width>34</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../lib/icon/new.png</normaloff>../lib/icon/new.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>22</width>
+           <height>22</height>
+          </size>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_13">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>23</y>
+           <width>34</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../lib/icon/gtk-edit.png</normaloff>../lib/icon/gtk-edit.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>22</width>
+           <height>22</height>
+          </size>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_14">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>24</y>
+           <width>34</width>
+           <height>28</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../lib/icon/gtk-no.png</normaloff>../lib/icon/gtk-no.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>22</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+        <widget class="QListWidget" name="listWidget_3">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>60</y>
+           <width>221</width>
+           <height>131</height>
+          </rect>
+         </property>
+         <item>
+          <property name="text">
+           <string>Mehmet Eroğlu Davet Mektubu</string>
+          </property>
+         </item>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_7">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>240</y>
+          <width>641</width>
+          <height>141</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Olay Özeti</string>
+        </property>
+        <widget class="QTextEdit" name="textEdit_4">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>18</y>
+           <width>621</width>
+           <height>91</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_7">
+         <property name="geometry">
+          <rect>
+           <x>560</x>
+           <y>110</y>
+           <width>73</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Kaydet</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Uzlaşma Görüşmeleri</string>
+       </attribute>
+       <widget class="QGroupBox" name="groupBox_4">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>881</width>
+          <height>481</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0" colspan="2">
+          <widget class="QTextEdit" name="textEdit">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="html">
+            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>478</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="1" column="1">
+          <widget class="QPushButton" name="pushButton">
+           <property name="text">
+            <string>Kaydet</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Edim</string>
+       </attribute>
+       <widget class="QGroupBox" name="groupBox_5">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>881</width>
+          <height>481</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="0" column="0" colspan="2">
+          <widget class="QTextEdit" name="textEdit_2">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>478</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="1" column="1">
+          <widget class="QPushButton" name="pushButton_2">
+           <property name="text">
+            <string>Kaydet</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>Ulaşma Başarsız Olursa Sebebleri</string>
+       </attribute>
+       <widget class="QGroupBox" name="groupBox_6">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>881</width>
+          <height>481</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="2" column="0">
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>478</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="2" column="1">
+          <widget class="QPushButton" name="pushButton_3">
+           <property name="text">
+            <string>Kaydet</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QTextEdit" name="textEdit_3">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </widget>
      </widget>
@@ -598,7 +829,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>864</width>
+     <width>919</width>
      <height>21</height>
     </rect>
    </property>
@@ -607,12 +838,14 @@
      <string>Dosya Ekle</string>
     </property>
     <addaction name="actionDosya_Ekle"/>
+    <addaction name="actionDosya_Sil"/>
    </widget>
    <widget class="QMenu" name="menuUzla_mac_Ekle">
     <property name="title">
      <string>Uzlaşmacı </string>
     </property>
     <addaction name="actionUzla_mac_Bilgisi_ekle"/>
+    <addaction name="actionUzla_mac_Sil"/>
    </widget>
    <widget class="QMenu" name="menu_ablonlar">
     <property name="title">
@@ -620,9 +853,16 @@
     </property>
     <addaction name="action_ablonlar_d_zenle"/>
    </widget>
+   <widget class="QMenu" name="menuAyarlar">
+    <property name="title">
+     <string>Ayarlar</string>
+    </property>
+    <addaction name="actionFont_Ayarla"/>
+   </widget>
    <addaction name="menuDosya_Ekle"/>
    <addaction name="menuUzla_mac_Ekle"/>
    <addaction name="menu_ablonlar"/>
+   <addaction name="menuAyarlar"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionDosya_Ekle">
@@ -640,6 +880,26 @@
     <string>Şablonları düzenle</string>
    </property>
   </action>
+  <action name="actionDosya_Sil">
+   <property name="text">
+    <string>Dosya Sil</string>
+   </property>
+  </action>
+  <action name="actionFont_Ayarla">
+   <property name="text">
+    <string>Font Ayarla</string>
+   </property>
+  </action>
+  <action name="action_ablon_Metni_Ayarla">
+   <property name="text">
+    <string>Şablon Metni Ayarla</string>
+   </property>
+  </action>
+  <action name="actionUzla_mac_Sil">
+   <property name="text">
+    <string>Uzlaşmacı Sil</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections>
@@ -650,8 +910,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>140</x>
-     <y>68</y>
+     <x>181</x>
+     <y>111</y>
     </hint>
     <hint type="destinationlabel">
      <x>253</x>
@@ -660,50 +920,50 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton</sender>
+   <sender>pushButton_4</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>857</x>
-     <y>162</y>
+     <x>264</x>
+     <y>124</y>
     </hint>
     <hint type="destinationlabel">
-     <x>765</x>
-     <y>-10</y>
+     <x>6</x>
+     <y>275</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_2</sender>
+   <sender>pushButton_5</sender>
    <signal>clicked()</signal>
-   <receiver>statusbar</receiver>
+   <receiver>MainWindow</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>869</x>
-     <y>256</y>
+     <x>304</x>
+     <y>124</y>
     </hint>
     <hint type="destinationlabel">
-     <x>644</x>
-     <y>437</y>
+     <x>3</x>
+     <y>330</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_3</sender>
+   <sender>pushButton_7</sender>
    <signal>clicked()</signal>
-   <receiver>statusbar</receiver>
+   <receiver>MainWindow</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>861</x>
-     <y>356</y>
+     <x>805</x>
+     <y>411</y>
     </hint>
     <hint type="destinationlabel">
-     <x>765</x>
-     <y>438</y>
+     <x>4</x>
+     <y>444</y>
     </hint>
    </hints>
   </connection>
