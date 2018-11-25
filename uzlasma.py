@@ -12,6 +12,7 @@ import modul as mdl
 import uihazirla as uih
 from dosyaolustur import DosyaOlustur
 from taraf import TarafEkle
+from tarafduzenle import TarafDuzenle
 
 class Ui_MainWindow(object):
     def gui_dosya_olustur(self):
@@ -23,9 +24,16 @@ class Ui_MainWindow(object):
     def gui_taraf_ekle(self):
         self.ta = TarafEkle()
         self.ta.init_ui(self.comboBox.currentText())
-        #self.make_connection(self.ta)
+        self.taraf_connection(self.ta)
         self.ta.show()
         self.ta.exec_()
+
+    def gui_taraf_duzenle(self, kisi):
+        self.tad = TarafDuzenle()
+        self.tad.init_ui(self.comboBox.currentText(), kisi)
+        self.taraf_connection(self.tad)
+        self.tad.show()
+        self.tad.exec_()
 
     def setupUi(self, MainWindow):
 
@@ -335,6 +343,7 @@ class Ui_MainWindow(object):
         self.triggerfinger()
         self.dosya_tara()
 
+
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -344,7 +353,10 @@ class Ui_MainWindow(object):
         self.actionDosya_Ekle.triggered.connect(self.gui_dosya_olustur)
         self.comboBox.currentIndexChanged.connect(self.dosya_bilgisi_cek)
         self.pushButton_4.clicked.connect(self.gui_taraf_ekle)
+        self.tableWidget.cellClicked.connect(self.tablodan_parametre_olustur)
+        self.pushButton_5.clicked.connect(self.taraf_duzenlemeyi_bagla)
         self.uzlasmaci_tara()
+
 
     #Dosya Bilgilerini listele
     def dosya_bilgisi_cek(self):
@@ -359,6 +371,7 @@ class Ui_MainWindow(object):
             self.label_11.setText(sonuc[5])
             self.label_12.setText(str(sonuc[6]))
             self.dosya_durumu()
+            self.taraf_bul(dosya)
     #Uzlaşma dosyasının ne durumda olduğunu göster
     def dosya_durumu(self):
         sonuc = mdl.dosya_durumu_tara(self.comboBox.currentText())
@@ -369,13 +382,39 @@ class Ui_MainWindow(object):
         for i in range(len(sor)):
             self.comboBox.addItem(sor[i])
 
+    def taraf_bul(self, ar):
+        sql = "SELECT ad, sifat FROM taraflar WHERE dosya == '{}'".format(ar)
+        sonuc = mdl.kmt(sql)
+        self.tableWidget.setRowCount(len(sonuc))
+        satir = 0
+        sutun = 0
+        for i in range(len(sonuc)):
+            for im in range(len(sonuc[i])):
+                self.tableWidget.setItem(satir, sutun, QtWidgets.QTableWidgetItem("{}".format(sonuc[i][im])))
+                sutun += 1
+            sutun = 0
+            satir += 1
+
+
     def uzlasmaci_tara(self):
         sor = mdl.tekli_demet_coz(mdl.kolon_tara("isim","uzlasmaci"))
         for i in range(len(sor)):
             self.comboBox_2.addItem(sor[i])
+
+    def tablodan_parametre_olustur(self, row, column):
+        item = self.tableWidget.item(row, column)
+        self.kisi_duzenle = item.text()
+
+    def taraf_duzenlemeyi_bagla(self):
+        self.gui_taraf_duzenle(self.kisi_duzenle)
+
     #Dosya Eklemesinden sonra liste yenilemek için sinyal yakalama
     def make_connection(self, dosyaolustur_object):
         dosyaolustur_object.clicked.connect(self.get_signal_dosya)
+
+    #Dosya'ya taraf ekleme sinyali yakalama
+    def taraf_connection(self, dosyaolustur_object):
+        dosyaolustur_object.clicked.connect(self.get_signal_taraf)
 
     @pyqtSlot(bool)
     def get_signal_dosya(self, val):
@@ -389,6 +428,13 @@ class Ui_MainWindow(object):
             self.dosya_tara()
         else:
             print("Sinyal gelmedi")
+
+    @pyqtSlot(bool)
+    def get_signal_taraf(self, val):
+        if val == False:
+            self.taraf_bul(self.comboBox.currentText())
+        else:
+            print("Taraf Sinyali Gelmedi")
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate

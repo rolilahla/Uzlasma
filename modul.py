@@ -17,7 +17,6 @@ def dosya_durumu_tara(dosya):
     elif arg[0][0] == 4:
         return ("Uzlaşma sonlandı")
 
-
 def tekli_demet_coz(demet):
     dizi = []
     for i in range(len(demet)):
@@ -30,10 +29,11 @@ def tek_satirlik_demet_coz(demet):
         dizi.append(demet[0][i])
     return dizi
 
-def taraf_tara():
-    pass
-
 def dosya_cek(dosya):
     sor = db.hepsini_oku("*", "dosyalar", "uzno", dosya)
     return sor
+
+def kmt(dosya):
+    son = db.komut(dosya)
+    return son
 

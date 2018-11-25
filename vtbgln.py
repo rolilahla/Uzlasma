@@ -9,15 +9,15 @@ class VbagKur(object):
         self.vt = sqlite3.connect('lib/database/rolilahla.sqlite')
         self.im = self.vt.cursor()
 
-    """Uzlaştırmacı Ekle
-    
-    :param      :a1 = Ad Soyad (str)
-    :param      :a2 = Sicil No (str)
-    :param      :a3 = Telefon No (str)
-    :param      :a4 = Bağlı bulunduğu şehir (str)
-    :param      :a5 = Adres (str)
-    """
     def uzlastirmaci_ekle(self, a1, a2, a3, a4, a5):
+        """Uzlaştırmacı Ekle
+
+           :param      :a1 = Ad Soyad (str)
+           :param      :a2 = Sicil No (str)
+           :param      :a3 = Telefon No (str)
+           :param      :a4 = Bağlı bulunduğu şehir (str)
+           :param      :a5 = Adres (str)
+           """
         self.im.execute(
             """INSERT INTO uzlasmaci VALUES(NULL, '{}','{}','{}','{}','{}')""".format(a1, a2, a3, a4, a5))
         self.vt.commit()
@@ -35,7 +35,7 @@ class VbagKur(object):
         :param: a7 : Dosya Durumu (int)
 
         """
-        self.im.execute("""INSERT INTO dosyalar VALUES(NULL, '{}','{}','{}','{}','{}','{}', '{}')""".format(a1, a2, a3, a4, a5, a6, a7))
+        self.im.execute("""INSERT INTO dosyalar VALUES(NULL, '{}','{}','{}','{}','{}','{}','{}')""".format(a1, a2, a3, a4, a5, a6, a7))
         self.vt.commit()
         return True
 
@@ -52,31 +52,69 @@ class VbagKur(object):
         veriler = self.im.fetchall()
         return veriler
 
+    def tarafekle(self, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14):
+        """Taraf Ekleme Fonksiyonu
+        
+        :param a1: ad(str)
+        :param a2: Sıfat(str)
+        :param a3: Tc no(str)
+        :param a4: Baba adı(str)
+        :param a5: Anne Adı(str)
+        :param a6: Doğum Yeri (str)
+        :param a7: Doğum Tarihi(str)
+        :param a8: Cinsiyet (str)
+        :param a9: Telefon (str)
+        :param a10: Adres Niteliği(int)
+        :param a11: adres(str)
+        :param a12: Kanuni Temsilci adı (str)
+        :param a13: Tercüman Adı (str)
+        :param a14: Dosya Ulaşma no (str)
+        :return: True
+        """
+        self.im.execute("""INSERT INTO taraflar VALUES(NULL,'{}','{}','{}',
+        '{}','{}','{}',
+        '{}','{}','{}',
+        '{}','{}','{}',
+        '{}','{}')""".format(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14))
+        self.vt.commit()
+        return True
+
+    def temsilci_ekle(self, a1, a2, a3, a4, a5, a6, a7):
+        """Temsilci Ekleme
+        :param a1: Ad (str)
+        :param a2: Sicil No (str)
+        :param a3: Telefon (str)
+        :param a4: Adres (str)
+        :param a5: Dosya Uzlaşma No (str)
+        :param a6: Temsilcisi olduğu kişi(str)
+        :param a7: Temsil ettiği kişinin sıfatı(str)
+        :return:  True
+        """
+        self.im.execute("INSERT INTO temsilciler VALUES(NULL, '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(a1,
+                                                                                                                 a2,a3,
+                                                                                                                 a4,a5,
+                                                                                                                 a6,a7))
+        self.vt.commit()
+        return True
+
+    def tercuman_ekle(self, a1, a2, a3, a4, a5):
+        """ Tercüman Ekle
+
+        :param a1: Ad(str)
+        :param a2: Tc no (str)
+        :param a3: Adres(str)
+        :param a4: Dosya(str)
+        :param a5: Bağlı olduğu kişi(str)
+        :return: True
+        """
+        self.im.execute("INSERT INTO tercuman VALUES(NULL, '{}', '{}', '{}', '{}', '{}')".format(a1, a2, a3, a4, a5))
+        self.vt.commit()
+        return True
+
     def taraf_cek(self):
         self.im.execute("select ")
 
     def gemi_guncelle(self, l):
-        """
-        print (
-            Değişkenler Alındı :
-            Kod______________:{}
-            Firma____________:{}
-            Gemi_____________:{}
-            Gemi Kodu________:{}
-            Gemi Cinsi_______:{}
-            Defter No________:{}
-            Belge No_________:{}
-            Sicil No_________:{}
-            İmo _____________:{}
-            Tel _____________:{}
-            Acente___________:{}
-            Acente Tel_______:{}
-            Adres____________:{}
-            Vergi Dairesi____:{}
-            Vergi No_________:{}
-
-
-            .format(l[0],l[1],l[2],l[3],l[4],l[5],l[6],l[7],l[8],l[9],l[10],l[11],l[14],l[12],l[13]))"""
         self.im.execute("""UPDATE gemiler SET kod='{}',
         fad='{}',
         gad='{}',
@@ -134,6 +172,11 @@ class VbagKur(object):
             """.format(t, l, k, y, l, k))
         print ("Veri Ekleme işlemi tamamlandı")
         self.vt.commit()
+
+    def komut(self, komut):
+        self.im.execute(komut)
+        return self.im.fetchall()
+
 
     def veritabanini_kapat(self):
         self.vt.close()

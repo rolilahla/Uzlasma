@@ -4,14 +4,14 @@ from PyQt5.QtCore import pyqtSignal
 from vtbgln import VbagKur
 from mico import bilgilendir
 
-class TarafEkle(QtWidgets.QDialog):
+class TarafDuzenle(QtWidgets.QDialog):
     # Added a signal
     clicked = pyqtSignal(bool)
 
     def __init__(self):
-        super(TarafEkle, self).__init__()
+        super(TarafDuzenle, self).__init__()
 
-    def init_ui(self, uno):
+    def init_ui(self, uno, kisi):
         self.dosya_uzlasma_no = uno
         self.resize(277, 475)
         self.icon = QtGui.QIcon()
@@ -237,6 +237,51 @@ class TarafEkle(QtWidgets.QDialog):
         self.comboBox_2.setItemText(2, _translate("TarafEkle", "Erkek"))
         self.groupBox.hide()
         self.groupBox_2.hide()
+
+        self.db = VbagKur()
+        sonuc = self.db.komut(
+            "SELECT * FROM taraflar WHERE dosya == '{}' and ad == '{}'".format(self.dosya_uzlasma_no, kisi))
+        self.lineEdit.setText(sonuc[0][1])
+        self.comboBox.setCurrentText(sonuc[0][2])
+        self.lineEdit_2.setText(sonuc[0][3])
+        self.lineEdit_3.setText(sonuc[0][4])
+        self.lineEdit_4.setText(sonuc[0][5])
+        self.lineEdit_5.setText(sonuc[0][6])
+        self.lineEdit_6.setText(sonuc[0][7])
+        self.comboBox_2.setCurrentText(sonuc[0][8])
+        self.lineEdit_7.setText(sonuc[0][9])
+        self.comboBox_3.setCurrentIndex(sonuc[0][10])
+        self.textEdit.setText(sonuc[0][11])
+        if len(sonuc[0][12]) == 4:
+            pass
+        else:
+            self.checkBox_2.setChecked(True)
+            self.checkBox_2.setDisabled(True)
+            self.checkBox.setChecked(False)
+            self.resize(570, 479)
+            temsil = self.db.komut(
+                "select ad,sicil,tel,adres from temsilciler where ad == '{}' and kisi == '{}'".format(sonuc[0][12],
+                                                                                                      kisi))
+            self.groupBox.show()
+            self.lineEdit_8.setText(temsil[0][0])
+            self.lineEdit_9.setText(temsil[0][1])
+            self.lineEdit_10.setText(temsil[0][2])
+            self.textEdit_2.setText(temsil[0][3])
+
+        if len(sonuc[0][13]) == 4:
+            pass
+        else:
+            tercu = self.db.komut(
+                "select ad,tc,adres from tercuman where ad == '{}' and kisi == '{}'".format(sonuc[0][13],
+                                                                                                      kisi))
+            self.groupBox_2.show()
+            self.checkBox_4.setChecked(True)
+            self.checkBox_4.setDisabled(True)
+            self.checkBox_3.setChecked(False)
+            self.resize(570, 479)
+            self.lineEdit_11.setText(temsil[0][0])
+            self.lineEdit_12.setText(temsil[0][1])
+            self.textEdit_3.setText(temsil[0][2])
 
         self.show()
         # Buradan sonrasına karışma
