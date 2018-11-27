@@ -37,3 +37,7 @@ def kmt(dosya):
     son = db.komut(dosya)
     return son
 
+def silinecek_veri_bul(arg, tablo):
+    sonuc = tek_satirlik_demet_coz(db.komut(arg))
+    db.satir_sil("DELETE FROM {} WHERE id = '{}'".format(tablo, sonuc[0]))
+    return True

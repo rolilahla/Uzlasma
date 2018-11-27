@@ -12,6 +12,7 @@ import modul as mdl
 import uihazirla as uih
 from dosyaolustur import DosyaOlustur
 from taraf import TarafEkle
+from mico import bilgilendir, kayit_sil_soru
 from tarafduzenle import TarafDuzenle
 
 class Ui_MainWindow(object):
@@ -22,15 +23,20 @@ class Ui_MainWindow(object):
         self.p.exec_()
 
     def gui_taraf_ekle(self):
-        self.ta = TarafEkle()
-        self.ta.init_ui(self.comboBox.currentText())
-        self.taraf_connection(self.ta)
-        self.ta.show()
-        self.ta.exec_()
+        if self.comboBox.currentIndex() == 0:
+            baslik = "Uyari !!!"
+            mesaj = "Lütfen Taraf Eklenecek Dosyayı  Seçin"
+            bilgilendir(mesaj, baslik)
+        else:
+            self.ta = TarafEkle()
+            self.ta.init_ui(self.comboBox.currentText())
+            self.taraf_connection(self.ta)
+            self.ta.show()
+            self.ta.exec_()
 
-    def gui_taraf_duzenle(self, kisi):
+    def gui_taraf_duzenle(self, kisi, nitelik):
         self.tad = TarafDuzenle()
-        self.tad.init_ui(self.comboBox.currentText(), kisi)
+        self.tad.init_ui(self.comboBox.currentText(), kisi, nitelik)
         self.taraf_connection(self.tad)
         self.tad.show()
         self.tad.exec_()
@@ -85,15 +91,8 @@ class Ui_MainWindow(object):
         self.tableWidget.setFont(font)
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(2)
-        self.tableWidget.setRowCount(4)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(3, item)
+        self.tableWidget.setRowCount(0)
+
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -342,6 +341,12 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuAyarlar.menuAction())
         self.triggerfinger()
         self.dosya_tara()
+        self.pushButton_5.setDisabled(True)
+        self.pushButton_6.setDisabled(True)
+        self.pushButton_10.setDisabled(True)
+        self.pushButton_11.setDisabled(True)
+        self.pushButton_13.setDisabled(True)
+        self.pushButton_14.setDisabled(True)
 
 
         self.retranslateUi(MainWindow)
@@ -355,6 +360,7 @@ class Ui_MainWindow(object):
         self.pushButton_4.clicked.connect(self.gui_taraf_ekle)
         self.tableWidget.cellClicked.connect(self.tablodan_parametre_olustur)
         self.pushButton_5.clicked.connect(self.taraf_duzenlemeyi_bagla)
+        self.pushButton_6.clicked.connect(self.taraf_sil)
         self.uzlasmaci_tara()
 
 
@@ -383,7 +389,9 @@ class Ui_MainWindow(object):
             self.comboBox.addItem(sor[i])
 
     def taraf_bul(self, ar):
-        sql = "SELECT ad, sifat FROM taraflar WHERE dosya == '{}'".format(ar)
+        sql = """SELECT ad, sifat FROM taraflar WHERE dosya == '{}' 
+        union SELECT ad, sifat FROM temsilciler WHERE dosya == '{}' 
+        union SELECT ad, sifat FROM tercuman WHERE dosya == '{}'""".format(ar, ar, ar)
         sonuc = mdl.kmt(sql)
         self.tableWidget.setRowCount(len(sonuc))
         satir = 0
@@ -395,18 +403,65 @@ class Ui_MainWindow(object):
             sutun = 0
             satir += 1
 
-
     def uzlasmaci_tara(self):
         sor = mdl.tekli_demet_coz(mdl.kolon_tara("isim","uzlasmaci"))
         for i in range(len(sor)):
             self.comboBox_2.addItem(sor[i])
 
     def tablodan_parametre_olustur(self, row, column):
-        item = self.tableWidget.item(row, column)
-        self.kisi_duzenle = item.text()
+        oge_ad = self.tableWidget.item(row, column)
+        oge_nitelik = self.tableWidget.item(row, column+1)
+        if oge_nitelik.text() == "Vekil":
+            self.kisi_nitelik_duzenle = "Vekil"
+        elif oge_nitelik.text() == "Tercüman":
+            self.kisi_nitelik_duzenle = "Tercüman"
+        else:
+            self.kisi_nitelik_duzenle = "Şahıs"
+
+        self.pushButton_5.setDisabled(False)
+        self.pushButton_6.setDisabled(False)
+        self.kisi_duzenle = oge_ad.text()
 
     def taraf_duzenlemeyi_bagla(self):
-        self.gui_taraf_duzenle(self.kisi_duzenle)
+        self.gui_taraf_duzenle(self.kisi_duzenle, self.kisi_nitelik_duzenle)
+
+    def taraf_sil(self):
+        if self.kisi_nitelik_duzenle == "Şahıs":
+            if kayit_sil_soru(self.kisi_duzenle) == True:
+                sql = "select id from taraflar where dosya = '{}' and ad = '{}'".format(self.comboBox.currentText(), self.kisi_duzenle)
+                mdl.silinecek_veri_bul(sql, "taraflar")
+                baslik = "Bilgi Silme Uyarısı"
+                mesaj = self.kisi_duzenle + " kişisinin bilgileri veritabanından silindi"
+                bilgilendir(mesaj, baslik)
+                self.taraf_bul(self.comboBox.currentText())
+            else:
+                baslik = "Bilgi Silme İptali"
+                mesaj = self.kisi_duzenle + " Veri silme işlemi iptal edildi"
+                bilgilendir(mesaj, baslik)
+        elif self.kisi_nitelik_duzenle == "Vekil":
+            if kayit_sil_soru(self.kisi_duzenle) == True:
+                sql = "select id from temsilciler where dosya = '{}' and ad = '{}'".format(self.comboBox.currentText(), self.kisi_duzenle)
+                mdl.silinecek_veri_bul(sql, "temsilciler")
+                baslik = "Bilgi Silme Uyarısı"
+                mesaj = self.kisi_duzenle + " kişisinin bilgileri veritabanından silindi"
+                bilgilendir(mesaj, baslik)
+                self.taraf_bul(self.comboBox.currentText())
+            else:
+                baslik = "Bilgi Silme İptali"
+                mesaj = self.kisi_duzenle + " Veri silme işlemi iptal edildi"
+                bilgilendir(mesaj, baslik)
+        else:
+            if kayit_sil_soru(self.kisi_duzenle) == True:
+                sql = "select id from tercuman where dosya = '{}' and ad = '{}'".format(self.comboBox.currentText(), self.kisi_duzenle)
+                mdl.silinecek_veri_bul(sql, "tercuman")
+                baslik = "Bilgi Silme Uyarısı"
+                mesaj = self.kisi_duzenle + " kişisinin bilgileri veritabanından silindi"
+                bilgilendir(mesaj, baslik)
+                self.taraf_bul(self.comboBox.currentText())
+            else:
+                baslik = "Bilgi Silme İptali"
+                mesaj = self.kisi_duzenle + " Veri silme işlemi iptal edildi"
+                bilgilendir(mesaj, baslik)
 
     #Dosya Eklemesinden sonra liste yenilemek için sinyal yakalama
     def make_connection(self, dosyaolustur_object):
@@ -440,14 +495,6 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Uzlaş uzlaşabilirsen"))
         self.groupBox.setTitle(_translate("MainWindow", "Taraflar"))
-        item = self.tableWidget.verticalHeaderItem(0)
-        item.setText(_translate("MainWindow", "1"))
-        item = self.tableWidget.verticalHeaderItem(1)
-        item.setText(_translate("MainWindow", "2"))
-        item = self.tableWidget.verticalHeaderItem(2)
-        item.setText(_translate("MainWindow", "3"))
-        item = self.tableWidget.verticalHeaderItem(3)
-        item.setText(_translate("MainWindow", "4"))
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Ad Soyad"))
         item = self.tableWidget.horizontalHeaderItem(1)
