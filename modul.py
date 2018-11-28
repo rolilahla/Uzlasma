@@ -41,3 +41,13 @@ def silinecek_veri_bul(arg, tablo):
     sonuc = tek_satirlik_demet_coz(db.komut(arg))
     db.satir_sil("DELETE FROM {} WHERE id = '{}'".format(tablo, sonuc[0]))
     return True
+
+def silinecek_gider_bul(arg):
+    sonuc = tek_satirlik_demet_coz(db.komut(arg))
+    db.satir_sil("DELETE FROM giderler WHERE id = '{}'".format(sonuc[0]))
+    return True
+
+def silinecek_ek_bul(arg):
+    sonuc = tek_satirlik_demet_coz(db.komut(arg))
+    db.satir_sil("DELETE FROM ek WHERE id = '{}'".format(sonuc[0]))
+    return True

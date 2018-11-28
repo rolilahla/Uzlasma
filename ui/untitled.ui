@@ -495,20 +495,48 @@
           </size>
          </property>
         </widget>
-        <widget class="QListWidget" name="listWidget_2">
+        <widget class="QTableWidget" name="tableWidget_2">
          <property name="geometry">
           <rect>
            <x>10</x>
            <y>60</y>
            <width>171</width>
-           <height>131</height>
+           <height>132</height>
           </rect>
          </property>
-         <item>
+         <property name="maximumSize">
+          <size>
+           <width>171</width>
+           <height>140</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>8</pointsize>
+          </font>
+         </property>
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>77</number>
+         </attribute>
+         <attribute name="horizontalHeaderMinimumSectionSize">
+          <number>21</number>
+         </attribute>
+         <attribute name="verticalHeaderDefaultSectionSize">
+          <number>21</number>
+         </attribute>
+         <attribute name="verticalHeaderMinimumSectionSize">
+          <number>19</number>
+         </attribute>
+         <column>
           <property name="text">
-           <string>Adanalı alsdjlaskjd</string>
+           <string>Harcama</string>
           </property>
-         </item>
+         </column>
+         <column>
+          <property name="text">
+           <string>Tutar</string>
+          </property>
+         </column>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_10">

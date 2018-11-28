@@ -150,6 +150,29 @@ class VbagKur(object):
         self.vt.commit()
         return True
 
+    def gider_ekle(self, a1, a2, a3):
+        """Dosya Gider Ekle
+
+        :param a1: Gider Açıklaması (str)
+        :param a2: Gider Tutarı (int)
+        :param a3: Gider Yapılan Dosya(str)
+        :return: True
+        """
+        self.im.execute("INSERT INTO giderler VALUES(NULL, '{}', '{}', '{}')".format(a1, a2, a3))
+        self.vt.commit()
+        return True
+
+    def ek_ekle(self, a1, a2):
+        """Dosya Gider Ekle
+
+        :param a1: Gider Açıklaması (str)
+        :param a2: Gider Yapılan Dosya(str)
+        :return: True
+        """
+        self.im.execute("INSERT INTO ek VALUES(NULL, '{}', '{}')".format(a1, a2))
+        self.vt.commit()
+        return True
+
     def komut(self, komut):
         self.im.execute(komut)
         return self.im.fetchall()

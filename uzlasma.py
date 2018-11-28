@@ -12,8 +12,11 @@ import modul as mdl
 import uihazirla as uih
 from dosyaolustur import DosyaOlustur
 from taraf import TarafEkle
-from mico import bilgilendir, kayit_sil_soru
+from mico import bilgilendir, kayit_sil_soru, gider_sil_soru, ek_sil_soru
 from tarafduzenle import TarafDuzenle
+from gider import Gider
+from ek import Ekler
+from uzlasmacisil import Ui_Dialog
 
 class Ui_MainWindow(object):
     def gui_dosya_olustur(self):
@@ -41,6 +44,30 @@ class Ui_MainWindow(object):
         self.tad.show()
         self.tad.exec_()
 
+    def gui_gider(self, dosya):
+        if self.comboBox.currentIndex() == 0:
+            baslik = "Uyari !!!"
+            mesaj = "Lütfen Gider Eklenecek Dosyayı  Seçin"
+            bilgilendir(mesaj, baslik)
+        else:
+            self.gid = Gider()
+            self.gid.init_ui(dosya)
+            self.gider_connection(self.gid)
+            self.gid.show()
+            self.gid.exec_()
+
+    def gui_ek(self, dosya):
+        if self.comboBox.currentIndex() == 0:
+            baslik = "Uyari !!!"
+            mesaj = "Lütfen Gider Eklenecek Dosyayı  Seçin"
+            bilgilendir(mesaj, baslik)
+        else:
+            self.ek = Ekler()
+            self.ek.init_ui(dosya)
+            self.ek_connection(self.ek)
+            self.ek.show()
+            self.ek.exec_()
+
     def setupUi(self, MainWindow):
 
         MainWindow.setObjectName("MainWindow")
@@ -48,6 +75,7 @@ class Ui_MainWindow(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("lib/icon/uzlastırma.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
+
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
@@ -83,6 +111,7 @@ class Ui_MainWindow(object):
         self.pushButton_6.setIcon(icon3)
         self.pushButton_6.setIconSize(QtCore.QSize(22, 20))
         self.pushButton_6.setObjectName("pushButton_6")
+
         self.tableWidget = QtWidgets.QTableWidget(self.groupBox)
         self.tableWidget.setGeometry(QtCore.QRect(10, 59, 171, 132))
         self.tableWidget.setMaximumSize(QtCore.QSize(171, 140))
@@ -170,29 +199,37 @@ class Ui_MainWindow(object):
         self.groupBox_9 = QtWidgets.QGroupBox(self.tab)
         self.groupBox_9.setGeometry(QtCore.QRect(420, 20, 191, 201))
         self.groupBox_9.setObjectName("groupBox_9")
+        self.tableWidget_2 = QtWidgets.QTableWidget(self.groupBox_9)
+        self.tableWidget_2.setGeometry(QtCore.QRect(10, 60, 171, 132))
+        self.tableWidget_2.setMaximumSize(QtCore.QSize(171, 140))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.tableWidget_2.setFont(font)
+        self.tableWidget_2.setObjectName("tableWidget_2")
+        self.tableWidget_2.setColumnCount(2)
+        self.tableWidget_2.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_2.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget_2.setHorizontalHeaderItem(1, item)
+        self.tableWidget_2.horizontalHeader().setDefaultSectionSize(77)
+        self.tableWidget_2.horizontalHeader().setMinimumSectionSize(21)
+        self.tableWidget_2.verticalHeader().setDefaultSectionSize(21)
+        self.tableWidget_2.verticalHeader().setMinimumSectionSize(19)
         self.pushButton_9 = QtWidgets.QPushButton(self.groupBox_9)
         self.pushButton_9.setGeometry(QtCore.QRect(10, 23, 34, 30))
         self.pushButton_9.setText("")
         self.pushButton_9.setIcon(icon1)
         self.pushButton_9.setIconSize(QtCore.QSize(22, 22))
         self.pushButton_9.setObjectName("pushButton_9")
-        self.pushButton_10 = QtWidgets.QPushButton(self.groupBox_9)
-        self.pushButton_10.setGeometry(QtCore.QRect(50, 23, 34, 30))
-        self.pushButton_10.setText("")
-        self.pushButton_10.setIcon(icon2)
-        self.pushButton_10.setIconSize(QtCore.QSize(22, 22))
-        self.pushButton_10.setObjectName("pushButton_10")
+
         self.pushButton_11 = QtWidgets.QPushButton(self.groupBox_9)
-        self.pushButton_11.setGeometry(QtCore.QRect(90, 24, 34, 28))
+        self.pushButton_11.setGeometry(QtCore.QRect(50, 24, 34, 28))
         self.pushButton_11.setText("")
         self.pushButton_11.setIcon(icon3)
         self.pushButton_11.setIconSize(QtCore.QSize(22, 20))
         self.pushButton_11.setObjectName("pushButton_11")
-        self.listWidget_2 = QtWidgets.QListWidget(self.groupBox_9)
-        self.listWidget_2.setGeometry(QtCore.QRect(10, 60, 171, 131))
-        self.listWidget_2.setObjectName("listWidget_2")
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget_2.addItem(item)
+
         self.groupBox_10 = QtWidgets.QGroupBox(self.tab)
         self.groupBox_10.setGeometry(QtCore.QRect(620, 20, 241, 201))
         self.groupBox_10.setObjectName("groupBox_10")
@@ -202,18 +239,17 @@ class Ui_MainWindow(object):
         self.pushButton_12.setIcon(icon1)
         self.pushButton_12.setIconSize(QtCore.QSize(22, 22))
         self.pushButton_12.setObjectName("pushButton_12")
-        self.pushButton_13 = QtWidgets.QPushButton(self.groupBox_10)
-        self.pushButton_13.setGeometry(QtCore.QRect(50, 23, 34, 30))
-        self.pushButton_13.setText("")
-        self.pushButton_13.setIcon(icon2)
-        self.pushButton_13.setIconSize(QtCore.QSize(22, 22))
-        self.pushButton_13.setObjectName("pushButton_13")
+
         self.pushButton_14 = QtWidgets.QPushButton(self.groupBox_10)
-        self.pushButton_14.setGeometry(QtCore.QRect(90, 24, 34, 28))
+        self.pushButton_14.setGeometry(QtCore.QRect(50, 24, 34, 28))
         self.pushButton_14.setText("")
         self.pushButton_14.setIcon(icon3)
         self.pushButton_14.setIconSize(QtCore.QSize(22, 20))
         self.pushButton_14.setObjectName("pushButton_14")
+        item = self.tableWidget_2.horizontalHeaderItem(0)
+        item.setText("Harcama")
+        item = self.tableWidget_2.horizontalHeaderItem(1)
+        item.setText("Tutar")
         self.listWidget_3 = QtWidgets.QListWidget(self.groupBox_10)
         self.listWidget_3.setGeometry(QtCore.QRect(10, 60, 221, 131))
         self.listWidget_3.setObjectName("listWidget_3")
@@ -339,13 +375,15 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuUzla_mac_Ekle.menuAction())
         self.menubar.addAction(self.menu_ablonlar.menuAction())
         self.menubar.addAction(self.menuAyarlar.menuAction())
+        self.actionDosya_Sil.triggered.connect(uih.gui_dosya_sil)
+
         self.triggerfinger()
         self.dosya_tara()
         self.pushButton_5.setDisabled(True)
         self.pushButton_6.setDisabled(True)
-        self.pushButton_10.setDisabled(True)
+
         self.pushButton_11.setDisabled(True)
-        self.pushButton_13.setDisabled(True)
+
         self.pushButton_14.setDisabled(True)
 
 
@@ -355,13 +393,19 @@ class Ui_MainWindow(object):
 
     def triggerfinger(self):
         self.actionUzla_mac_Bilgisi_ekle.triggered.connect(uih.gui_uzlastirmaci_ekle)
+        self.actionUzla_mac_Sil.triggered.connect(uih.gui_uzlastirmaci_sil)
         self.actionDosya_Ekle.triggered.connect(self.gui_dosya_olustur)
         self.comboBox.currentIndexChanged.connect(self.dosya_bilgisi_cek)
         self.pushButton_4.clicked.connect(self.gui_taraf_ekle)
         self.tableWidget.cellClicked.connect(self.tablodan_parametre_olustur)
+        self.tableWidget_2.cellClicked.connect(self.gider_tablosundan_parametre_olustur)
         self.pushButton_5.clicked.connect(self.taraf_duzenlemeyi_bagla)
         self.pushButton_6.clicked.connect(self.taraf_sil)
-        self.uzlasmaci_tara()
+        self.pushButton_9.clicked.connect(self.gui_gider_bagla)
+        self.pushButton_11.clicked.connect(self.gider_sil)
+        self.pushButton_12.clicked.connect(self.gui_ek_bagla)
+        self.listWidget_3.clicked.connect(self.ek_listesinden_parametre_olustur)
+        self.pushButton_14.clicked.connect(self.ek_sil)
 
 
     #Dosya Bilgilerini listele
@@ -378,6 +422,8 @@ class Ui_MainWindow(object):
             self.label_12.setText(str(sonuc[6]))
             self.dosya_durumu()
             self.taraf_bul(dosya)
+            self.gider_bul(dosya)
+            self.ek_bul(dosya)
     #Uzlaşma dosyasının ne durumda olduğunu göster
     def dosya_durumu(self):
         sonuc = mdl.dosya_durumu_tara(self.comboBox.currentText())
@@ -403,11 +449,26 @@ class Ui_MainWindow(object):
             sutun = 0
             satir += 1
 
-    def uzlasmaci_tara(self):
-        sor = mdl.tekli_demet_coz(mdl.kolon_tara("isim","uzlasmaci"))
-        for i in range(len(sor)):
-            self.comboBox_2.addItem(sor[i])
+    def gider_bul(self, dosya):
+        sql = """SELECT aciklama, tutar FROM giderler WHERE dosya == '{}'""".format(dosya)
+        sonuc = mdl.kmt(sql)
+        self.tableWidget_2.setRowCount(len(sonuc))
+        satir = 0
+        sutun = 0
+        for i in range(len(sonuc)):
+            for im in range(len(sonuc[i])):
+                self.tableWidget_2.setItem(satir, sutun, QtWidgets.QTableWidgetItem("{}".format(sonuc[i][im])))
+                sutun += 1
+            sutun = 0
+            satir += 1
 
+    def ek_bul(self, dosya):
+        sql = """SELECT ad FROM ek WHERE dosya == '{}'""".format(dosya)
+        sonuc = mdl.kmt(sql)
+        for i in range(len(sonuc)):
+            self.listWidget_3.addItem(sonuc[i][0])
+
+    #Taraflar tablosu tetiklemesi.................................................TABLO CLİCK TETİKLEMELERİ.........
     def tablodan_parametre_olustur(self, row, column):
         oge_ad = self.tableWidget.item(row, column)
         oge_nitelik = self.tableWidget.item(row, column+1)
@@ -417,14 +478,30 @@ class Ui_MainWindow(object):
             self.kisi_nitelik_duzenle = "Tercüman"
         else:
             self.kisi_nitelik_duzenle = "Şahıs"
-
         self.pushButton_5.setDisabled(False)
         self.pushButton_6.setDisabled(False)
         self.kisi_duzenle = oge_ad.text()
 
+    def gider_tablosundan_parametre_olustur(self, row, column):
+        gider_ad = self.tableWidget_2.item(row, column)
+        self.pushButton_11.setDisabled(False)
+        self.secilen_gider = gider_ad.text()
+
+    def ek_listesinden_parametre_olustur(self):
+        self.ek_dosya = self.listWidget_3.currentItem().text()
+        self.pushButton_14.setDisabled(False)
+
+    #............................................................................DİALOGLARI BAĞLA
     def taraf_duzenlemeyi_bagla(self):
         self.gui_taraf_duzenle(self.kisi_duzenle, self.kisi_nitelik_duzenle)
 
+    # Dosya no sunu Gui oluşturma fonksiyonuna parametre olarak gönder
+    def gui_gider_bagla(self):
+        self.gui_gider(self.comboBox.currentText())
+
+    def gui_ek_bagla(self):
+        self.gui_ek(self.comboBox.currentText())
+    #................................................................................SİLME FONKSİYONLARI...........
     def taraf_sil(self):
         if self.kisi_nitelik_duzenle == "Şahıs":
             if kayit_sil_soru(self.kisi_duzenle) == True:
@@ -463,13 +540,49 @@ class Ui_MainWindow(object):
                 mesaj = self.kisi_duzenle + " Veri silme işlemi iptal edildi"
                 bilgilendir(mesaj, baslik)
 
-    #Dosya Eklemesinden sonra liste yenilemek için sinyal yakalama
+    def gider_sil(self):
+        if gider_sil_soru(self.secilen_gider) == True:
+            sql = "select id from giderler where dosya = '{}' and aciklama = '{}'".format(self.comboBox.currentText(),
+                                                                                    self.secilen_gider)
+            mdl.silinecek_gider_bul(sql)
+            baslik = "Bilgi Silme Uyarısı"
+            mesaj = self.secilen_gider + " harcamasının bilgileri veritabanından silindi"
+            bilgilendir(mesaj, baslik)
+            self.gider_bul(self.comboBox.currentText())
+        else:
+            baslik = "Bilgi Silme İptali"
+            mesaj = self.secilen_gider + " harcamasının silme işlemi iptal edildi"
+            bilgilendir(mesaj, baslik)
+
+    def ek_sil(self):
+        if ek_sil_soru(self.ek_dosya) == True:
+            sql = "select id from ek where dosya = '{}' and ad = '{}'".format(self.comboBox.currentText(),
+                                                                                    self.ek_dosya)
+            mdl.silinecek_ek_bul(sql)
+            baslik = "Bilgi Silme Uyarısı"
+            mesaj = self.ek_dosya + " Ek adı veritabanından silindi"
+            bilgilendir(mesaj, baslik)
+            self.listWidget_3.clear()
+            self.ek_bul(self.comboBox.currentText())
+        else:
+            baslik = "Bilgi Silme İptali"
+            mesaj = self.ek_dosya + "Ek adının silme işlemi iptal edildi"
+            bilgilendir(mesaj, baslik)
+
+    #Dosya Eklemesinden sonra liste yenilemek için sinyal yakalama.....................SİNYAL YAKALAMA.............
     def make_connection(self, dosyaolustur_object):
         dosyaolustur_object.clicked.connect(self.get_signal_dosya)
 
     #Dosya'ya taraf ekleme sinyali yakalama
     def taraf_connection(self, dosyaolustur_object):
         dosyaolustur_object.clicked.connect(self.get_signal_taraf)
+
+    # Dosya'ya Gider ekleme sinyali yakalama
+    def gider_connection(self, gider_object):
+        gider_object.clicked.connect(self.get_signal_gider)
+
+    def ek_connection(self, ek_object):
+        ek_object.clicked.connect(self.get_signal_ek)
 
     @pyqtSlot(bool)
     def get_signal_dosya(self, val):
@@ -488,6 +601,20 @@ class Ui_MainWindow(object):
     def get_signal_taraf(self, val):
         if val == False:
             self.taraf_bul(self.comboBox.currentText())
+        else:
+            print("Taraf Sinyali Gelmedi")
+
+    @pyqtSlot(bool)
+    def get_signal_gider(self, val):
+        if val == False:
+            self.gider_bul(self.comboBox.currentText())
+        else:
+            print("Taraf Sinyali Gelmedi")
+
+    @pyqtSlot(bool)
+    def get_signal_ek(self, val):
+        if val == False:
+            self.ek_bul(self.comboBox.currentText())
         else:
             print("Taraf Sinyali Gelmedi")
 
@@ -512,16 +639,12 @@ class Ui_MainWindow(object):
         self.groupBox_8.setTitle(_translate("MainWindow", "Uzlaştırmacı"))
         self.comboBox_2.setItemText(0, _translate("MainWindow", "Uzlaştırmacı Seç"))
         self.groupBox_9.setTitle(_translate("MainWindow", "Dosya Giderleri"))
-        __sortingEnabled = self.listWidget_2.isSortingEnabled()
-        self.listWidget_2.setSortingEnabled(False)
-        item = self.listWidget_2.item(0)
-        item.setText(_translate("MainWindow", "Adanalı alsdjlaskjd"))
-        self.listWidget_2.setSortingEnabled(__sortingEnabled)
+
+
+
         self.groupBox_10.setTitle(_translate("MainWindow", "Ek Dosyalar"))
         __sortingEnabled = self.listWidget_3.isSortingEnabled()
         self.listWidget_3.setSortingEnabled(False)
-        item = self.listWidget_3.item(0)
-        item.setText(_translate("MainWindow", "Mehmet Eroğlu Davet Mektubu"))
         self.listWidget_3.setSortingEnabled(__sortingEnabled)
         self.groupBox_7.setTitle(_translate("MainWindow", "Olay Özeti"))
         self.pushButton_7.setText(_translate("MainWindow", "Kaydet"))
