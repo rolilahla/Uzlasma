@@ -2,7 +2,7 @@
 
 from PyQt5 import QtGui, QtCore, QtWidgets
 from uzlastirmaciekle import Ui_UzlastirmaciEkle
-from uzlasmacisil import Ui_Dialog
+from uzlasmacisil import Ui_UzlasmaciSil
 from dosyasil import Ui_DosyaSil
 
 def gui_uzlastirmaci_ekle(self):
@@ -14,7 +14,7 @@ def gui_uzlastirmaci_ekle(self):
 
 def gui_uzlastirmaci_sil(self):
     UzlastirmaciSil = QtWidgets.QDialog()
-    ui = Ui_Dialog()
+    ui = Ui_UzlasmaciSil()
     ui.setupUi(UzlastirmaciSil)
     UzlastirmaciSil.show()
     UzlastirmaciSil.exec_()

@@ -16,7 +16,7 @@ from mico import bilgilendir, kayit_sil_soru, gider_sil_soru, ek_sil_soru
 from tarafduzenle import TarafDuzenle
 from gider import Gider
 from ek import Ekler
-from uzlasmacisil import Ui_Dialog
+
 
 class Ui_MainWindow(object):
     def gui_dosya_olustur(self):
@@ -463,6 +463,7 @@ class Ui_MainWindow(object):
             satir += 1
 
     def ek_bul(self, dosya):
+        self.listWidget_3.clear()
         sql = """SELECT ad FROM ek WHERE dosya == '{}'""".format(dosya)
         sonuc = mdl.kmt(sql)
         for i in range(len(sonuc)):
