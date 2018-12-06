@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>423</width>
-    <height>377</height>
+    <height>263</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -112,8 +112,8 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>340</x>
-     <y>340</y>
+     <x>336</x>
+     <y>230</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -142,7 +142,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Dosya Tevdi Tarihi</string>
+    <string>Teklif Tarihi</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -200,33 +200,10 @@
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>240</x>
+     <x>239</x>
      <y>190</y>
      <width>171</width>
      <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_9">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>220</y>
-     <width>90</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Olay Özet</string>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEdit">
-   <property name="geometry">
-    <rect>
-     <x>240</x>
-     <y>230</y>
-     <width>171</width>
-     <height>101</height>
     </rect>
    </property>
   </widget>

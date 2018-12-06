@@ -23,7 +23,7 @@ class VbagKur(object):
         self.vt.commit()
         return True
 
-    def dosya_ekle(self, a1, a2, a3, a4, a5, a6, a7):
+    def dosya_ekle(self, a1, a2, a3, a4, a5, a6, a7, a8):
         """ Dosya Bilgilerini veritabanına ekle
 
         :param: a1 : Uzlaşma No (str)
@@ -33,9 +33,11 @@ class VbagKur(object):
         :param: a5 : Teklif Tarihi (str)
         :param: a6 : Tevdi Teslim Tarihi (str)
         :param: a7 : Dosya Durumu (int)
+        :param: a8 : Uzatma Tarihi (str)
 
         """
-        self.im.execute("""INSERT INTO dosyalar VALUES(NULL, '{}','{}','{}','{}','{}','{}','{}')""".format(a1, a2, a3, a4, a5, a6, a7))
+        self.im.execute("""INSERT INTO dosyalar VALUES(NULL, '{}','{}','{}','{}','{}','{}','{}','{}')"""
+                        .format(a1, a2, a3, a4, a5, a6, a7, a8))
         self.vt.commit()
         return True
 

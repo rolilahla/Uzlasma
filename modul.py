@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 
 from vtbgln import VbagKur
+import datetime
 
 db = VbagKur()
 
@@ -51,3 +52,17 @@ def silinecek_ek_bul(arg):
     sonuc = tek_satirlik_demet_coz(db.komut(arg))
     db.satir_sil("DELETE FROM ek WHERE id = '{}'".format(sonuc[0]))
     return True
+
+def tarih_duzenle(arg):
+    t = arg.replace("-","/")
+    formatstring = '%Y/%m/%d'
+    dosya_bitis = datetime.datetime.strptime(t, formatstring)
+    bugun = datetime.datetime.now()
+    fark = dosya_bitis - bugun
+    return str(fark)
+
+def uzatma_tarihi_ekle(arg, dosya):
+    sql = """UPDATE dosyalar SET 
+        uzatmatar='{}' WHERE uzno = '{}'""".format(arg, dosya)
+    sor = db.komut(sql)
+

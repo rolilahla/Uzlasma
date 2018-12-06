@@ -16,6 +16,7 @@ from mico import bilgilendir, kayit_sil_soru, gider_sil_soru, ek_sil_soru
 from tarafduzenle import TarafDuzenle
 from gider import Gider
 from ek import Ekler
+from vtbgln import VbagKur
 
 class Ui_MainWindow(object):
     def gui_dosya_olustur(self):
@@ -67,6 +68,10 @@ class Ui_MainWindow(object):
             self.ek.show()
             self.ek.exec_()
     def setupUi(self, MainWindow):
+        self.veritabani = VbagKur()
+        self.dosya_teslim_tarihi = None
+        self.dosya_uzatma_tarihi = None
+
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1011, 534)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -115,6 +120,7 @@ class Ui_MainWindow(object):
         self.gridLayout_11.addWidget(self.label_2, 1, 0, 1, 1)
         self.comboBox = QtWidgets.QComboBox(self.groupBox_3)
         self.comboBox.setObjectName("comboBox")
+        self.comboBox.addItem("")
         self.gridLayout_11.addWidget(self.comboBox, 1, 1, 1, 2)
         self.label_3 = QtWidgets.QLabel(self.groupBox_3)
         self.label_3.setObjectName("label_3")
@@ -190,10 +196,10 @@ class Ui_MainWindow(object):
         self.label_14.setGeometry(QtCore.QRect(13, 20, 71, 16))
         self.label_14.setObjectName("label_14")
         self.label_15 = QtWidgets.QLabel(self.groupBox)
-        self.label_15.setGeometry(QtCore.QRect(90, 20, 120, 16))
+        self.label_15.setGeometry(QtCore.QRect(90, 25, 120, 20))
         self.label_15.setObjectName("label_15")
         self.label_17 = QtWidgets.QLabel(self.groupBox)
-        self.label_17.setGeometry(QtCore.QRect(90, 40, 120, 16))
+        self.label_17.setGeometry(QtCore.QRect(90, 40, 120, 20))
         self.label_17.setObjectName("label_17")
         self.label_18 = QtWidgets.QLabel(self.groupBox)
         self.label_18.setGeometry(QtCore.QRect(13, 40, 71, 16))
@@ -225,7 +231,7 @@ class Ui_MainWindow(object):
         self.pushButton_4 = QtWidgets.QPushButton(self.groupBox_6)
         self.pushButton_4.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../lib/icon/new.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("lib/icon/new.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_4.setIcon(icon)
         self.pushButton_4.setIconSize(QtCore.QSize(22, 22))
         self.pushButton_4.setObjectName("pushButton_4")
@@ -241,7 +247,7 @@ class Ui_MainWindow(object):
         self.pushButton_6 = QtWidgets.QPushButton(self.groupBox_6)
         self.pushButton_6.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../lib/icon/gtk-no.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("lib/icon/gtk-no.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_6.setIcon(icon2)
         self.pushButton_6.setIconSize(QtCore.QSize(22, 20))
         self.pushButton_6.setObjectName("pushButton_6")
@@ -480,8 +486,13 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuUzla_mac.menuAction())
         self.menubar.addAction(self.menu_ablonlar.menuAction())
         self.menubar.addAction(self.menuAyarlar.menuAction())
+        self.label_11.hide()
+        self.label_12.hide()
+        self.label_13.hide()
         self.triggerfinger()
-        self.dosya_tara()
+        self.dosya_tara("1")
+        self.ayarlar()
+        self.uzlasmaci()
 
         self.pushButton_5.setDisabled(True)
         self.pushButton_6.setDisabled(True)
@@ -501,13 +512,13 @@ class Ui_MainWindow(object):
         self.radioButton_2.setText(_translate("MainWindow", "Kapanmış"))
         self.label_2.setText(_translate("MainWindow", "Uzlaşma No"))
         self.label_3.setText(_translate("MainWindow", "Soruşturma No"))
-        self.label_7.setText(_translate("MainWindow", "1"))
+
         self.label_4.setText(_translate("MainWindow", "M. Esas No"))
-        self.label_8.setText(_translate("MainWindow", "1"))
+
         self.label_5.setText(_translate("MainWindow", "Suç"))
-        self.label_9.setText(_translate("MainWindow", "1"))
-        self.label_6.setText(_translate("MainWindow", "Uzlaşma No"))
-        self.label_10.setText(_translate("MainWindow", "1"))
+
+        self.label_6.setText(_translate("MainWindow", "Davet Tarihi"))
+
         self.groupBox_2.setTitle(_translate("MainWindow", "Dosya durumu"))
         self.label_11.setText(_translate("MainWindow", "Teslim Tarihine "))
         self.label_12.setText(_translate("MainWindow", "3"))
@@ -515,12 +526,12 @@ class Ui_MainWindow(object):
         self.lineEdit.setText(_translate("MainWindow", "Uzatma Tarihi Ekle"))
         self.pushButton_3.setText(_translate("MainWindow", "Ekle"))
         self.label_16.setText(_translate("MainWindow", "Dosya Durumu"))
+        self.comboBox.setItemText(0, _translate("MainWindow", "Dosya Seç"))
         self.comboBox_2.setItemText(0, _translate("MainWindow", "Aktif"))
         self.comboBox_2.setItemText(1, _translate("MainWindow", "Kapat"))
         self.groupBox.setTitle(_translate("MainWindow", "Uzlaştırmacı"))
         self.label_14.setText(_translate("MainWindow", "Uzlaştırmacı"))
-        self.label_15.setText(_translate("MainWindow", "1"))
-        self.label_17.setText(_translate("MainWindow", "1"))
+
         self.label_18.setText(_translate("MainWindow", "Sicil No"))
         self.groupBox_6.setTitle(_translate("MainWindow", "Taraflar"))
         item = self.tableWidget.horizontalHeaderItem(0)
@@ -582,7 +593,41 @@ class Ui_MainWindow(object):
         self.pushButton_12.clicked.connect(self.gui_ek_bagla)
         self.listWidget_3.clicked.connect(self.ek_listesinden_parametre_olustur)
         self.pushButton_14.clicked.connect(self.ek_sil)
+        self.radioButton.clicked.connect(self.dosya_kimlik)
+        self.radioButton_2.clicked.connect(self.dosya_kimlik)
+        self.pushButton_3.clicked.connect(self.uzatmaEkle)
+        self.comboBox_2.currentIndexChanged.connect(self.dosya_kapat)
 
+    def uzlasmaci(self):
+        sor = mdl.tek_satirlik_demet_coz(self.veritabani.komut("select isim, sicil from uzlasmaci"))
+        self.label_15.setText(sor[0])
+        self.label_17.setText(sor[1])
+
+    def ayarlar(self):
+        sonuc = mdl.tek_satirlik_demet_coz(self.veritabani.komut("select * from ayarlar"))
+        self.dosya_teslim_tarihi = sonuc[0]
+        self.dosya_uzatma_tarihi = sonuc[1]
+
+    def dosya_kimlik(self):
+        if self.radioButton.isChecked():
+            say = self.comboBox.count()
+            sayac = say
+            for i in range(1, say + 1):
+                self.comboBox.removeItem(sayac)
+                sayac -= 1
+            self.dosya_tara("1")
+        else:
+            say = self.comboBox.count()
+            sayac = say
+            for i in range(1, say + 1):
+                self.comboBox.removeItem(sayac)
+                sayac -= 1
+            self.dosya_tara("0")
+
+    def dosya_tara(self, nit):
+        sor = mdl.tekli_demet_coz(mdl.kmt("select uzno from dosyalar where durum = '{}'".format(nit)))
+        for i in range(len(sor)):
+            self.comboBox.addItem(sor[i])
 
     #Dosya Bilgilerini listele
     def dosya_bilgisi_cek(self):
@@ -590,24 +635,28 @@ class Ui_MainWindow(object):
             pass
         else:
             dosya = self.comboBox.currentText()
-            sonuc = mdl.tek_satirlik_demet_coz(mdl.dosya_cek(dosya))
-            self.label_7.setText(sonuc[2])
-            self.label_8.setText(sonuc[3])
-            self.label_9.setText(sonuc[4])
-            self.label_10.setText(sonuc[5])
+            so = mdl.tek_satirlik_demet_coz(mdl.dosya_cek(dosya))
+            self.label_7.setText(so[2])
+            self.label_8.setText(so[3])
+            self.label_9.setText(so[4])
+            self.label_10.setText(so[5])
+            self.label_11.show()
+            self.label_12.show()
+            self.label_13.show()
             self.dosya_durumu()
             self.taraf_bul(dosya)
             self.gider_bul(dosya)
             self.ek_bul(dosya)
     #Uzlaşma dosyasının ne durumda olduğunu göster
     def dosya_durumu(self):
-        sonuc = mdl.dosya_durumu_tara(self.comboBox.currentText())
-        self.label_7.setText(sonuc)
-
-    def dosya_tara(self):
-        sor = mdl.tekli_demet_coz(mdl.kolon_tara("uzno", "dosyalar"))
-        for i in range(len(sor)):
-            self.comboBox.addItem(sor[i])
+        sonuc = self.veritabani.komut("select uzatmatar from dosyalar where uzno = '{}'"
+                                      .format(self.comboBox.currentText()))
+        dtr = mdl.tarih_duzenle(sonuc[0][0])
+        self.label_12.setText(dtr[0])
+        if int(dtr[0]) > 5:
+            pass
+        else:
+            self.label_12.setStyleSheet("color: rgb(255, 0, 0);")
 
     def taraf_bul(self, ar):
         sql = """SELECT ad, sifat FROM taraflar WHERE dosya == '{}' 
@@ -745,6 +794,15 @@ class Ui_MainWindow(object):
             mesaj = self.ek_dosya + "Ek adının silme işlemi iptal edildi"
             bilgilendir(mesaj, baslik)
 
+    def uzatmaEkle(self):
+        yeni_tarih = self.lineEdit.text()
+        dosya = self.comboBox.currentText()
+        print(yeni_tarih)
+        print(dosya)
+
+    def dosya_kapat(self):
+        print(self.comboBox.currentText(), " Nol'lu dosya kapatıldı")
+
     #Dosya Eklemesinden sonra liste yenilemek için sinyal yakalama.....................SİNYAL YAKALAMA.............
     def make_connection(self, dosyaolustur_object):
         dosyaolustur_object.clicked.connect(self.get_signal_dosya)
@@ -767,9 +825,8 @@ class Ui_MainWindow(object):
             sayac = say
             for i in range(1, say + 1):
                 self.comboBox.removeItem(sayac)
-                print(sayac)
                 sayac -= 1
-            self.dosya_tara()
+            self.dosya_kimlik()
         else:
             print("Sinyal gelmedi")
 

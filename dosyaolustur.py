@@ -1,8 +1,16 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'dosyaolustur.ui'
+#
+# Created by: PyQt5 UI code generator 5.6
+#
+# WARNING! All changes made in this file will be lost!
+
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import Qt, pyqtSignal
 from vtbgln import VbagKur
 from mico import bilgilendir
+import datetime
 
 class DosyaOlustur(QtWidgets.QDialog):
     # Added a signal
@@ -13,82 +21,115 @@ class DosyaOlustur(QtWidgets.QDialog):
         self.init_ui()
 
     def init_ui(self):
-        self.resize(424, 222)
-        self.icon = QtGui.QIcon()
-        self.icon.addPixmap(QtGui.QPixmap("lib/icon/ubuntuone.png"),
-                            QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.setWindowIcon(self.icon)
+        self.resize(423, 263)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("../../Downloads/faenza-icon-theme-master/Faenza/apps/32/ubuntuone.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.setWindowIcon(icon)
+        self.radioButton = QtWidgets.QRadioButton(self)
+        self.radioButton.setGeometry(QtCore.QRect(240, 10, 82, 17))
+        self.radioButton.setObjectName("radioButton")
+        self.radioButton_2 = QtWidgets.QRadioButton(self)
+        self.radioButton_2.setGeometry(QtCore.QRect(330, 10, 82, 17))
+        self.radioButton_2.setObjectName("radioButton_2")
         self.label = QtWidgets.QLabel(self)
-        self.label.setGeometry(QtCore.QRect(130, 10, 90, 20))
-        self.label.setText("Uzlaşma No")
-
+        self.label.setGeometry(QtCore.QRect(130, 40, 90, 20))
+        self.label.setObjectName("label")
         self.lineEdit = QtWidgets.QLineEdit(self)
-        self.lineEdit.setGeometry(QtCore.QRect(240, 10, 170, 20))
+        self.lineEdit.setGeometry(QtCore.QRect(240, 40, 170, 20))
         self.lineEdit.setObjectName("lineEdit")
-
         self.lineEdit_2 = QtWidgets.QLineEdit(self)
-        self.lineEdit_2.setGeometry(QtCore.QRect(240, 40, 170, 20))
+        self.lineEdit_2.setGeometry(QtCore.QRect(240, 70, 170, 20))
         self.lineEdit_2.setObjectName("lineEdit_2")
-
         self.label_2 = QtWidgets.QLabel(self)
-        self.label_2.setGeometry(QtCore.QRect(130, 40, 90, 20))
-        self.label_2.setText("Soruşturma No")
-
+        self.label_2.setGeometry(QtCore.QRect(130, 70, 90, 20))
+        self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(self)
-        self.label_3.setGeometry(QtCore.QRect(130, 70, 90, 20))
-        self.label_3.setText("Mahkeme Esas No")
-
+        self.label_3.setGeometry(QtCore.QRect(130, 100, 90, 20))
+        self.label_3.setObjectName("label_3")
         self.lineEdit_3 = QtWidgets.QLineEdit(self)
-        self.lineEdit_3.setGeometry(QtCore.QRect(240, 70, 170, 20))
-
+        self.lineEdit_3.setGeometry(QtCore.QRect(240, 100, 170, 20))
+        self.lineEdit_3.setObjectName("lineEdit_3")
         self.lineEdit_4 = QtWidgets.QLineEdit(self)
-        self.lineEdit_4.setGeometry(QtCore.QRect(240, 100, 170, 20))
-
-        self.label_4 = QtWidgets.QLabel(self)
-        self.label_4.setGeometry(QtCore.QRect(130, 100, 90, 20))
-        self.label_4.setText("Suç / Suçlar")
-
+        self.lineEdit_4.setGeometry(QtCore.QRect(240, 130, 170, 20))
+        self.lineEdit_4.setObjectName("lineEdit_4")
         self.label_5 = QtWidgets.QLabel(self)
         self.label_5.setGeometry(QtCore.QRect(130, 130, 90, 20))
-        self.label_5.setText("Teklif / Davet Tarihi")
-
-        self.label_6 = QtWidgets.QLabel(self)
-        self.label_6.setGeometry(QtCore.QRect(10, 50, 121, 121))
-        self.label_6.setText("")
-        self.label_6.setPixmap(QtGui.QPixmap("lib/icon/ubuntuone.png"))
-
+        self.label_5.setObjectName("label_5")
+        self.pushButton = QtWidgets.QPushButton(self)
+        self.pushButton.setGeometry(QtCore.QRect(336, 230, 75, 23))
+        self.pushButton.setObjectName("pushButton")
         self.lineEdit_5 = QtWidgets.QLineEdit(self)
-        self.lineEdit_5.setGeometry(QtCore.QRect(240, 130, 170, 20))
-
-        self.lineEdit_6 = QtWidgets.QLineEdit(self)
-        self.lineEdit_6.setGeometry(QtCore.QRect(240, 160, 170, 20))
-
+        self.lineEdit_5.setGeometry(QtCore.QRect(240, 160, 170, 20))
+        self.lineEdit_5.setObjectName("lineEdit_5")
         self.label_7 = QtWidgets.QLabel(self)
         self.label_7.setGeometry(QtCore.QRect(130, 160, 90, 20))
-        self.label_7.setText("Dosya Tevdi Tarihi")
+        self.label_7.setObjectName("label_7")
+        self.label_4 = QtWidgets.QLabel(self)
+        self.label_4.setGeometry(QtCore.QRect(130, 10, 90, 20))
+        self.label_4.setObjectName("label_4")
 
-        self.pushButton = QtWidgets.QPushButton(self)
-        self.pushButton.setGeometry(QtCore.QRect(340, 190, 75, 23))
-        self.pushButton.setText("Oluştur")
-        self.show()
+        self.label_8 = QtWidgets.QLabel(self)
+        self.label_8.setGeometry(QtCore.QRect(130, 190, 90, 20))
+        self.label_8.setObjectName("label_8")
+        self.comboBox = QtWidgets.QComboBox(self)
+        self.comboBox.setGeometry(QtCore.QRect(239, 190, 171, 22))
+        self.comboBox.setObjectName("comboBox")
+        self.frame = QtWidgets.QFrame(self)
+        self.frame.setGeometry(QtCore.QRect(-11, 0, 141, 381))
+        self.frame.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.label_6 = QtWidgets.QLabel(self.frame)
+        self.label_6.setGeometry(QtCore.QRect(30, 50, 121, 121))
+        self.label_6.setText("")
+        self.label_6.setPixmap(QtGui.QPixmap("../../Downloads/faenza-icon-theme-master/Faenza/apps/96/ubuntuone.png"))
+        self.label_6.setObjectName("label_6")
 
-        # Setting a connection between slider position change and on_changed_value function
-
-        # Buradan sonrasına karışma
+        self.retranslateUi(self)
+        self.pushButton.clicked.connect(self.close)
+        QtCore.QMetaObject.connectSlotsByName(self)
         self.pushButton.clicked.connect(self.buton_birinci_gorev)
 
         self.setWindowTitle("Yeni Uzlaşma Dosyası Ekle")
         self.show()
 
+    def retranslateUi(self, DosyaOlustur):
+        _translate = QtCore.QCoreApplication.translate
+        DosyaOlustur.setWindowTitle(_translate("DosyaOlustur", "Dosya Oluştur"))
+        self.label.setText(_translate("DosyaOlustur", "Uzlaşma No"))
+        self.label_2.setText(_translate("DosyaOlustur", "Soruşturma  No"))
+        self.label_3.setText(_translate("DosyaOlustur", "Mahkeme Esas No"))
+        self.label_5.setText(_translate("DosyaOlustur", "Suç / Suçlar"))
+        self.pushButton.setText(_translate("DosyaOlustur", "Oluştur"))
+        self.label_7.setText(_translate("DosyaOlustur", "Teklif Tarihi"))
+        self.label_4.setText(_translate("DosyaOlustur", "Dosya Türü"))
+        self.radioButton.setText(_translate("DosyaOlustur", "Savcılık"))
+        self.radioButton_2.setText(_translate("DosyaOlustur", "Mahkeme"))
+        self.label_8.setText(_translate("DosyaOlustur", "Uzlaştırmacı"))
+
     def buton_birinci_gorev(self):
+        nitelik = None
+        if self.radioButton.isChecked() == True:
+
         uzno = self.lineEdit.text()
         sorno = self.lineEdit_2.text()
         meno = self.lineEdit_3.text()
         suc = self.lineEdit_4.text()
         ttarih = self.lineEdit_5.text()
         tevdi = self.lineEdit_6.text()
+        #Dosya teslim tarihini bulmak için
+        #teslim alınma süresinin üzerine veritabanından gelen süreyi ekliyoruz
+
         db = VbagKur()
-        if db.dosya_ekle(uzno, sorno, meno, suc, ttarih, tevdi, 0) == True:
+        sure = db.komut("select teslim_suresi from ayarlar")
+        t = ttarih.replace(".", "/")
+        formatstr = '%d/%m/%Y'
+        t3 = datetime.datetime.strptime(t, formatstr)
+
+        fark = datetime.timedelta(days=sure[0][0])
+        gelecek = t3 + fark
+        uzatmatar = gelecek.date()
+        if db.dosya_ekle(uzno, sorno, meno, suc, ttarih, tevdi, 1, uzatmatar) == True:
             baslik = "Dosya Bilgileri Eklendi"
             mesaj = uzno + " Uzlaşma No'lu dosya bilgileri veritabanına başarıyla eklendi"
             bilgilendir(mesaj, baslik)

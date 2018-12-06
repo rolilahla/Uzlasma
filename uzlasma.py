@@ -10,7 +10,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSlot
 import modul as mdl
 import uihazirla as uih
-from dosyaolustur import DosyaOlustur
+from dosyaolusturold import DosyaOlustur
 from taraf import TarafEkle
 from mico import bilgilendir, kayit_sil_soru, gider_sil_soru, ek_sil_soru
 from tarafduzenle import TarafDuzenle

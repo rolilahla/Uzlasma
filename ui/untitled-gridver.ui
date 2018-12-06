@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>903</width>
+    <height>496</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Dosya Bilgileri</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <property name="spacing">
+             <number>1</number>
+            </property>
+            <item>
+             <widget class="QGroupBox" name="groupBox_7">
+              <property name="maximumSize">
+               <size>
+                <width>230</width>
+                <height>200</height>
+               </size>
+              </property>
+              <property name="title">
+               <string>Dosya Bilgileri</string>
+              </property>
+              <widget class="QLabel" name="label_4">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>100</y>
+                 <width>17</width>
+                 <height>16</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Suç</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>40</y>
+                 <width>55</width>
+                 <height>16</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Uzlaşma No</string>
+               </property>
+              </widget>
+              <widget class="QComboBox" name="comboBox">
+               <property name="geometry">
+                <rect>
+                 <x>110</x>
+                 <y>40</y>
+                 <width>76</width>
+                 <height>20</height>
+                </rect>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Dosya Seç</string>
+                </property>
+               </item>
+              </widget>
+              <widget class="QLabel" name="label_5">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>120</y>
+                 <width>46</width>
+                 <height>16</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Suç Tarihi</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_6">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>140</y>
+                 <width>46</width>
+                 <height>16</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Dosya No</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_2">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>60</y>
+                 <width>71</width>
+                 <height>16</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Soruşturma No</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_3">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>80</y>
+                 <width>50</width>
+                 <height>16</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>M.Esas No</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_7">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>20</y>
+                 <width>70</width>
+                 <height>16</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Dosya Durumu</string>
+               </property>
+              </widget>
+              <widget class="QRadioButton" name="radioButton">
+               <property name="geometry">
+                <rect>
+                 <x>110</x>
+                 <y>20</y>
+                 <width>45</width>
+                 <height>17</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Aktif</string>
+               </property>
+              </widget>
+              <widget class="QRadioButton" name="radioButton_2">
+               <property name="geometry">
+                <rect>
+                 <x>160</x>
+                 <y>20</y>
+                 <width>68</width>
+                 <height>17</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Kapanmış</string>
+               </property>
+              </widget>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox">
+              <property name="maximumSize">
+               <size>
+                <width>210</width>
+                <height>149</height>
+               </size>
+              </property>
+              <property name="title">
+               <string>Uzlaştırmacı</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_2">
+              <property name="maximumSize">
+               <size>
+                <width>210</width>
+                <height>113</height>
+               </size>
+              </property>
+              <property name="title">
+               <string>Dosya Durumu</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item row="0" column="1">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QGroupBox" name="groupBox_6">
+              <property name="title">
+               <string>GroupBox</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_5">
+              <property name="title">
+               <string>GroupBox</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_4">
+              <property name="title">
+               <string>GroupBox</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_3">
+            <property name="title">
+             <string>GroupBox</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Tab 2</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>903</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuDosya_Ekle">
+    <property name="title">
+     <string>Dosya</string>
+    </property>
+    <addaction name="actionDosya_Ekle"/>
+    <addaction name="actionDosya_Sil"/>
+   </widget>
+   <widget class="QMenu" name="menuUzla_t_rmac">
+    <property name="title">
+     <string>Uzlaştırmacı</string>
+    </property>
+    <addaction name="actionUzla_t_rmac_Ekle"/>
+    <addaction name="actionUzla_t_rmac_Sil"/>
+   </widget>
+   <widget class="QMenu" name="menu_ablonlar">
+    <property name="title">
+     <string>Şablonlar</string>
+    </property>
+    <addaction name="action_ablon_Ekle"/>
+    <addaction name="action_ablon_D_zenle"/>
+    <addaction name="action_ablon_Sil"/>
+   </widget>
+   <addaction name="menuDosya_Ekle"/>
+   <addaction name="menuUzla_t_rmac"/>
+   <addaction name="menu_ablonlar"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionDosya_Ekle">
+   <property name="text">
+    <string>Dosya Ekle</string>
+   </property>
+  </action>
+  <action name="actionDosya_Sil">
+   <property name="text">
+    <string>Dosya Sil</string>
+   </property>
+  </action>
+  <action name="actionUzla_t_rmac_Ekle">
+   <property name="text">
+    <string>Uzlaştırmacı Ekle</string>
+   </property>
+  </action>
+  <action name="actionUzla_t_rmac_Sil">
+   <property name="text">
+    <string>Uzlaştırmacı Sil</string>
+   </property>
+  </action>
+  <action name="action_ablon_Ekle">
+   <property name="text">
+    <string>Şablon Ekle</string>
+   </property>
+  </action>
+  <action name="action_ablon_D_zenle">
+   <property name="text">
+    <string>Şablon Düzenle</string>
+   </property>
+  </action>
+  <action name="action_ablon_Sil">
+   <property name="text">
+    <string>Şablon Sil</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
