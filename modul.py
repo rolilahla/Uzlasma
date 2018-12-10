@@ -69,3 +69,5 @@ def uzatma_tarihi_ekle(arg, dosya):
         uzatmatar='{}' WHERE uzno = '{}'""".format(arg, dosya)
     sor = db.komut(sql)
 
+def olay_ozeti_cek(arg):
+    return db.komut("select ozet from olaylar where uzno = '{}'".format(arg))

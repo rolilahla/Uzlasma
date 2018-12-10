@@ -492,7 +492,6 @@ class Ui_MainWindow(object):
         self.triggerfinger()
         self.dosya_tara("1")
         self.ayarlar()
-        self.uzlasmaci()
 
         self.pushButton_5.setDisabled(True)
         self.pushButton_6.setDisabled(True)
@@ -550,20 +549,24 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Mehmet Eroğlu Davet Mektubu"))
         self.listWidget_3.setSortingEnabled(__sortingEnabled)
         self.groupBox_7.setTitle(_translate("MainWindow", "Dava Konusu Olay"))
+
         self.pushButton_2.setText(_translate("MainWindow", "Güncelle"))
-        self.pushButton.setText(_translate("MainWindow", "Kaydet"))
+        self.pushButton.setText(_translate("MainWindow", "Ekle"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Dosya Bilgileri"))
         self.groupBox_8.setTitle(_translate("MainWindow", "GroupBox"))
-        self.pushButton_7.setText(_translate("MainWindow", "Kaydet"))
-        self.pushButton_8.setText(_translate("MainWindow", "Güncelle"))
+
+        self.pushButton_7.setText(_translate("MainWindow", "p7"))
+        self.pushButton_8.setText(_translate("MainWindow", "p8"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Uzlaşma Görüşmeleri"))
         self.groupBox_9.setTitle(_translate("MainWindow", "GroupBox"))
-        self.pushButton_10.setText(_translate("MainWindow", "Kaydet"))
-        self.pushButton_13.setText(_translate("MainWindow", "Güncelle"))
+        #Edim butonları
+        self.pushButton_10.setText(_translate("MainWindow", "Kayde"))
+        self.pushButton_13.setText(_translate("MainWindow", "Güncell"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Edim"))
         self.groupBox_10.setTitle(_translate("MainWindow", "GroupBox"))
-        self.pushButton_15.setText(_translate("MainWindow", "Kaydet"))
-        self.pushButton_16.setText(_translate("MainWindow", "Güncelle"))
+        #başarısızlık butonları
+        self.pushButton_15.setText(_translate("MainWindow", "Kay"))
+        self.pushButton_16.setText(_translate("MainWindow", "Günce"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("MainWindow", "Uzlaşma Başarısızlık Sebebleri"))
         self.menuUzla_t_rma_Dosyas.setTitle(_translate("MainWindow", "Uzlaştırma Dosyası"))
         self.menuUzla_mac.setTitle(_translate("MainWindow", "Uzlaşmacı"))
@@ -597,9 +600,11 @@ class Ui_MainWindow(object):
         self.radioButton_2.clicked.connect(self.dosya_kimlik)
         self.pushButton_3.clicked.connect(self.uzatmaEkle)
         self.comboBox_2.currentIndexChanged.connect(self.dosya_kapat)
+        self.pushButton.clicked.connect(self.olay_ekle)
+        self.pushButton_2.clicked.connect(self.olay_guncelle)
 
-    def uzlasmaci(self):
-        sor = mdl.tek_satirlik_demet_coz(self.veritabani.komut("select isim, sicil from uzlasmaci"))
+    def uzlasmaci(self, arg):
+        sor = mdl.tek_satirlik_demet_coz(self.veritabani.komut("select isim, sicil from uzlasmaci where isim = '{}'".format(arg)))
         self.label_15.setText(sor[0])
         self.label_17.setText(sor[1])
 
@@ -649,6 +654,12 @@ class Ui_MainWindow(object):
             self.taraf_bul(dosya)
             self.gider_bul(dosya)
             self.ek_bul(dosya)
+            self.uzlasmaci(so[-1])
+            ozet = mdl.olay_ozeti_cek(dosya)
+            if len(ozet) == 0:
+                pass
+            else:
+                self.textEdit.setPlainText(ozet[0][0])
     #Uzlaşma dosyasının ne durumda olduğunu göster
     def dosya_durumu(self):
         sonuc = self.veritabani.komut("select uzatmatar from dosyalar where uzno = '{}'"
@@ -810,6 +821,34 @@ class Ui_MainWindow(object):
         dosya = self.comboBox.currentText()
         print(yeni_tarih)
         print(dosya)
+
+    def olay_ekle(self):
+        yazi = self.textEdit.toPlainText()
+        if len(yazi) == 0:
+            mesaj = "Olayı özetleyen bir yazı yazmanız gerekmektedir."
+            baslik = "Olay Özet Hatası"
+            bilgilendir(mesaj, baslik)
+        else:
+            self.veritabani.yapistir("insert into olaylar values(NULL, '{}', '{}')"
+                                  .format(yazi, self.comboBox.currentText()))
+            mesaj = "Olayı özeti dosya bilgilerine eklendi"
+            baslik = "Olay Özet'i Eklemesi"
+            bilgilendir(mesaj, baslik)
+            self.pushButton.setDisabled(True)
+
+    def olay_guncelle(self):
+        yazi = self.textEdit.toPlainText()
+        if len(yazi) == 0:
+            mesaj = "Veritabanı yazma hatasından kaynaklı olay özeti güncellenemedi."
+            baslik = "Özet Güncelleme Hatası"
+            bilgilendir(mesaj, baslik)
+        else:
+            self.veritabani.yapistir("update olaylar set ozet='{}' where uzno = '{}'"
+                                  .format(yazi, self.comboBox.currentText()))
+            mesaj = "Olayı özeti başarıyla güncellendi"
+            baslik = "Özet Güncellemesi"
+            bilgilendir(mesaj, baslik)
+            self.pushButton.setDisabled(True)
 
     def dosya_kapat(self):
         print(self.comboBox.currentText(), " Nol'lu dosya kapatıldı")

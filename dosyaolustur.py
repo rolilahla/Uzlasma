@@ -57,9 +57,6 @@ class DosyaOlustur(QtWidgets.QDialog):
         self.label_5 = QtWidgets.QLabel(self)
         self.label_5.setGeometry(QtCore.QRect(130, 130, 90, 20))
         self.label_5.setObjectName("label_5")
-        self.pushButton = QtWidgets.QPushButton(self)
-        self.pushButton.setGeometry(QtCore.QRect(336, 230, 75, 23))
-        self.pushButton.setObjectName("pushButton")
         self.lineEdit_5 = QtWidgets.QLineEdit(self)
         self.lineEdit_5.setGeometry(QtCore.QRect(240, 160, 170, 20))
         self.lineEdit_5.setObjectName("lineEdit_5")
@@ -86,6 +83,9 @@ class DosyaOlustur(QtWidgets.QDialog):
         self.label_6.setText("")
         self.label_6.setPixmap(QtGui.QPixmap("../../Downloads/faenza-icon-theme-master/Faenza/apps/96/ubuntuone.png"))
         self.label_6.setObjectName("label_6")
+        self.pushButton = QtWidgets.QPushButton(self)
+        self.pushButton.setGeometry(QtCore.QRect(336, 230, 75, 23))
+        self.pushButton.setObjectName("pushButton")
 
         self.retranslateUi(self)
         self.pushButton.clicked.connect(self.close)
@@ -117,6 +117,7 @@ class DosyaOlustur(QtWidgets.QDialog):
             meno = self.lineEdit_3.text()
             suc = self.lineEdit_4.text()
             ttarih = self.lineEdit_5.text()
+            uzlastirici = self.comboBox.currentText()
             tevdi = "Savcılık"
             # Dosya teslim tarihini bulmak için
             # teslim alınma süresinin üzerine veritabanından gelen süreyi ekliyoruz
@@ -126,6 +127,7 @@ class DosyaOlustur(QtWidgets.QDialog):
             meno = self.lineEdit_3.text()
             suc = self.lineEdit_4.text()
             ttarih = self.lineEdit_5.text()
+            uzlastirici = self.comboBox.currentText()
             tevdi = "Mahkeme"
 
         sure = self.db.komut("select teslim_suresi from ayarlar")
@@ -136,7 +138,7 @@ class DosyaOlustur(QtWidgets.QDialog):
         fark = datetime.timedelta(days=sure[0][0])
         gelecek = t3 + fark
         uzatmatar = gelecek.date()
-        if self.db.dosya_ekle(uzno, sorno, meno, suc, ttarih, tevdi, 1, uzatmatar) == True:
+        if self.db.dosya_ekle(uzno, sorno, meno, suc, ttarih, tevdi, 1, uzatmatar, uzlastirici) == True:
             baslik = "Dosya Bilgileri Eklendi"
             mesaj = uzno + " Uzlaşma No'lu dosya bilgileri veritabanına başarıyla eklendi"
             bilgilendir(mesaj, baslik)
