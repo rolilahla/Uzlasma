@@ -615,6 +615,7 @@ class Ui_MainWindow(object):
             for i in range(1, say + 1):
                 self.comboBox.removeItem(sayac)
                 sayac -= 1
+            self.comboBox.setCurrentIndex(0)
             self.dosya_tara("1")
         else:
             say = self.comboBox.count()
@@ -622,6 +623,7 @@ class Ui_MainWindow(object):
             for i in range(1, say + 1):
                 self.comboBox.removeItem(sayac)
                 sayac -= 1
+            self.comboBox.setCurrentIndex(0)
             self.dosya_tara("0")
 
     def dosya_tara(self, nit):
@@ -652,11 +654,20 @@ class Ui_MainWindow(object):
         sonuc = self.veritabani.komut("select uzatmatar from dosyalar where uzno = '{}'"
                                       .format(self.comboBox.currentText()))
         dtr = mdl.tarih_duzenle(sonuc[0][0])
-        self.label_12.setText(dtr[0])
-        if int(dtr[0]) > 5:
-            pass
+        if dtr == False:
+            self.label_11.hide()
+            self.label_12.hide()
+            self.label_13.hide()
+            self.label_7.clear()
+            self.label_8.clear()
+            self.label_9.clear()
+            self.label_10.clear()
         else:
-            self.label_12.setStyleSheet("color: rgb(255, 0, 0);")
+            self.label_12.setText(dtr[0])
+            if int(dtr[0]) > 5:
+                pass
+            else:
+                self.label_12.setStyleSheet("color: rgb(255, 0, 0);")
 
     def taraf_bul(self, ar):
         sql = """SELECT ad, sifat FROM taraflar WHERE dosya == '{}' 

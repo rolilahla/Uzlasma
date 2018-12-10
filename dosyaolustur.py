@@ -20,7 +20,9 @@ class DosyaOlustur(QtWidgets.QDialog):
         super(DosyaOlustur, self).__init__()
         self.init_ui()
 
+
     def init_ui(self):
+        self.db = VbagKur()
         self.resize(423, 263)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("../../Downloads/faenza-icon-theme-master/Faenza/apps/32/ubuntuone.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -91,6 +93,7 @@ class DosyaOlustur(QtWidgets.QDialog):
         self.pushButton.clicked.connect(self.buton_birinci_gorev)
 
         self.setWindowTitle("Yeni Uzlaşma Dosyası Ekle")
+        self.uzlastirmaci_cek()
         self.show()
 
     def retranslateUi(self, DosyaOlustur):
@@ -108,20 +111,24 @@ class DosyaOlustur(QtWidgets.QDialog):
         self.label_8.setText(_translate("DosyaOlustur", "Uzlaştırmacı"))
 
     def buton_birinci_gorev(self):
-        nitelik = None
         if self.radioButton.isChecked() == True:
+            uzno = self.lineEdit.text()
+            sorno = self.lineEdit_2.text()
+            meno = self.lineEdit_3.text()
+            suc = self.lineEdit_4.text()
+            ttarih = self.lineEdit_5.text()
+            tevdi = "Savcılık"
+            # Dosya teslim tarihini bulmak için
+            # teslim alınma süresinin üzerine veritabanından gelen süreyi ekliyoruz
+        elif self.radioButton_2.isChecked() == True:
+            uzno = self.lineEdit.text()
+            sorno = self.lineEdit_2.text()
+            meno = self.lineEdit_3.text()
+            suc = self.lineEdit_4.text()
+            ttarih = self.lineEdit_5.text()
+            tevdi = "Mahkeme"
 
-        uzno = self.lineEdit.text()
-        sorno = self.lineEdit_2.text()
-        meno = self.lineEdit_3.text()
-        suc = self.lineEdit_4.text()
-        ttarih = self.lineEdit_5.text()
-        tevdi = self.lineEdit_6.text()
-        #Dosya teslim tarihini bulmak için
-        #teslim alınma süresinin üzerine veritabanından gelen süreyi ekliyoruz
-
-        db = VbagKur()
-        sure = db.komut("select teslim_suresi from ayarlar")
+        sure = self.db.komut("select teslim_suresi from ayarlar")
         t = ttarih.replace(".", "/")
         formatstr = '%d/%m/%Y'
         t3 = datetime.datetime.strptime(t, formatstr)
@@ -129,7 +136,7 @@ class DosyaOlustur(QtWidgets.QDialog):
         fark = datetime.timedelta(days=sure[0][0])
         gelecek = t3 + fark
         uzatmatar = gelecek.date()
-        if db.dosya_ekle(uzno, sorno, meno, suc, ttarih, tevdi, 1, uzatmatar) == True:
+        if self.db.dosya_ekle(uzno, sorno, meno, suc, ttarih, tevdi, 1, uzatmatar) == True:
             baslik = "Dosya Bilgileri Eklendi"
             mesaj = uzno + " Uzlaşma No'lu dosya bilgileri veritabanına başarıyla eklendi"
             bilgilendir(mesaj, baslik)
@@ -138,11 +145,16 @@ class DosyaOlustur(QtWidgets.QDialog):
             self.lineEdit_3.clear()
             self.lineEdit_4.clear()
             self.lineEdit_5.clear()
-            self.lineEdit_6.clear()
+
         else:
             pass
 
         self.on_changed_value(False)
+
+    def uzlastirmaci_cek(self):
+        sor = self.db.komut("select isim from uzlasmaci")
+        for i in range(len(sor)):
+            self.comboBox.addItem(sor[i][0])
 
     def on_changed_value(self, value):
         self.clicked.emit(value)

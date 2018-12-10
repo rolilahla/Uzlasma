@@ -53,13 +53,16 @@ def silinecek_ek_bul(arg):
     db.satir_sil("DELETE FROM ek WHERE id = '{}'".format(sonuc[0]))
     return True
 
-def tarih_duzenle(arg):
-    t = arg.replace("-","/")
-    formatstring = '%Y/%m/%d'
-    dosya_bitis = datetime.datetime.strptime(t, formatstring)
-    bugun = datetime.datetime.now()
-    fark = dosya_bitis - bugun
-    return str(fark)
+def tarih_duzenle(arg=None):
+    if arg == None:
+        return False
+    else:
+        t = arg.replace("-","/")
+        formatstring = '%Y/%m/%d'
+        dosya_bitis = datetime.datetime.strptime(t, formatstring)
+        bugun = datetime.datetime.now()
+        fark = dosya_bitis - bugun
+        return str(fark)
 
 def uzatma_tarihi_ekle(arg, dosya):
     sql = """UPDATE dosyalar SET 
