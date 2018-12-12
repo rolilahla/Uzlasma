@@ -5,25 +5,35 @@
 # Created by: PyQt5 UI code generator 5.6
 #
 # WARNING! All changes made in this file will be lost!
+from typing import Any, Callable
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSlot
 import modul as mdl
 import uihazirla as uih
 from dosyaolustur import DosyaOlustur
+from dosyasil import Ui_DosyaSil
 from taraf import TarafEkle
-from mico import bilgilendir, kayit_sil_soru, gider_sil_soru, ek_sil_soru
+from mico import bilgilendir, kayit_sil_soru, gider_sil_soru, ek_sil_soru, dosya_kapat_soru, dosya_ac_soru
 from tarafduzenle import TarafDuzenle
 from gider import Gider
 from ek import Ekler
 from vtbgln import VbagKur
 
 class Ui_MainWindow(object):
+    dosya_teslim_tarihi = ...  # type: None
+
     def gui_dosya_olustur(self):
         self.p = DosyaOlustur()
         self.make_connection(self.p)
         self.p.show()
         self.p.exec_()
+
+    def gui_dosya_sil(self):
+        self.ds = Ui_DosyaSil()
+        self.dosya_sil_connection(self.ds)
+        self.ds.show()
+        self.ds.exec_()
 
     def gui_taraf_ekle(self):
         if self.comboBox.currentIndex() == 0:
@@ -67,6 +77,7 @@ class Ui_MainWindow(object):
             self.ek_connection(self.ek)
             self.ek.show()
             self.ek.exec_()
+
     def setupUi(self, MainWindow):
         self.veritabani = VbagKur()
         self.dosya_teslim_tarihi = None
@@ -193,16 +204,16 @@ class Ui_MainWindow(object):
         self.groupBox = QtWidgets.QGroupBox(self.frame_2)
         self.groupBox.setObjectName("groupBox")
         self.label_14 = QtWidgets.QLabel(self.groupBox)
-        self.label_14.setGeometry(QtCore.QRect(13, 20, 71, 16))
+        self.label_14.setGeometry(QtCore.QRect(13, 20, 71, 20))
         self.label_14.setObjectName("label_14")
         self.label_15 = QtWidgets.QLabel(self.groupBox)
-        self.label_15.setGeometry(QtCore.QRect(90, 25, 120, 20))
+        self.label_15.setGeometry(QtCore.QRect(90, 20, 120, 20))
         self.label_15.setObjectName("label_15")
         self.label_17 = QtWidgets.QLabel(self.groupBox)
         self.label_17.setGeometry(QtCore.QRect(90, 40, 120, 20))
         self.label_17.setObjectName("label_17")
         self.label_18 = QtWidgets.QLabel(self.groupBox)
-        self.label_18.setGeometry(QtCore.QRect(13, 40, 71, 16))
+        self.label_18.setGeometry(QtCore.QRect(13, 40, 71, 20))
         self.label_18.setObjectName("label_18")
         self.verticalLayout_3.addWidget(self.groupBox)
         self.gridLayout_3.addLayout(self.verticalLayout_3, 0, 0, 1, 1)
@@ -239,7 +250,7 @@ class Ui_MainWindow(object):
         self.pushButton_5 = QtWidgets.QPushButton(self.groupBox_6)
         self.pushButton_5.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../lib/icon/gtk-edit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("lib/icon/gtk-edit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_5.setIcon(icon1)
         self.pushButton_5.setIconSize(QtCore.QSize(22, 22))
         self.pushButton_5.setObjectName("pushButton_5")
@@ -341,8 +352,6 @@ class Ui_MainWindow(object):
         self.listWidget_3 = QtWidgets.QListWidget(self.groupBox_4)
         self.listWidget_3.setMinimumSize(QtCore.QSize(263, 140))
         self.listWidget_3.setObjectName("listWidget_3")
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget_3.addItem(item)
         self.gridLayout_10.addWidget(self.listWidget_3, 1, 0, 1, 3)
         self.horizontalLayout_4.addWidget(self.groupBox_4)
         self.gridLayout_5.addLayout(self.horizontalLayout_4, 0, 0, 1, 1)
@@ -486,11 +495,32 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuUzla_mac.menuAction())
         self.menubar.addAction(self.menu_ablonlar.menuAction())
         self.menubar.addAction(self.menuAyarlar.menuAction())
-        self.label_11.hide()
-        self.label_12.hide()
-        self.label_13.hide()
+
+        self.comboBox_2.setDisabled(True)
         self.triggerfinger()
         self.dosya_tara("1")
+        #-----------------------------------------Olay - Görüşme - Edim - Başarısızlık Buton Ayarları
+
+        # Olay Özeti
+        #textedit
+        self.pushButton.setDisabled(True)
+        self.pushButton_2.setDisabled(True)
+
+        #Görüşme
+        #textedit_2
+        self.pushButton_7.setDisabled(True)
+        self.pushButton_8.setDisabled(True)
+
+        #Edim
+        #textedit_3
+        self.pushButton_10.setDisabled(True)
+        self.pushButton_13.setDisabled(True)
+
+        #Başarıszlık
+        #TextEdit_4
+        self.pushButton_15.setDisabled(True)
+        self.pushButton_16.setDisabled(True)
+
         self.ayarlar()
 
         self.pushButton_5.setDisabled(True)
@@ -503,7 +533,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        _translate = QtCore.QCoreApplication.translate
+        _translate = QtCore.QCoreApplication.translate  # type: Callable[[Any, Any, Any, int], str]
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.groupBox_3.setTitle(_translate("MainWindow", "Dosya Bilgileri"))
         self.label.setText(_translate("MainWindow", "Dosya Durumu"))
@@ -516,10 +546,10 @@ class Ui_MainWindow(object):
 
         self.label_5.setText(_translate("MainWindow", "Suç"))
 
-        self.label_6.setText(_translate("MainWindow", "Davet Tarihi"))
+        self.label_6.setText(_translate("MainWindow", "Tevdi Tarihi"))
 
         self.groupBox_2.setTitle(_translate("MainWindow", "Dosya durumu"))
-        self.label_11.setText(_translate("MainWindow", "Teslim Tarihine "))
+        self.label_11.setText(_translate("MainWindow", "Teslim Tarihine"))
         self.label_12.setText(_translate("MainWindow", "3"))
         self.label_13.setText(_translate("MainWindow", "gün var."))
         self.lineEdit.setText(_translate("MainWindow", "Uzatma Tarihi Ekle"))
@@ -545,8 +575,6 @@ class Ui_MainWindow(object):
         self.groupBox_4.setTitle(_translate("MainWindow", "Ek Dosyalar"))
         __sortingEnabled = self.listWidget_3.isSortingEnabled()
         self.listWidget_3.setSortingEnabled(False)
-        item = self.listWidget_3.item(0)
-        item.setText(_translate("MainWindow", "Mehmet Eroğlu Davet Mektubu"))
         self.listWidget_3.setSortingEnabled(__sortingEnabled)
         self.groupBox_7.setTitle(_translate("MainWindow", "Dava Konusu Olay"))
 
@@ -559,11 +587,13 @@ class Ui_MainWindow(object):
         self.pushButton_8.setText(_translate("MainWindow", "p8"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Uzlaşma Görüşmeleri"))
         self.groupBox_9.setTitle(_translate("MainWindow", "GroupBox"))
+        
         #Edim butonları
         self.pushButton_10.setText(_translate("MainWindow", "Kayde"))
         self.pushButton_13.setText(_translate("MainWindow", "Güncell"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Edim"))
         self.groupBox_10.setTitle(_translate("MainWindow", "GroupBox"))
+        
         #başarısızlık butonları
         self.pushButton_15.setText(_translate("MainWindow", "Kay"))
         self.pushButton_16.setText(_translate("MainWindow", "Günce"))
@@ -599,9 +629,16 @@ class Ui_MainWindow(object):
         self.radioButton.clicked.connect(self.dosya_kimlik)
         self.radioButton_2.clicked.connect(self.dosya_kimlik)
         self.pushButton_3.clicked.connect(self.uzatmaEkle)
-        self.comboBox_2.currentIndexChanged.connect(self.dosya_kapat)
+        self.comboBox_2.activated.connect(self.dosya_kapat)
         self.pushButton.clicked.connect(self.olay_ekle)
         self.pushButton_2.clicked.connect(self.olay_guncelle)
+        self.pushButton_7.clicked.connect(self.gorusme_ekle)
+        self.pushButton_8.clicked.connect(self.gorusme_guncelle)
+        self.pushButton_10.clicked.connect(self.edim_ekle)
+        self.pushButton_13.clicked.connect(self.edim_guncelle)
+        self.pushButton_15.clicked.connect(self.uzbas_ekle)
+        self.pushButton_16.clicked.connect(self.uzbas_guncelle)
+        self.actionDosya_Sil.triggered.connect(self.gui_dosya_sil)
 
     def uzlasmaci(self, arg):
         sor = mdl.tek_satirlik_demet_coz(self.veritabani.komut("select isim, sicil from uzlasmaci where isim = '{}'".format(arg)))
@@ -621,6 +658,7 @@ class Ui_MainWindow(object):
                 self.comboBox.removeItem(sayac)
                 sayac -= 1
             self.comboBox.setCurrentIndex(0)
+            self.comboBox_2.setCurrentIndex(0)
             self.dosya_tara("1")
         else:
             say = self.comboBox.count()
@@ -630,6 +668,7 @@ class Ui_MainWindow(object):
                 sayac -= 1
             self.comboBox.setCurrentIndex(0)
             self.dosya_tara("0")
+            self.comboBox_2.setCurrentIndex(1)
 
     def dosya_tara(self, nit):
         sor = mdl.tekli_demet_coz(mdl.kmt("select uzno from dosyalar where durum = '{}'".format(nit)))
@@ -638,8 +677,21 @@ class Ui_MainWindow(object):
 
     #Dosya Bilgilerini listele
     def dosya_bilgisi_cek(self):
+        #Eğer Dosya seçilmezse heryeri temizle
         if self.comboBox.currentIndex() == 0:
-            pass
+            self.comboBox_2.setDisabled(True)
+            self.textEdit.clear()
+            self.textEdit_2.clear()
+            self.textEdit_3.clear()
+            self.textEdit_4.clear()
+            self.label_7.clear()
+            self.label_8.clear()
+            self.label_9.clear()
+            self.label_10.clear()
+            self.label_11.hide()
+            self.label_12.hide()
+            self.label_13.hide()
+
         else:
             dosya = self.comboBox.currentText()
             so = mdl.tek_satirlik_demet_coz(mdl.dosya_cek(dosya))
@@ -650,22 +702,56 @@ class Ui_MainWindow(object):
             self.label_11.show()
             self.label_12.show()
             self.label_13.show()
+            self.comboBox_2.setDisabled(False)
+
             self.dosya_durumu()
             self.taraf_bul(dosya)
             self.gider_bul(dosya)
             self.ek_bul(dosya)
             self.uzlasmaci(so[-1])
+
             ozet = mdl.olay_ozeti_cek(dosya)
+            gorusme = mdl.gorusme_cek(dosya)
+            edim = mdl.edim_cek(dosya)
+            uzba = mdl.uzbas_cek(dosya)
+            self.textEdit.clear()
+            self.textEdit_2.clear()
+            self.textEdit_3.clear()
+            self.textEdit_4.clear()
+            self.label_12.setStyleSheet("color: rgb(0, 0, 0);")
+            self.dosya_durumu()
+
             if len(ozet) == 0:
-                pass
+                self.pushButton.setDisabled(False)
             else:
                 self.textEdit.setPlainText(ozet[0][0])
+                self.pushButton_2.setDisabled(False)
+
+            if len(gorusme) == 0:
+                self.pushButton_7.setDisabled(False)
+            else:
+                self.pushButton_8.setDisabled(False)
+                self.textEdit_2.setPlainText(gorusme[0][0])
+
+            if len(edim) == 0:
+                self.pushButton_10.setDisabled(False)
+            else:
+                self.pushButton_13.setDisabled(False)
+                self.textEdit_3.setPlainText(edim[0][0])
+
+            if len(uzba) == 0:
+                self.pushButton_15.setDisabled(False)
+            else:
+                self.pushButton_16.setDisabled(False)
+                self.textEdit_4.setPlainText(uzba[0][0])
+
     #Uzlaşma dosyasının ne durumda olduğunu göster
     def dosya_durumu(self):
         sonuc = self.veritabani.komut("select uzatmatar from dosyalar where uzno = '{}'"
                                       .format(self.comboBox.currentText()))
-        dtr = mdl.tarih_duzenle(sonuc[0][0])
-        if dtr == False:
+        ptr = mdl.tarih_duzenle(sonuc[0][0])
+        dtr = ptr.split()
+        if ptr == False:
             self.label_11.hide()
             self.label_12.hide()
             self.label_13.hide()
@@ -717,8 +803,8 @@ class Ui_MainWindow(object):
 
     #Taraflar tablosu tetiklemesi.................................................TABLO CLİCK TETİKLEMELERİ.........
     def tablodan_parametre_olustur(self, row, column):
-        oge_ad = self.tableWidget.item(row, column)
-        oge_nitelik = self.tableWidget.item(row, column+1)
+        oge_ad = self.tableWidget.item(row, 0)
+        oge_nitelik = self.tableWidget.item(row, 1)
         if oge_nitelik.text() == "Vekil":
             self.kisi_nitelik_duzenle = "Vekil"
         elif oge_nitelik.text() == "Tercüman":
@@ -727,6 +813,7 @@ class Ui_MainWindow(object):
             self.kisi_nitelik_duzenle = "Şahıs"
         self.pushButton_5.setDisabled(False)
         self.pushButton_6.setDisabled(False)
+
         self.kisi_duzenle = oge_ad.text()
 
     def gider_tablosundan_parametre_olustur(self, row, column):
@@ -738,7 +825,7 @@ class Ui_MainWindow(object):
         self.ek_dosya = self.listWidget_3.currentItem().text()
         self.pushButton_14.setDisabled(False)
 
-    #............................................................................DİALOGLARI BAĞLA
+    #..........................................................................................DİALOGLARI BAĞLA
     def taraf_duzenlemeyi_bagla(self):
         self.gui_taraf_duzenle(self.kisi_duzenle, self.kisi_nitelik_duzenle)
 
@@ -824,34 +911,181 @@ class Ui_MainWindow(object):
 
     def olay_ekle(self):
         yazi = self.textEdit.toPlainText()
-        if len(yazi) == 0:
-            mesaj = "Olayı özetleyen bir yazı yazmanız gerekmektedir."
-            baslik = "Olay Özet Hatası"
+        if self.comboBox.currentIndex() == 0:
+            mesaj = "Öncelikle olay eklenecek bir uzlaştırma dosyası seçmeniz gerekmektedir."
+            baslik = "Dosya Seçim Hatası"
             bilgilendir(mesaj, baslik)
         else:
-            self.veritabani.yapistir("insert into olaylar values(NULL, '{}', '{}')"
-                                  .format(yazi, self.comboBox.currentText()))
-            mesaj = "Olayı özeti dosya bilgilerine eklendi"
-            baslik = "Olay Özet'i Eklemesi"
-            bilgilendir(mesaj, baslik)
-            self.pushButton.setDisabled(True)
+            if len(yazi) == 0:
+                mesaj = "Olayı özetleyen bir yazı yazmanız gerekmektedir."
+                baslik = "Olay Özet Hatası"
+                bilgilendir(mesaj, baslik)
+            else:
+                self.veritabani.yapistir("insert into olaylar values(NULL, '{}', '{}')"
+                                         .format(yazi, self.comboBox.currentText()))
+                mesaj = "Olayı özeti dosya bilgilerine eklendi"
+                baslik = "Olay Özet'i Eklemesi"
+                bilgilendir(mesaj, baslik)
+                self.pushButton.setDisabled(True)
+                self.pushButton_2.setDisabled(False)
 
     def olay_guncelle(self):
         yazi = self.textEdit.toPlainText()
-        if len(yazi) == 0:
-            mesaj = "Veritabanı yazma hatasından kaynaklı olay özeti güncellenemedi."
-            baslik = "Özet Güncelleme Hatası"
+        if self.comboBox.currentIndex() == 0:
+            mesaj = "Öncelikle olay eklenecek bir uzlaştırma dosyası seçmeniz gerekmektedir."
+            baslik = "Dosya Seçim Hatası"
             bilgilendir(mesaj, baslik)
         else:
-            self.veritabani.yapistir("update olaylar set ozet='{}' where uzno = '{}'"
-                                  .format(yazi, self.comboBox.currentText()))
-            mesaj = "Olayı özeti başarıyla güncellendi"
-            baslik = "Özet Güncellemesi"
+            if len(yazi) == 0:
+                mesaj = "Veritabanı yazma hatasından kaynaklı olay özeti güncellenemedi."
+                baslik = "Özet Güncelleme Hatası"
+                bilgilendir(mesaj, baslik)
+            else:
+                self.veritabani.yapistir("update olaylar set ozet='{}' where uzno = '{}'"
+                                         .format(yazi, self.comboBox.currentText()))
+                mesaj = "Olayı özeti başarıyla güncellendi"
+                baslik = "Özet Güncellemesi"
+                bilgilendir(mesaj, baslik)
+
+    def gorusme_ekle(self):
+        yazi = self.textEdit_2.toPlainText()
+        if self.comboBox.currentIndex() == 0:
+            mesaj = "Lütfen görüşme eklemeke istediğiniz dosyayı seçiniz.Herhangi bir dosya seçilmemiş"
+            baslik = "Dosya Seçim Hatası"
             bilgilendir(mesaj, baslik)
-            self.pushButton.setDisabled(True)
+        else:
+            if len(yazi) == 0:
+                mesaj = "Yazı editörünü boş bırakamazsınız."
+                baslik = "Görüşme Ekleme Hatası"
+                bilgilendir(mesaj, baslik)
+            else:
+                self.veritabani.yapistir("insert into uzgor values(NULL, '{}', '{}')"
+                                         .format(yazi, self.comboBox.currentText()))
+                mesaj = "Görüşme durumu dosya bilgilerine eklendi"
+                baslik = "Uzlaşma Görüşmeleri"
+                bilgilendir(mesaj, baslik)
+                self.pushButton_7.setDisabled(True)
+                self.pushButton_8.setDisabled(False)
+
+    def gorusme_guncelle(self):
+        yazi = self.textEdit_2.toPlainText()
+        if self.comboBox.currentIndex() == 0:
+            mesaj = "Öncelikle güncellenecek bir uzlaştırma dosyası seçmeniz gerekmektedir."
+            baslik = "Dosya Seçim Hatası"
+            bilgilendir(mesaj, baslik)
+        else:
+            if len(yazi) == 0:
+                mesaj = "Veritabanı yazma hatasından kaynaklı olay özeti güncellenemedi."
+                baslik = "Özet Güncelleme Hatası"
+                bilgilendir(mesaj, baslik)
+            else:
+                self.veritabani.yapistir("update uzgor set gorusme='{}' where dosya = '{}'"
+                                         .format(yazi, self.comboBox.currentText()))
+                mesaj = "Olayı özeti başarıyla güncellendi"
+                baslik = "Özet Güncellemesi"
+                bilgilendir(mesaj, baslik)
+
+    def edim_ekle(self):
+        yazi = self.textEdit_3.toPlainText()
+        if self.comboBox.currentIndex() == 0:
+            mesaj = "Lütfen Edim eklemek istediğiniz dosyayı seçiniz.Herhangi bir dosya seçilmemiş"
+            baslik = "Dosya Seçim Hatası"
+            bilgilendir(mesaj, baslik)
+        else:
+            if len(yazi) == 0:
+                mesaj = "Yazı editörünü boş bırakamazsınız."
+                baslik = "Edim Ekleme Hatası"
+                bilgilendir(mesaj, baslik)
+            else:
+                self.veritabani.yapistir("insert into edim values(NULL, '{}', '{}')"
+                                         .format(yazi, self.comboBox.currentText()))
+                mesaj = "Dosya Edim'i bilgilerine eklendi"
+                baslik = "Edim Ekleme"
+                bilgilendir(mesaj, baslik)
+                self.pushButton_10.setDisabled(True)
+                self.pushButton_13.setDisabled(False)
+
+    def edim_guncelle(self):
+        yazi = self.textEdit_3.toPlainText()
+        if self.comboBox.currentIndex() == 0:
+            mesaj = "Öncelikle güncellenecek bir uzlaştırma dosyası seçmeniz gerekmektedir."
+            baslik = "Dosya Seçim Hatası"
+            bilgilendir(mesaj, baslik)
+        else:
+            if len(yazi) == 0:
+                mesaj = "Veritabanı yazma hatasından kaynaklı edim güncellenemedi."
+                baslik = "Edim Güncelleme Hatası"
+                bilgilendir(mesaj, baslik)
+            else:
+                self.veritabani.yapistir("update edim set edi='{}' where dosya = '{}'"
+                                         .format(yazi, self.comboBox.currentText()))
+                mesaj = "Edim başarıyla güncellendi"
+                baslik = "Edim Güncellemesi"
+                bilgilendir(mesaj, baslik)
+
+    def uzbas_ekle(self):
+        yazi = self.textEdit_4.toPlainText()
+        if self.comboBox.currentIndex() == 0:
+            mesaj = "Lütfen Olumsuzluk  sebebi eklemek istediğiniz dosyayı seçiniz.Herhangi bir dosya seçilmemiş"
+            baslik = "Dosya Seçim Hatası"
+            bilgilendir(mesaj, baslik)
+        else:
+            if len(yazi) == 0:
+                mesaj = "Yazı editörünü boş bırakamazsınız."
+                baslik = "Ekleme Hatası"
+                bilgilendir(mesaj, baslik)
+            else:
+                self.veritabani.yapistir("insert into uzbas values(NULL, '{}', '{}')"
+                                         .format(yazi, self.comboBox.currentText()))
+                mesaj = "Dosya Edim'i bilgilerine eklendi"
+                baslik = "Edim Ekleme"
+                bilgilendir(mesaj, baslik)
+                self.pushButton_15.setDisabled(True)
+                self.pushButton_16.setDisabled(False)
+
+    def uzbas_guncelle(self):
+        yazi = self.textEdit_4.toPlainText()
+        if self.comboBox.currentIndex() == 0:
+            mesaj = "Öncelikle güncellenecek bir uzlaştırma dosyası seçmeniz gerekmektedir."
+            baslik = "Dosya Seçim Hatası"
+            bilgilendir(mesaj, baslik)
+        else:
+            if len(yazi) == 0:
+                mesaj = "Veritabanı yazma hatasından kaynaklı yazı güncellenemedi."
+                baslik = "Veri Güncelleme Hatası"
+                bilgilendir(mesaj, baslik)
+            else:
+                self.veritabani.yapistir("update uzbas set sebeb='{}' where dosya = '{}'"
+                                         .format(yazi, self.comboBox.currentText()))
+                mesaj = "Veri başarıyla güncellendi"
+                baslik = "Veri Güncellemesi"
+                bilgilendir(mesaj, baslik)
 
     def dosya_kapat(self):
-        print(self.comboBox.currentText(), " Nol'lu dosya kapatıldı")
+        if self.radioButton.isChecked() and self.comboBox_2.currentIndex() == 1:
+            if dosya_kapat_soru(self.comboBox.currentText()) == True:
+                if self.veritabani.yapistir("update dosyalar set durum='{}' where uzno='{}'"
+                                               .format(0, self.comboBox.currentText())) == True:
+                    bilgilendir("Dosya başarı ile kapatıldı", "Dosya Kapatma Uyarısı")
+                    self.dosya_kimlik()
+                else:
+                    pass
+            else:
+                bilgilendir("Dosya Kapatma işlemi iptal edildi", "Dosya Kapatma Uyarısı")
+                self.comboBox_2.setCurrentIndex(0)
+        elif self.radioButton_2.isChecked() and self.comboBox_2.currentIndex() == 0:
+            if dosya_ac_soru(self.comboBox.currentText()) == True:
+                if self.veritabani.yapistir("update dosyalar set durum='{}' where uzno='{}'"
+                                               .format(1, self.comboBox.currentText())) == True:
+                    bilgilendir("Dosya başarı ile açıldı", "Dosya Açma Uyarısı")
+                    self.dosya_kimlik()
+                else:
+                    pass
+            else:
+                bilgilendir("Dosya Açma işlemi iptal edildi", "Dosya Açma Uyarısı")
+                self.comboBox_2.setCurrentIndex(1)
+        else:
+            pass
 
     #Dosya Eklemesinden sonra liste yenilemek için sinyal yakalama.....................SİNYAL YAKALAMA.............
     def make_connection(self, dosyaolustur_object):
@@ -867,6 +1101,9 @@ class Ui_MainWindow(object):
 
     def ek_connection(self, ek_object):
         ek_object.clicked.connect(self.get_signal_ek)
+
+    def dosya_sil_connection(self, val):
+        pass
 
     @pyqtSlot(bool)
     def get_signal_dosya(self, val):

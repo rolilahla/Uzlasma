@@ -19,7 +19,7 @@ class TarafDuzenle(QtWidgets.QDialog):
 
     def init_ui(self, uno, kisi, nitelik):
         self.setWindowTitle("Taraf Düzenle")
-        self.resize(272, 482)
+        self.resize(272, 502)
         self.horizontalLayoutWidget = QtWidgets.QWidget(self)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(10, 20, 251, 21))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
@@ -42,7 +42,7 @@ class TarafDuzenle(QtWidgets.QDialog):
         self.radioButton_3.setObjectName("radioButton_3")
 
         self.stackedWidget = QtWidgets.QStackedWidget(self)
-        self.stackedWidget.setGeometry(QtCore.QRect(10, 40, 261, 431))
+        self.stackedWidget.setGeometry(QtCore.QRect(10, 40, 261, 471))
         self.stackedWidget.setObjectName("stackedWidget")
         self.page = QtWidgets.QWidget()
         self.page.setObjectName("page")
@@ -54,11 +54,19 @@ class TarafDuzenle(QtWidgets.QDialog):
         self.lineEdit.setGeometry(QtCore.QRect(70, 10, 182, 20))
         self.lineEdit.setObjectName("lineEdit")
 
+        self.label_21 = QtWidgets.QLabel(self.page)
+        self.label_21.setGeometry(QtCore.QRect(0, 40, 90, 20))
+        self.label_21.setObjectName("label_21")
+        self.label_21.setText("Teklif Tarihi")
+        self.lineEdit_13 = QtWidgets.QLineEdit(self.page)
+        self.lineEdit_13.setGeometry(QtCore.QRect(70, 40, 182, 20))
+        self.lineEdit_13.setObjectName("lineEdit_13")
+
         self.label_2 = QtWidgets.QLabel(self.page)
-        self.label_2.setGeometry(QtCore.QRect(0, 40, 90, 20))
+        self.label_2.setGeometry(QtCore.QRect(0, 70, 90, 20))
         self.label_2.setObjectName("label_2")
         self.comboBox = QtWidgets.QComboBox(self.page)
-        self.comboBox.setGeometry(QtCore.QRect(70, 40, 182, 22))
+        self.comboBox.setGeometry(QtCore.QRect(70, 70, 182, 22))
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
@@ -67,82 +75,79 @@ class TarafDuzenle(QtWidgets.QDialog):
         self.comboBox.addItem("")
 
         self.label_3 = QtWidgets.QLabel(self.page)
-        self.label_3.setGeometry(QtCore.QRect(0, 70, 90, 20))
+        self.label_3.setGeometry(QtCore.QRect(0, 100, 90, 20))
         self.label_3.setObjectName("label_3")
         self.lineEdit_2 = QtWidgets.QLineEdit(self.page)
-        self.lineEdit_2.setGeometry(QtCore.QRect(70, 70, 182, 20))
+        self.lineEdit_2.setGeometry(QtCore.QRect(70, 100, 182, 20))
         self.lineEdit_2.setObjectName("lineEdit_2")
 
         self.label_4 = QtWidgets.QLabel(self.page)
-        self.label_4.setGeometry(QtCore.QRect(0, 100, 90, 20))
+        self.label_4.setGeometry(QtCore.QRect(0, 130, 90, 20))
         self.label_4.setObjectName("label_4")
         self.lineEdit_3 = QtWidgets.QLineEdit(self.page)
-        self.lineEdit_3.setGeometry(QtCore.QRect(70, 100, 182, 20))
+        self.lineEdit_3.setGeometry(QtCore.QRect(70, 130, 182, 20))
         self.lineEdit_3.setObjectName("lineEdit_3")
 
         self.label_5 = QtWidgets.QLabel(self.page)
-        self.label_5.setGeometry(QtCore.QRect(0, 130, 90, 20))
+        self.label_5.setGeometry(QtCore.QRect(0, 160, 90, 20))
         self.label_5.setObjectName("label_5")
         self.lineEdit_4 = QtWidgets.QLineEdit(self.page)
-        self.lineEdit_4.setGeometry(QtCore.QRect(70, 130, 182, 20))
+        self.lineEdit_4.setGeometry(QtCore.QRect(70, 160, 182, 20))
         self.lineEdit_4.setObjectName("lineEdit_4")
 
         self.label_6 = QtWidgets.QLabel(self.page)
-        self.label_6.setGeometry(QtCore.QRect(0, 160, 90, 20))
+        self.label_6.setGeometry(QtCore.QRect(0, 190, 90, 20))
         self.label_6.setObjectName("label_6")
         self.lineEdit_5 = QtWidgets.QLineEdit(self.page)
-        self.lineEdit_5.setGeometry(QtCore.QRect(70, 160, 182, 20))
+        self.lineEdit_5.setGeometry(QtCore.QRect(70, 190, 182, 20))
         self.lineEdit_5.setObjectName("lineEdit_5")
 
         self.label_7 = QtWidgets.QLabel(self.page)
-        self.label_7.setGeometry(QtCore.QRect(0, 190, 90, 20))
+        self.label_7.setGeometry(QtCore.QRect(0, 220, 90, 20))
         self.label_7.setObjectName("label_7")
         self.lineEdit_6 = QtWidgets.QLineEdit(self.page)
-        self.lineEdit_6.setGeometry(QtCore.QRect(70, 190, 182, 20))
+        self.lineEdit_6.setGeometry(QtCore.QRect(70, 220, 182, 20))
         self.lineEdit_6.setText("")
         self.lineEdit_6.setObjectName("lineEdit_6")
 
+        self.label_12 = QtWidgets.QLabel(self.page)
+        self.label_12.setGeometry(QtCore.QRect(0, 250, 90, 20))
+        self.label_12.setObjectName("label_12")
         self.comboBox_2 = QtWidgets.QComboBox(self.page)
-        self.comboBox_2.setGeometry(QtCore.QRect(70, 220, 182, 22))
+        self.comboBox_2.setGeometry(QtCore.QRect(70, 250, 182, 22))
         self.comboBox_2.setObjectName("comboBox_2")
         self.comboBox_2.addItem("")
         self.comboBox_2.addItem("")
         self.comboBox_2.addItem("")
 
-        self.label_9 = QtWidgets.QLabel(self.page)
-        self.label_9.setGeometry(QtCore.QRect(0, 312, 90, 20))
-        self.label_9.setObjectName("label_9")
-
+        self.label_8 = QtWidgets.QLabel(self.page)
+        self.label_8.setGeometry(QtCore.QRect(0, 280, 90, 20))
+        self.label_8.setObjectName("label_8")
         self.lineEdit_7 = QtWidgets.QLineEdit(self.page)
-        self.lineEdit_7.setGeometry(QtCore.QRect(70, 250, 182, 20))
+        self.lineEdit_7.setGeometry(QtCore.QRect(70, 280, 182, 20))
         self.lineEdit_7.setText("")
         self.lineEdit_7.setObjectName("lineEdit_7")
 
-        self.label_12 = QtWidgets.QLabel(self.page)
-        self.label_12.setGeometry(QtCore.QRect(0, 220, 90, 20))
-        self.label_12.setObjectName("label_12")
-
+        self.label_20 = QtWidgets.QLabel(self.page)
+        self.label_20.setGeometry(QtCore.QRect(0, 310, 90, 20))
+        self.label_20.setObjectName("label_20")
         self.comboBox_5 = QtWidgets.QComboBox(self.page)
-        self.comboBox_5.setGeometry(QtCore.QRect(70, 280, 182, 22))
+        self.comboBox_5.setGeometry(QtCore.QRect(70, 310, 182, 22))
         self.comboBox_5.setObjectName("comboBox_5")
         self.comboBox_5.addItem("")
         self.comboBox_5.addItem("")
         self.comboBox_5.addItem("")
 
-        self.label_20 = QtWidgets.QLabel(self.page)
-        self.label_20.setGeometry(QtCore.QRect(0, 280, 90, 20))
-        self.label_20.setObjectName("label_20")
+        self.label_9 = QtWidgets.QLabel(self.page)
+        self.label_9.setGeometry(QtCore.QRect(0, 340, 90, 20))
+        self.label_9.setObjectName("label_9")
 
         self.textEdit = QtWidgets.QTextEdit(self.page)
-        self.textEdit.setGeometry(QtCore.QRect(70, 312, 181, 91))
+        self.textEdit.setGeometry(QtCore.QRect(70, 340, 181, 91))
         self.textEdit.setObjectName("textEdit")
 
-        self.label_8 = QtWidgets.QLabel(self.page)
-        self.label_8.setGeometry(QtCore.QRect(0, 250, 90, 20))
-        self.label_8.setObjectName("label_8")
-
         self.pushButton = QtWidgets.QPushButton(self.page)
-        self.pushButton.setGeometry(QtCore.QRect(180, 410, 75, 23))
+        self.pushButton.setGeometry(QtCore.QRect(180, 435, 75, 23))
         self.pushButton.setObjectName("pushButton")
 
         self.stackedWidget.addWidget(self.page)
@@ -155,35 +160,48 @@ class TarafDuzenle(QtWidgets.QDialog):
         self.comboBox_3 = QtWidgets.QComboBox(self.page_2)
         self.comboBox_3.setGeometry(QtCore.QRect(70, 20, 182, 22))
         self.comboBox_3.setObjectName("comboBox_3")
-        self.label_15 = QtWidgets.QLabel(self.page_2)
-        self.label_15.setGeometry(QtCore.QRect(0, 110, 90, 20))
-        self.label_15.setObjectName("label_15")
-        self.label_14 = QtWidgets.QLabel(self.page_2)
-        self.label_14.setGeometry(QtCore.QRect(0, 80, 90, 20))
-        self.label_14.setObjectName("label_14")
+
+        self.label_22 = QtWidgets.QLabel(self.page_2)
+        self.label_22.setGeometry(QtCore.QRect(0, 50, 90, 20))
+        self.label_22.setObjectName("label_22")
+        self.label_22.setText("Teklif Tarihi")
+        self.lineEdit_14 = QtWidgets.QLineEdit(self.page_2)
+        self.lineEdit_14.setGeometry(QtCore.QRect(70, 50, 182, 20))
+        self.lineEdit_14.setText("")
+        self.lineEdit_14.setObjectName("lineEdit_14")
+
+        self.label_13 = QtWidgets.QLabel(self.page_2)
+        self.label_13.setGeometry(QtCore.QRect(0, 80, 90, 20))
+        self.label_13.setObjectName("label_13")
         self.lineEdit_8 = QtWidgets.QLineEdit(self.page_2)
-        self.lineEdit_8.setGeometry(QtCore.QRect(70, 50, 182, 20))
+        self.lineEdit_8.setGeometry(QtCore.QRect(70, 80, 182, 20))
         self.lineEdit_8.setText("")
         self.lineEdit_8.setObjectName("lineEdit_8")
-        self.label_16 = QtWidgets.QLabel(self.page_2)
-        self.label_16.setGeometry(QtCore.QRect(0, 140, 90, 20))
-        self.label_16.setObjectName("label_16")
+
+        self.label_14 = QtWidgets.QLabel(self.page_2)
+        self.label_14.setGeometry(QtCore.QRect(0, 110, 90, 20))
+        self.label_14.setObjectName("label_14")
         self.lineEdit_9 = QtWidgets.QLineEdit(self.page_2)
-        self.lineEdit_9.setGeometry(QtCore.QRect(70, 80, 182, 20))
+        self.lineEdit_9.setGeometry(QtCore.QRect(70, 110, 182, 20))
         self.lineEdit_9.setText("")
         self.lineEdit_9.setObjectName("lineEdit_9")
+
+        self.label_15 = QtWidgets.QLabel(self.page_2)
+        self.label_15.setGeometry(QtCore.QRect(0, 140, 90, 20))
+        self.label_15.setObjectName("label_15")
         self.lineEdit_10 = QtWidgets.QLineEdit(self.page_2)
-        self.lineEdit_10.setGeometry(QtCore.QRect(70, 110, 182, 20))
+        self.lineEdit_10.setGeometry(QtCore.QRect(70, 140, 182, 20))
         self.lineEdit_10.setText("")
         self.lineEdit_10.setObjectName("lineEdit_10")
-        self.label_13 = QtWidgets.QLabel(self.page_2)
-        self.label_13.setGeometry(QtCore.QRect(0, 50, 90, 20))
-        self.label_13.setObjectName("label_13")
+
+        self.label_16 = QtWidgets.QLabel(self.page_2)
+        self.label_16.setGeometry(QtCore.QRect(0, 170, 90, 20))
+        self.label_16.setObjectName("label_16")
         self.textEdit_2 = QtWidgets.QTextEdit(self.page_2)
-        self.textEdit_2.setGeometry(QtCore.QRect(70, 140, 182, 101))
+        self.textEdit_2.setGeometry(QtCore.QRect(70, 170, 182, 101))
         self.textEdit_2.setObjectName("textEdit_2")
         self.pushButton_2 = QtWidgets.QPushButton(self.page_2)
-        self.pushButton_2.setGeometry(QtCore.QRect(180, 250, 75, 23))
+        self.pushButton_2.setGeometry(QtCore.QRect(180, 280, 75, 23))
         self.pushButton_2.setObjectName("pushButton_2")
         self.stackedWidget.addWidget(self.page_2)
         self.page_3 = QtWidgets.QWidget()
@@ -264,6 +282,7 @@ class TarafDuzenle(QtWidgets.QDialog):
                 self.comboBox_4.addItem(sonuc[i][0])
             sql = "select * from tercuman where dosya = '{}' and ad = '{}'".format(uno, kisi)
             self.bilgi_cek(sql)
+
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         self.radioButton_2.setText(_translate("Dialog", "Vekil"))
@@ -309,27 +328,29 @@ class TarafDuzenle(QtWidgets.QDialog):
         self.veri_doldur(sonuc)
 
     def veri_doldur(self, bilgi):
-        if len(bilgi) == 13:
+        if len(bilgi) == 14:
             self.sahis_id_no = bilgi[0]
             self.lineEdit.setText(bilgi[1])
-            self.comboBox.setCurrentText(bilgi[2])
-            self.lineEdit_2.setText(bilgi[3])
-            self.lineEdit_3.setText(bilgi[4])
-            self.lineEdit_4.setText(bilgi[5])
-            self.lineEdit_5.setText(bilgi[6])
-            self.lineEdit_6.setText(bilgi[7])
-            self.comboBox_2.setCurrentText(bilgi[8])
-            self.lineEdit_7.setText(bilgi[9])
-            self.comboBox_5.setCurrentIndex(bilgi[10])
-            self.textEdit.setPlainText(bilgi[11])
+            self.lineEdit_13.setText(bilgi[2])
+            self.comboBox.setCurrentText(bilgi[3])
+            self.lineEdit_2.setText(bilgi[4])
+            self.lineEdit_3.setText(bilgi[5])
+            self.lineEdit_4.setText(bilgi[6])
+            self.lineEdit_5.setText(bilgi[7])
+            self.lineEdit_6.setText(bilgi[8])
+            self.comboBox_2.setCurrentText(bilgi[9])
+            self.lineEdit_7.setText(bilgi[10])
+            self.comboBox_5.setCurrentIndex(bilgi[11])
+            self.textEdit.setPlainText(bilgi[12])
 
-        elif len(bilgi) == 8:
+        elif len(bilgi) == 9:
             self.vekil_id_no = bilgi[0]
-            self.lineEdit_8.setText(bilgi[1])
-            self.lineEdit_9.setText(bilgi[2])
-            self.lineEdit_10.setText(bilgi[3])
-            self.textEdit_2.setPlainText(bilgi[4])
-            self.comboBox_3.setCurrentText(bilgi[6])
+            self.lineEdit_14.setText(bilgi[1])
+            self.lineEdit_8.setText(bilgi[2])
+            self.lineEdit_9.setText(bilgi[3])
+            self.lineEdit_10.setText(bilgi[4])
+            self.textEdit_2.setPlainText(bilgi[5])
+            self.comboBox_3.setCurrentText(bilgi[7])
 
         elif len(bilgi) == 7:
             self.tercuman_id_no = bilgi[0]
@@ -341,6 +362,7 @@ class TarafDuzenle(QtWidgets.QDialog):
     def sahis_guncelle(self):
         l = []
         l.append(self.lineEdit.text())
+        l.append(self.lineEdit_13.text())
         l.append(self.comboBox.currentText())
         l.append(self.lineEdit_2.text())
         l.append(self.lineEdit_3.text())
@@ -360,6 +382,7 @@ class TarafDuzenle(QtWidgets.QDialog):
                 mesaj = l[0] + " isimli kişinin bilgileri güncellendi"
                 bilgilendir(mesaj, baslik)
                 self.lineEdit.clear()
+                self.lineEdit_13.clear()
                 self.lineEdit_2.clear()
                 self.lineEdit_3.clear()
                 self.lineEdit_4.clear()
@@ -378,6 +401,7 @@ class TarafDuzenle(QtWidgets.QDialog):
 
     def vekil_guncelle(self):
         v = []
+        v.append(self.lineEdit_14.text())
         v.append(self.lineEdit_8.text())
         v.append(self.lineEdit_9.text())
         v.append(self.lineEdit_10.text())
@@ -386,12 +410,13 @@ class TarafDuzenle(QtWidgets.QDialog):
         v.append(self.vekil_id_no)
 
         # Veritabanına Gönder
-        if guncelleme_soru(v[0]) == True:
+        if guncelleme_soru(v[1]) == True:
             # Veritabanına Gönder
             if self.db.vekil_guncelle(v) == True:
                 baslik = "Bilgi Güncelleme "
-                mesaj = v[0] + " isimli kişinin bilgileri güncellendi"
+                mesaj = v[1] + " isimli kişinin bilgileri güncellendi"
                 bilgilendir(mesaj, baslik)
+                self.lineEdit_14.clear()
                 self.lineEdit_8.clear()
                 self.lineEdit_9.clear()
                 self.lineEdit_10.clear()

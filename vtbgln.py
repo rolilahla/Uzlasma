@@ -5,7 +5,7 @@
 import sqlite3
 
 class VbagKur(object):
-    def __init__(self):
+    def __init__(self) -> object:
         self.vt = sqlite3.connect('lib/database/rolilahla.sqlite')
         self.im = self.vt.cursor()
 
@@ -47,44 +47,46 @@ class VbagKur(object):
         veriler = self.im.fetchall()
         return veriler
 
-    def tarafekle(self, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12):
+    def tarafekle(self, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13):
         """Taraf Ekleme Fonksiyonu
         
         :param a1: ad(str)
-        :param a2: Sıfat(str)
-        :param a3: Tc no(str)
-        :param a4: Baba adı(str)
-        :param a5: Anne Adı(str)
-        :param a6: Doğum Yeri (str)
-        :param a7: Doğum Tarihi(str)
-        :param a8: Cinsiyet (str)
-        :param a9: Telefon (str)
-        :param a10: Adres Niteliği(int)
-        :param a11: adres(str)
-        :param a12: Dosya Ulaşma no (str)
+        :param a2: teklif tarihi (str)
+        :param a3: Sıfat(str)
+        :param a4: Tc no(str)
+        :param a5: Baba adı(str)
+        :param a6: Anne Adı(str)
+        :param a7: Doğum Yeri (str)
+        :param a8: Doğum Tarihi(str)
+        :param a9: Cinsiyet (str)
+        :param a10: Telefon (str)
+        :param a11: Adres Niteliği(int)
+        :param a12: adres(str)
+        :param a13: Dosya Ulaşma no (str)
         :return: True
         """
         self.im.execute("""INSERT INTO taraflar VALUES(NULL,'{}','{}','{}',
         '{}','{}','{}',
         '{}','{}','{}',
-        '{}','{}','{}')""".format(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12))
+        '{}','{}','{}','{}')""".format(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13))
         self.vt.commit()
         return True
 
-    def temsilci_ekle(self, a1, a2, a3, a4, a5, a6, a7):
+    def temsilci_ekle(self, a1, a2, a3, a4, a5, a6, a7, a8):
         """Temsilci Ekleme
-        :param a1: Ad (str)
-        :param a2: Sicil No (str)
-        :param a3: Telefon (str)
-        :param a4: Adres (str)
-        :param a5: Dosya Uzlaşma No (str)
-        :param a6: Temsilcisi olduğu kişi(str)
+        :param a1: Teklif Tarihi (str)
+        :param a2: Ad (str)
+        :param a3: Sicil No (str)
+        :param a4: Telefon (str)
+        :param a5: Adres (str)
+        :param a6: Dosya Uzlaşma No (str)
+        :param a7: Temsilcisi olduğu kişi(str)
         :return:  True
         """
-        self.im.execute("INSERT INTO temsilciler VALUES(NULL, '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(a1,
+        self.im.execute("INSERT INTO temsilciler VALUES(NULL, '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(a1,
                                                                                                                  a2,a3,
                                                                                                                  a4,a5,
-                                                                                                                 a6, a7))
+                                                                                                                 a6, a7, a8))
         self.vt.commit()
         return True
 
@@ -108,17 +110,17 @@ class VbagKur(object):
 
     def sahis_guncelle(self, l):
         self.im.execute("""UPDATE taraflar SET 
-        ad='{}',sifat='{}',tc='{}',
+        ad='{}', ttarihi='{}', sifat='{}',tc='{}',
         baba='{}',anne='{}',dyeri='{}',
         dtarihi='{}',cins='{}',tel='{}',
-        adresniteligi='{}',adres='{}' WHERE id = '{}'""".format(l[0],l[1],l[2],l[3],l[4],l[5],l[6],l[7],l[8],l[9],l[10], l[11]))
+        adresniteligi='{}',adres='{}' WHERE id = '{}'""".format(l[0],l[1],l[2],l[3],l[4],l[5],l[6],l[7],l[8],l[9],l[10], l[11], l[12]))
         self.vt.commit()
         return True
 
     def vekil_guncelle(self, l):
         self.im.execute("""UPDATE temsilciler SET 
-        ad='{}',sicil='{}',tel='{}',
-        adres='{}',kisi='{}' WHERE id = '{}'""".format(l[0],l[1],l[2],l[3],l[4],l[5]))
+        ttarihi='{}', ad='{}',sicil='{}',tel='{}',
+        adres='{}',kisi='{}' WHERE id = '{}'""".format(l[0],l[1],l[2],l[3],l[4],l[5], l[6]))
         self.vt.commit()
         return True
 
@@ -183,6 +185,7 @@ class VbagKur(object):
     def yapistir(self, komut):
         self.im.execute(komut)
         self.vt.commit()
+        return True
 
     def veritabanini_kapat(self):
         self.vt.close()

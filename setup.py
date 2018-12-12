@@ -5,4 +5,4 @@ setup(
     name = "Uzlaş Bakalım",
     version = "1.0",
     description = "İşin sırrı kahve içmekte",
-    executables = [Executable("uzlasma.py", base = "Win32GUI", icon = "logo.ico")])
+    executables = [Executable("gui.py", base = "Win32GUI", icon = "logo.ico")])

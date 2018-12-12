@@ -71,3 +71,12 @@ def uzatma_tarihi_ekle(arg, dosya):
 
 def olay_ozeti_cek(arg):
     return db.komut("select ozet from olaylar where uzno = '{}'".format(arg))
+
+def gorusme_cek(arg):
+    return db.komut("select gorusme from uzgor where dosya = '{}'".format(arg))
+
+def edim_cek(arg):
+    return db.komut("select edi from edim where dosya = '{}'".format(arg))
+
+def uzbas_cek(arg):
+    return db.komut("select sebeb from uzbas where dosya = '{}'".format(arg))

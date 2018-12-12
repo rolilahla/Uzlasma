@@ -87,6 +87,7 @@ class DosyaOlustur(QtWidgets.QDialog):
         self.pushButton.setGeometry(QtCore.QRect(336, 230, 75, 23))
         self.pushButton.setObjectName("pushButton")
 
+        self.radioButton.setChecked(True)
         self.retranslateUi(self)
         self.pushButton.clicked.connect(self.close)
         QtCore.QMetaObject.connectSlotsByName(self)
@@ -104,7 +105,7 @@ class DosyaOlustur(QtWidgets.QDialog):
         self.label_3.setText(_translate("DosyaOlustur", "Mahkeme Esas No"))
         self.label_5.setText(_translate("DosyaOlustur", "Suç / Suçlar"))
         self.pushButton.setText(_translate("DosyaOlustur", "Oluştur"))
-        self.label_7.setText(_translate("DosyaOlustur", "Teklif Tarihi"))
+        self.label_7.setText(_translate("DosyaOlustur", "Tevdi Tarihi"))
         self.label_4.setText(_translate("DosyaOlustur", "Dosya Türü"))
         self.radioButton.setText(_translate("DosyaOlustur", "Savcılık"))
         self.radioButton_2.setText(_translate("DosyaOlustur", "Mahkeme"))
