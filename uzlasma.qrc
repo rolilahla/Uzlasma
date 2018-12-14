@@ -1,0 +1,24 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>lib/icon/accessories-text-editor.png</file>
+    <file>lib/icon/application-default-icon.png</file>
+    <file>lib/icon/application-msword.png</file>
+    <file>lib/icon/application-vnd.ms-excel.png</file>
+    <file>lib/icon/credentials-preferences.png</file>
+    <file>lib/icon/evolution-tasks.png</file>
+    <file>lib/icon/gnome-contacts.png</file>
+    <file>lib/icon/gtk-edit.png</file>
+    <file>lib/icon/gtk-no.png</file>
+    <file>lib/icon/list-add.png</file>
+    <file>lib/icon/list-remove.png</file>
+    <file>lib/icon/logviewer.png</file>
+    <file>lib/icon/new.png</file>
+    <file>lib/icon/stock_people.png</file>
+    <file>lib/icon/tag-new.png</file>
+    <file>lib/icon/ubuntuone.png</file>
+    <file>lib/icon/user-trash.png</file>
+    <file>lib/icon/uzlas.ico</file>
+    <file>lib/icon/uzlastırma.png</file>
+    <file>lib/icon/x-office-document.png</file>
+  </qresource>
+</RCC>

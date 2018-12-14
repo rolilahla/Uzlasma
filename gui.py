@@ -19,6 +19,7 @@ from tarafduzenle import TarafDuzenle
 from gider import Gider
 from ek import Ekler
 from vtbgln import VbagKur
+import icon
 
 class Ui_MainWindow(object):
     dosya_teslim_tarihi = ...  # type: None
@@ -250,7 +251,7 @@ class Ui_MainWindow(object):
         self.pushButton_5 = QtWidgets.QPushButton(self.groupBox_6)
         self.pushButton_5.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("lib/icon/gtk-edit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/gtk-edit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_5.setIcon(icon1)
         self.pushButton_5.setIconSize(QtCore.QSize(22, 22))
         self.pushButton_5.setObjectName("pushButton_5")
@@ -258,7 +259,7 @@ class Ui_MainWindow(object):
         self.pushButton_6 = QtWidgets.QPushButton(self.groupBox_6)
         self.pushButton_6.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("lib/icon/gtk-no.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/gtk-no.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_6.setIcon(icon2)
         self.pushButton_6.setIconSize(QtCore.QSize(22, 20))
         self.pushButton_6.setObjectName("pushButton_6")
@@ -451,6 +452,60 @@ class Ui_MainWindow(object):
         self.gridLayout_18.addWidget(self.groupBox_10, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab_4, "")
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
+        #---------------------------------------------------------------------yeni tab başlangıç
+        self.tab_5 = QtWidgets.QWidget()
+        self.tab_5.setObjectName("tab_5")
+        self.gridLayout_s6 = QtWidgets.QGridLayout(self.tab_5)
+        self.gridLayout_s6.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_s6.setObjectName("gridLayout_s6")
+        self.frame = QtWidgets.QFrame(self.tab_5)
+        self.frame.setMinimumSize(QtCore.QSize(175, 0))
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.frame.setObjectName("frame")
+        self.gridLayout_s8 = QtWidgets.QGridLayout(self.frame)
+        self.gridLayout_s8.setObjectName("gridLayout_s8")
+
+        self.comboBox_s1 = QtWidgets.QComboBox(self.frame)
+        self.comboBox_s1.setObjectName("comboBox_s1")
+        self.comboBox_s1.addItem("")
+        self.gridLayout_s8.addWidget(self.comboBox_s1, 0, 0, 1, 1)
+
+        self.comboBox_s2 = QtWidgets.QComboBox(self.frame)
+        self.comboBox_s2.setObjectName("comboBox_s2")
+        self.comboBox_s2.addItem("")
+        self.gridLayout_s8.addWidget(self.comboBox_s2, 1, 0, 1, 1)
+
+        self.pushButton_s1 = QtWidgets.QPushButton(self.frame)
+        self.pushButton_s1.setObjectName("pushButton_s1")
+        self.gridLayout_s8.addWidget(self.pushButton_s1, 2, 0, 1, 1)
+        self.groupBox_s11 = QtWidgets.QGroupBox(self.frame)
+        self.groupBox_s11.setObjectName("groupBox_s11")
+        self.gridLayout_s7 = QtWidgets.QGridLayout(self.groupBox_s11)
+        self.gridLayout_s7.setObjectName("gridLayout_s7")
+        self.pushButton_s8 = QtWidgets.QPushButton(self.groupBox_s11)
+        self.pushButton_s8.setText("Rapor Hazırla")
+        icons4 = QtGui.QIcon()
+        icons4.addPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/application-msword.png"), QtGui.QIcon.Normal,
+                        QtGui.QIcon.Off)
+        self.pushButton_s8.setIcon(icons4)
+        self.pushButton_s8.setIconSize(QtCore.QSize(90, 90))
+        self.pushButton_s8.setObjectName("pushButton_s8")
+        self.gridLayout_s7.addWidget(self.pushButton_s8, 0, 0, 1, 1)
+        self.gridLayout_s8.addWidget(self.groupBox_s11, 3, 0, 1, 1)
+        self.gridLayout_s6.addWidget(self.frame, 0, 0, 2, 1)
+        self.textEdit_s5 = QtWidgets.QTextEdit(self.tab_5)
+        self.textEdit_s5.setObjectName("textEdit_s5")
+        self.gridLayout_s6.addWidget(self.textEdit_s5, 0, 1, 1, 2)
+        spacerItem3 = QtWidgets.QSpacerItem(536, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_s6.addItem(spacerItem3, 1, 1, 1, 1)
+        self.pushButton_s17 = QtWidgets.QPushButton(self.tab_5)
+        self.pushButton_s17.setObjectName("pushButton_s17")
+        self.pushButton_s17.setText("Oluştur")
+        self.gridLayout_s6.addWidget(self.pushButton_s17, 1, 2, 1, 1)
+        self.tabWidget.addTab(self.tab_5, "")
+        self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
+        #----------------------------------------------------------------------yeni tab bitiş
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1011, 21))
@@ -547,7 +602,7 @@ class Ui_MainWindow(object):
         self.label_5.setText(_translate("MainWindow", "Suç"))
 
         self.label_6.setText(_translate("MainWindow", "Tevdi Tarihi"))
-
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), _translate("MainWindow", "Dökümana çevir"))
         self.groupBox_2.setTitle(_translate("MainWindow", "Dosya durumu"))
         self.label_11.setText(_translate("MainWindow", "Teslim Tarihine"))
         self.label_12.setText(_translate("MainWindow", "3"))
