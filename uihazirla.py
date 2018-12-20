@@ -4,6 +4,7 @@ from PyQt5 import QtGui, QtCore, QtWidgets
 from uzlastirmaciekle import Ui_UzlastirmaciEkle
 from uzlasmacisil import Ui_UzlasmaciSil
 from dosyasil import Ui_DosyaSil
+from settings import Ui_Settings
 
 def gui_uzlastirmaci_ekle(self):
     UzlastirmaciEkle = QtWidgets.QDialog()
@@ -25,3 +26,10 @@ def gui_dosya_sil(self):
     ui.setupUi(DosyaSil)
     DosyaSil.show()
     DosyaSil.exec_()
+
+def gui_settings(self):
+    Sett = QtWidgets.QDialog()
+    ui = Ui_Settings()
+    ui.setupUi(Sett)
+    Sett.show()
+    Sett.exec_()

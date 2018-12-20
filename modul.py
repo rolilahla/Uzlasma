@@ -2,6 +2,10 @@
 
 from vtbgln import VbagKur
 import datetime
+import math, time, os
+from shutil import copy2
+import xlwings as xw
+
 
 db = VbagKur()
 
@@ -80,3 +84,29 @@ def edim_cek(arg):
 
 def uzbas_cek(arg):
     return db.komut("select sebeb from uzbas where dosya = '{}'".format(arg))
+
+def davet_yaz(durum, sahis, tc, veksicil, no, ttarihi, uz, uzsicil, uzte):
+    ana_dizin = os.getcwd()
+    ana_dosya_yolu = "\\dosyalar\\uzfile\\Davet Mektubu.xlsx"
+    sor = db.komut("select kayit_yeri from ayarlar")
+    sorno = no.replace("/", "-")
+    hedef_dizin = sor[0][0] + "\\" + sorno
+    try:
+        os.mkdir(hedef_dizin)
+    except FileExistsError:
+        pass
+    kaynak = ana_dizin + ana_dosya_yolu
+    hedef = hedef_dizin +"\\" +sahis + " Davet Mektubu.xlsx"
+    copy2(kaynak, hedef)
+
+    wb = xw.Book(hedef)
+    sht = wb.sheets['Sayfa1']
+    sht.range('AT3').value = durum
+    sht.range('AT4').value = sahis
+    sht.range('AT5').value = tc
+    sht.range('AT6').value = no
+    sht.range('AT7').value = ttarihi
+    sht.range('AT8').value = uz
+    sht.range('AT9').value = uzsicil
+    sht.range('AT10').value = uzte
+    sht.range('AT11').value = veksicil

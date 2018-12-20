@@ -384,7 +384,9 @@ class Ui_MainWindow(object):
         self.gridLayout_4.addLayout(self.verticalLayout_4, 0, 0, 1, 1)
         self.horizontalLayout_3.addWidget(self.frame)
         self.gridLayout_2.addLayout(self.horizontalLayout_3, 0, 0, 1, 1)
+
         self.tabWidget.addTab(self.tab, "")
+
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
         self.gridLayout_13 = QtWidgets.QGridLayout(self.tab_2)
@@ -455,54 +457,85 @@ class Ui_MainWindow(object):
         #---------------------------------------------------------------------yeni tab başlangıç
         self.tab_5 = QtWidgets.QWidget()
         self.tab_5.setObjectName("tab_5")
-        self.gridLayout_s6 = QtWidgets.QGridLayout(self.tab_5)
-        self.gridLayout_s6.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout_s6.setObjectName("gridLayout_s6")
+        self.gridLayout_6 = QtWidgets.QGridLayout(self.tab_5)
+        self.gridLayout_6.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_6.setObjectName("gridLayout_6")
         self.frame = QtWidgets.QFrame(self.tab_5)
         self.frame.setMinimumSize(QtCore.QSize(175, 0))
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.frame.setObjectName("frame")
-        self.gridLayout_s8 = QtWidgets.QGridLayout(self.frame)
-        self.gridLayout_s8.setObjectName("gridLayout_s8")
-
-        self.comboBox_s1 = QtWidgets.QComboBox(self.frame)
-        self.comboBox_s1.setObjectName("comboBox_s1")
-        self.comboBox_s1.addItem("")
-        self.gridLayout_s8.addWidget(self.comboBox_s1, 0, 0, 1, 1)
-
-        self.comboBox_s2 = QtWidgets.QComboBox(self.frame)
-        self.comboBox_s2.setObjectName("comboBox_s2")
-        self.comboBox_s2.addItem("")
-        self.gridLayout_s8.addWidget(self.comboBox_s2, 1, 0, 1, 1)
-
-        self.pushButton_s1 = QtWidgets.QPushButton(self.frame)
-        self.pushButton_s1.setObjectName("pushButton_s1")
-        self.gridLayout_s8.addWidget(self.pushButton_s1, 2, 0, 1, 1)
-        self.groupBox_s11 = QtWidgets.QGroupBox(self.frame)
-        self.groupBox_s11.setObjectName("groupBox_s11")
-        self.gridLayout_s7 = QtWidgets.QGridLayout(self.groupBox_s11)
-        self.gridLayout_s7.setObjectName("gridLayout_s7")
-        self.pushButton_s8 = QtWidgets.QPushButton(self.groupBox_s11)
-        self.pushButton_s8.setText("Rapor Hazırla")
-        icons4 = QtGui.QIcon()
-        icons4.addPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/application-msword.png"), QtGui.QIcon.Normal,
+        self.gridLayout_8 = QtWidgets.QGridLayout(self.frame)
+        self.gridLayout_8.setObjectName("gridLayout_8")
+        self.tableWidgetd_ = QtWidgets.QTableWidget(self.frame)
+        self.tableWidgetd_.setMinimumSize(QtCore.QSize(240, 147))
+        self.tableWidgetd_.setMaximumSize(QtCore.QSize(200, 140))
+        self.tableWidgetd_.setObjectName("tableWidgetd_")
+        self.tableWidgetd_.setColumnCount(2)
+        self.tableWidgetd_.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidgetd_.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidgetd_.setHorizontalHeaderItem(1, item)
+        self.gridLayout_8.addWidget(self.tableWidgetd_, 0, 0, 1, 1)
+        self.groupBoxd_1 = QtWidgets.QGroupBox(self.frame)
+        self.groupBoxd_1.setMinimumSize(QtCore.QSize(240, 110))
+        self.groupBoxd_1.setMaximumSize(QtCore.QSize(240, 110))
+        self.groupBoxd_1.setObjectName("groupBoxd_1")
+        self.pushButtond_1 = QtWidgets.QPushButton(self.groupBoxd_1)
+        self.pushButtond_1.setGeometry(QtCore.QRect(10, 20, 64, 64))
+        self.pushButtond_1.setText("")
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/application-vnd.ms-excel.png"), QtGui.QIcon.Normal,
                         QtGui.QIcon.Off)
-        self.pushButton_s8.setIcon(icons4)
-        self.pushButton_s8.setIconSize(QtCore.QSize(90, 90))
-        self.pushButton_s8.setObjectName("pushButton_s8")
-        self.gridLayout_s7.addWidget(self.pushButton_s8, 0, 0, 1, 1)
-        self.gridLayout_s8.addWidget(self.groupBox_s11, 3, 0, 1, 1)
-        self.gridLayout_s6.addWidget(self.frame, 0, 0, 2, 1)
-        self.textEdit_s5 = QtWidgets.QTextEdit(self.tab_5)
-        self.textEdit_s5.setObjectName("textEdit_s5")
-        self.gridLayout_s6.addWidget(self.textEdit_s5, 0, 1, 1, 2)
+        self.pushButtond_1.setIcon(icon4)
+        self.pushButtond_1.setIconSize(QtCore.QSize(55, 55))
+        self.pushButtond_1.setObjectName("pushButtond_1")
+        self.pushButtond_2 = QtWidgets.QPushButton(self.groupBoxd_1)
+        self.pushButtond_2.setGeometry(QtCore.QRect(80, 20, 64, 64))
+        self.pushButtond_2.setText("")
+        self.pushButtond_2.setIcon(icon4)
+        self.pushButtond_2.setIconSize(QtCore.QSize(55, 55))
+        self.pushButtond_2.setObjectName("pushButtond_2")
+        self.pushButtond_3 = QtWidgets.QPushButton(self.groupBoxd_1)
+        self.pushButtond_3.setGeometry(QtCore.QRect(150, 20, 64, 64))
+        self.pushButtond_3.setText("")
+        self.pushButtond_3.setIcon(icon4)
+        self.pushButtond_3.setIconSize(QtCore.QSize(55, 55))
+        self.pushButtond_3.setObjectName("pushButtond_3")
+        self.labeld_1 = QtWidgets.QLabel(self.groupBoxd_1)
+        self.labeld_1.setGeometry(QtCore.QRect(30, 90, 41, 16))
+        self.labeld_1.setObjectName("labeld_1")
+        self.labeld_2 = QtWidgets.QLabel(self.groupBoxd_1)
+        self.labeld_2.setGeometry(QtCore.QRect(100, 90, 41, 16))
+        self.labeld_2.setObjectName("labeld_2")
+        self.labeld_3 = QtWidgets.QLabel(self.groupBoxd_1)
+        self.labeld_3.setGeometry(QtCore.QRect(163, 90, 41, 16))
+        self.labeld_3.setObjectName("labeld_3")
+        self.gridLayout_8.addWidget(self.groupBoxd_1, 1, 0, 1, 1)
+        self.groupBoxd_2 = QtWidgets.QGroupBox(self.frame)
+        self.groupBoxd_2.setObjectName("groupBoxd_2")
+        self.gridLayout_7 = QtWidgets.QGridLayout(self.groupBoxd_2)
+        self.gridLayout_7.setObjectName("gridLayout_7")
+        self.pushButtond_4 = QtWidgets.QPushButton(self.groupBoxd_2)
+        self.pushButtond_4.setText("")
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/application-msword.png"), QtGui.QIcon.Normal,
+                        QtGui.QIcon.Off)
+        self.pushButtond_4.setIcon(icon5)
+        self.pushButtond_4.setIconSize(QtCore.QSize(90, 90))
+        self.pushButtond_4.setObjectName("pushButtond_4")
+        self.gridLayout_7.addWidget(self.pushButtond_4, 0, 0, 1, 1)
+        self.gridLayout_8.addWidget(self.groupBoxd_2, 2, 0, 1, 1)
+        self.gridLayout_6.addWidget(self.frame, 0, 0, 2, 1)
+        self.textEditd_1 = QtWidgets.QTextEdit(self.tab_5)
+        self.textEditd_1.setObjectName("textEditd_1")
+        self.gridLayout_6.addWidget(self.textEditd_1, 0, 1, 1, 2)
         spacerItem3 = QtWidgets.QSpacerItem(536, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_s6.addItem(spacerItem3, 1, 1, 1, 1)
-        self.pushButton_s17 = QtWidgets.QPushButton(self.tab_5)
-        self.pushButton_s17.setObjectName("pushButton_s17")
-        self.pushButton_s17.setText("Oluştur")
-        self.gridLayout_s6.addWidget(self.pushButton_s17, 1, 2, 1, 1)
+        self.gridLayout_6.addItem(spacerItem3, 1, 1, 1, 1)
+        self.pushButtond_5 = QtWidgets.QPushButton(self.tab_5)
+        self.pushButtond_5.setObjectName("pushButtond_5")
+        self.gridLayout_6.addWidget(self.pushButtond_5, 1, 2, 1, 1)
         self.tabWidget.addTab(self.tab_5, "")
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
         #----------------------------------------------------------------------yeni tab bitiş
@@ -666,6 +699,19 @@ class Ui_MainWindow(object):
         self.action_ablon_Sil.setText(_translate("MainWindow", "Şablon Sil"))
         self.actionProgram_Ayarlar.setText(_translate("MainWindow", "Program Ayarları"))
 
+        item = self.tableWidgetd_.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "AD"))
+        item = self.tableWidgetd_.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "NİTELİK"))
+
+        self.labeld_1.setText(_translate("MainWindow", "Davet"))
+        self.labeld_2.setText(_translate("MainWindow", "Teklif"))
+        self.labeld_3.setText(_translate("MainWindow", "Tebligat"))
+        self.groupBoxd_2.setTitle(_translate("MainWindow", "Rapor hazırla"))
+        self.pushButtond_5.setText(_translate("MainWindow", "PushButton"))
+        self.groupBoxd_1.hide()
+
+
     def triggerfinger(self):
         self.actionUzla_mac_Ekle.triggered.connect(uih.gui_uzlastirmaci_ekle)
         self.actionUzla_mac_Sil.triggered.connect(uih.gui_uzlastirmaci_sil)
@@ -694,6 +740,10 @@ class Ui_MainWindow(object):
         self.pushButton_15.clicked.connect(self.uzbas_ekle)
         self.pushButton_16.clicked.connect(self.uzbas_guncelle)
         self.actionDosya_Sil.triggered.connect(self.gui_dosya_sil)
+        self.tableWidgetd_.cellClicked.connect(self.dosya_icin_parametre_olustur)
+        self.actionProgram_Ayarlar.triggered.connect(uih.gui_settings)
+        #dosya oluşturma tetiklemeleri
+        self.pushButtond_1.clicked.connect(self.davet)
 
     def uzlasmaci(self, arg):
         sor = mdl.tek_satirlik_demet_coz(self.veritabani.komut("select isim, sicil from uzlasmaci where isim = '{}'".format(arg)))
@@ -761,6 +811,7 @@ class Ui_MainWindow(object):
 
             self.dosya_durumu()
             self.taraf_bul(dosya)
+            self.taraf_bul_evrak(dosya)
             self.gider_bul(dosya)
             self.ek_bul(dosya)
             self.uzlasmaci(so[-1])
@@ -822,9 +873,9 @@ class Ui_MainWindow(object):
                 self.label_12.setStyleSheet("color: rgb(255, 0, 0);")
 
     def taraf_bul(self, ar):
-        sql = """SELECT ad, sifat FROM taraflar WHERE dosya == '{}' 
-        union SELECT ad, sifat FROM temsilciler WHERE dosya == '{}' 
-        union SELECT ad, sifat FROM tercuman WHERE dosya == '{}'""".format(ar, ar, ar)
+        sql = """SELECT ad, sifat FROM taraflar WHERE dosya == '{0}' 
+        union SELECT ad, sifat FROM temsilciler WHERE dosya == '{0}' 
+        union SELECT ad, sifat FROM tercuman WHERE dosya == '{0}'""".format(ar)
         sonuc = mdl.kmt(sql)
         self.tableWidget.setRowCount(len(sonuc))
         satir = 0
@@ -832,6 +883,20 @@ class Ui_MainWindow(object):
         for i in range(len(sonuc)):
             for im in range(len(sonuc[i])):
                 self.tableWidget.setItem(satir, sutun, QtWidgets.QTableWidgetItem("{}".format(sonuc[i][im])))
+                sutun += 1
+            sutun = 0
+            satir += 1
+    
+    def taraf_bul_evrak(self, ar):
+        sql = """SELECT ad, sifat FROM taraflar WHERE dosya == '{0}' 
+        union SELECT ad, sifat FROM temsilciler WHERE dosya == '{0}'""".format(ar)
+        sonuc = mdl.kmt(sql)
+        self.tableWidgetd_.setRowCount(len(sonuc))
+        satir = 0
+        sutun = 0
+        for i in range(len(sonuc)):
+            for im in range(len(sonuc[i])):
+                self.tableWidgetd_.setItem(satir, sutun, QtWidgets.QTableWidgetItem("{}".format(sonuc[i][im])))
                 sutun += 1
             sutun = 0
             satir += 1
@@ -868,8 +933,19 @@ class Ui_MainWindow(object):
             self.kisi_nitelik_duzenle = "Şahıs"
         self.pushButton_5.setDisabled(False)
         self.pushButton_6.setDisabled(False)
-
         self.kisi_duzenle = oge_ad.text()
+
+    def dosya_icin_parametre_olustur(self, row, column):
+        oge_ad = self.tableWidgetd_.item(row, 0)
+        oge_nitelik = self.tableWidgetd_.item(row, 1)
+        self.dosya_kisi_ad = oge_ad.text()
+        self.dosya_kisi_nitelik = oge_nitelik.text()
+        self.groupBoxd_1.show()
+        self.groupBoxd_1.setTitle(self.dosya_kisi_ad)
+        if oge_nitelik.text() == "Vekil":
+            pass
+        else:
+            pass
 
     def gider_tablosundan_parametre_olustur(self, row, column):
         gider_ad = self.tableWidget_2.item(row, column)
@@ -1141,6 +1217,33 @@ class Ui_MainWindow(object):
                 self.comboBox_2.setCurrentIndex(1)
         else:
             pass
+    #----------------------------------------------------------------------Dosya oluşturma fonksiyonları
+    def davet(self):
+        sorno = self.comboBox.currentText()
+        ad = self.groupBoxd_1.title()
+        durum = None
+        veksicil = None
+        tc = None
+        if self.dosya_kisi_nitelik == "Vekil":
+            sonuc = self.veritabani.komut("select ttarihi, sicil from temsilciler where ad = '{}' and dosya = '{}'".format(ad,
+                                                                                                                     sorno))
+            veksicil = sonuc[0][1]
+            durum = 0
+        else:
+            sonuc = self.veritabani.komut("select ttarihi, tc from taraflar where ad = '{}' and dosya = '{}'".format(ad,
+                                                                                                                     sorno))
+            tc = sonuc[0][1]
+            durum = 1
+
+        ttarihi = sonuc[0][0]
+        tc = sonuc[0][1]
+        uz = self.label_15.text()
+        uzsicil = self.label_17.text()
+        uztel = self.veritabani.komut("select tel from uzlasmaci where isim='{}' and sicil='{}'".format(uz, uzsicil))
+        uzte = uztel[0][0]
+
+
+        mdl.davet_yaz(durum, ad, tc, veksicil, sorno, ttarihi, uz, uzsicil, uzte)
 
     #Dosya Eklemesinden sonra liste yenilemek için sinyal yakalama.....................SİNYAL YAKALAMA.............
     def make_connection(self, dosyaolustur_object):
