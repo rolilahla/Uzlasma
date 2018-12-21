@@ -95,7 +95,7 @@
     <enum>Qt::DefaultContextMenu</enum>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="page">
     <widget class="QLabel" name="label">
@@ -360,7 +360,17 @@
      </item>
      <item>
       <property name="text">
+       <string>Mağdur/Katılan'ın Kanuni Temsilcisi</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
        <string>Suçtan Zarar Gören</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Suçtan Zarar Görenin Kanuni Temsilcisi</string>
       </property>
      </item>
      <item>
@@ -370,7 +380,17 @@
      </item>
      <item>
       <property name="text">
+       <string>Şüpheli Sanığın Kanuni Temsilcisi</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
        <string>Müşteki Şüpheli</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Müşteki Şüphelinin Kanuni Temsilcisi</string>
       </property>
      </item>
     </widget>

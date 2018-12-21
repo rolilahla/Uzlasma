@@ -110,3 +110,4 @@ def davet_yaz(durum, sahis, tc, veksicil, no, ttarihi, uz, uzsicil, uzte):
     sht.range('AT9').value = uzsicil
     sht.range('AT10').value = uzte
     sht.range('AT11').value = veksicil
+    return True

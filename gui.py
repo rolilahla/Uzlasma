@@ -460,8 +460,10 @@ class Ui_MainWindow(object):
         self.gridLayout_6 = QtWidgets.QGridLayout(self.tab_5)
         self.gridLayout_6.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_6.setObjectName("gridLayout_6")
+
         self.frame = QtWidgets.QFrame(self.tab_5)
-        self.frame.setMinimumSize(QtCore.QSize(175, 0))
+        self.frame.setMinimumSize(QtCore.QSize(175, 300))
+        self.frame.setMaximumSize(QtCore.QSize(250, 500))
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.frame.setObjectName("frame")
@@ -583,6 +585,11 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuUzla_mac.menuAction())
         self.menubar.addAction(self.menu_ablonlar.menuAction())
         self.menubar.addAction(self.menuAyarlar.menuAction())
+        #Tablo Sekme Büyüklükleri
+        self.tableWidget.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget_2.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
+        self.tableWidgetd_.horizontalHeader().setStretchLastSection(True)
+        self.tableWidgetd_.horizontalHeader().setStretchLastSection(True)
 
         self.comboBox_2.setDisabled(True)
         self.triggerfinger()
@@ -744,6 +751,8 @@ class Ui_MainWindow(object):
         self.actionProgram_Ayarlar.triggered.connect(uih.gui_settings)
         #dosya oluşturma tetiklemeleri
         self.pushButtond_1.clicked.connect(self.davet)
+        self.pushButtond_2.clicked.connect(self.teklif)
+        self.pushButtond_2.clicked.connect(self.tebligat)
 
     def uzlasmaci(self, arg):
         sor = mdl.tek_satirlik_demet_coz(self.veritabani.komut("select isim, sicil from uzlasmaci where isim = '{}'".format(arg)))
@@ -941,7 +950,8 @@ class Ui_MainWindow(object):
         self.dosya_kisi_ad = oge_ad.text()
         self.dosya_kisi_nitelik = oge_nitelik.text()
         self.groupBoxd_1.show()
-        self.groupBoxd_1.setTitle(self.dosya_kisi_ad)
+        gtext = self.dosya_kisi_ad + " için dosya oluştur"
+        self.groupBoxd_1.setTitle(gtext)
         if oge_nitelik.text() == "Vekil":
             pass
         else:
@@ -1241,9 +1251,21 @@ class Ui_MainWindow(object):
         uzsicil = self.label_17.text()
         uztel = self.veritabani.komut("select tel from uzlasmaci where isim='{}' and sicil='{}'".format(uz, uzsicil))
         uzte = uztel[0][0]
+        if mdl.davet_yaz(durum, ad, tc, veksicil, sorno, ttarihi, uz, uzsicil, uzte) == True:
+            baslik = "Davet Mektubu"
+            mesaj = ad + " kişisine ait davet mektubu başarıyla oluşturuldu"
+            bilgilendir(mesaj, baslik)
+        else:
+            baslik = "Dosya Oluşturma Hatası"
+            mesaj = ad + " kişisine ait Davet Mektubu oluşturulamadı"
+            bilgilendir(mesaj, baslik)
 
+    def teklif(self):
+        pass
 
-        mdl.davet_yaz(durum, ad, tc, veksicil, sorno, ttarihi, uz, uzsicil, uzte)
+    def tebligat(self):
+        pass
+
 
     #Dosya Eklemesinden sonra liste yenilemek için sinyal yakalama.....................SİNYAL YAKALAMA.............
     def make_connection(self, dosyaolustur_object):
