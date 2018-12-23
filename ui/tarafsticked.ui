@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>272</width>
-    <height>482</height>
+    <width>275</width>
+    <height>471</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -95,7 +95,7 @@
     <enum>Qt::DefaultContextMenu</enum>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="page">
     <widget class="QLabel" name="label">
@@ -463,9 +463,9 @@
     <widget class="QComboBox" name="comboBox_3">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>100</x>
        <y>20</y>
-       <width>182</width>
+       <width>150</width>
        <height>22</height>
       </rect>
      </property>
@@ -474,7 +474,7 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>110</y>
+       <y>230</y>
        <width>90</width>
        <height>20</height>
       </rect>
@@ -487,21 +487,21 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>80</y>
+       <y>170</y>
        <width>90</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
-      <string>Sicil No</string>
+      <string>Tc No</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit_8">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>50</y>
-       <width>182</width>
+       <x>100</x>
+       <y>110</y>
+       <width>150</width>
        <height>20</height>
       </rect>
      </property>
@@ -513,7 +513,7 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>140</y>
+       <y>260</y>
        <width>90</width>
        <height>20</height>
       </rect>
@@ -525,9 +525,9 @@
     <widget class="QLineEdit" name="lineEdit_9">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>80</y>
-       <width>182</width>
+       <x>100</x>
+       <y>170</y>
+       <width>150</width>
        <height>20</height>
       </rect>
      </property>
@@ -538,9 +538,9 @@
     <widget class="QLineEdit" name="lineEdit_10">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>110</y>
-       <width>182</width>
+       <x>100</x>
+       <y>230</y>
+       <width>150</width>
        <height>20</height>
       </rect>
      </property>
@@ -552,21 +552,21 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>50</y>
+       <y>110</y>
        <width>90</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
-      <string>Ad Soyad</string>
+      <string>Kayıtlı Olduğu Baro</string>
      </property>
     </widget>
     <widget class="QTextEdit" name="textEdit_2">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>140</y>
-       <width>182</width>
+       <x>101</x>
+       <y>260</y>
+       <width>150</width>
        <height>101</height>
       </rect>
      </property>
@@ -575,13 +575,129 @@
      <property name="geometry">
       <rect>
        <x>180</x>
-       <y>250</y>
+       <y>370</y>
        <width>75</width>
        <height>23</height>
       </rect>
      </property>
      <property name="text">
       <string>Ekle</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_21">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>200</y>
+       <width>90</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Teklif Tarihi</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_13">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>200</y>
+       <width>150</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_22">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>140</y>
+       <width>71</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Sicil No</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_14">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>140</y>
+       <width>150</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_45">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>50</y>
+       <width>90</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Durum</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_11">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>50</y>
+       <width>150</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>Durum Seç</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Müdafi</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Vekil</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="label_46">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>80</y>
+       <width>90</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Ad Soyad</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_29">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>80</y>
+       <width>150</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>
@@ -638,7 +754,7 @@
     <widget class="QTextEdit" name="textEdit_3">
      <property name="geometry">
       <rect>
-       <x>90</x>
+       <x>70</x>
        <y>120</y>
        <width>182</width>
        <height>71</height>
@@ -688,7 +804,7 @@
      <property name="geometry">
       <rect>
        <x>180</x>
-       <y>190</y>
+       <y>200</y>
        <width>75</width>
        <height>23</height>
       </rect>

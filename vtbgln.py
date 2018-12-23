@@ -72,7 +72,7 @@ class VbagKur(object):
         self.vt.commit()
         return True
 
-    def temsilci_ekle(self, a1, a2, a3, a4, a5, a6, a7, a8):
+    def temsilci_ekle(self, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11):
         """Temsilci Ekleme
         :param a1: Teklif Tarihi (str)
         :param a2: Ad (str)
@@ -81,12 +81,13 @@ class VbagKur(object):
         :param a5: Adres (str)
         :param a6: Dosya Uzlaşma No (str)
         :param a7: Temsilcisi olduğu kişi(str)
+        :param a7: Temsilci Niteliği (Müdafi, vekil)(str)
+        :param a7: Bağlı Olduğu Baro(str)
+        :param a7: Tc No(str)
         :return:  True
         """
-        self.im.execute("INSERT INTO temsilciler VALUES(NULL, '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(a1,
-                                                                                                                 a2,a3,
-                                                                                                                 a4,a5,
-                                                                                                                 a6, a7, a8))
+        self.im.execute("INSERT INTO temsilciler VALUES(NULL,"
+                        " '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(a1,a2,a3,a4,a5,a6, a7,a8,a9,a10,a11))
         self.vt.commit()
         return True
 

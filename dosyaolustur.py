@@ -136,7 +136,7 @@ class DosyaOlustur(QtWidgets.QDialog):
         formatstr = '%d/%m/%Y'
         t3 = datetime.datetime.strptime(t, formatstr)
 
-        fark = datetime.timedelta(days=sure[0][0])
+        fark = datetime.timedelta(days=int(sure[0][0]))
         gelecek = t3 + fark
         uzatmatar = gelecek.date()
         if self.db.dosya_ekle(uzno, sorno, meno, suc, ttarih, tevdi, 1, uzatmatar, uzlastirici) == True:

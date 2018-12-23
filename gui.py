@@ -718,7 +718,6 @@ class Ui_MainWindow(object):
         self.pushButtond_5.setText(_translate("MainWindow", "PushButton"))
         self.groupBoxd_1.hide()
 
-
     def triggerfinger(self):
         self.actionUzla_mac_Ekle.triggered.connect(uih.gui_uzlastirmaci_ekle)
         self.actionUzla_mac_Sil.triggered.connect(uih.gui_uzlastirmaci_sil)
@@ -805,6 +804,9 @@ class Ui_MainWindow(object):
             self.label_11.hide()
             self.label_12.hide()
             self.label_13.hide()
+            self.tableWidget.setRowCount(0)
+            self.tableWidget_2.setRowCount(0)
+            self.tableWidgetd_.setRowCount(0)
 
         else:
             dosya = self.comboBox.currentText()
@@ -823,6 +825,7 @@ class Ui_MainWindow(object):
             self.taraf_bul_evrak(dosya)
             self.gider_bul(dosya)
             self.ek_bul(dosya)
+            #self.dosya_taraf_bul(dosya)
             self.uzlasmaci(so[-1])
 
             ozet = mdl.olay_ozeti_cek(dosya)
@@ -950,8 +953,7 @@ class Ui_MainWindow(object):
         self.dosya_kisi_ad = oge_ad.text()
         self.dosya_kisi_nitelik = oge_nitelik.text()
         self.groupBoxd_1.show()
-        gtext = self.dosya_kisi_ad + " için dosya oluştur"
-        self.groupBoxd_1.setTitle(gtext)
+        self.groupBoxd_1.setTitle(self.dosya_kisi_ad)
         if oge_nitelik.text() == "Vekil":
             pass
         else:
@@ -1261,7 +1263,37 @@ class Ui_MainWindow(object):
             bilgilendir(mesaj, baslik)
 
     def teklif(self):
-        pass
+        sorno = self.comboBox.currentText()
+        ad = self.groupBoxd_1.title()
+        durum = None
+        veksicil = None
+        tc = None
+        if self.dosya_kisi_nitelik == "Vekil":
+            sonuc = self.veritabani.komut(
+                "select ttarihi, sicil from temsilciler where ad = '{}' and dosya = '{}'".format(ad,
+                                                                                                 sorno))
+            veksicil = sonuc[0][1]
+            durum = 0
+        else:
+            sonuc = self.veritabani.komut("select ttarihi, tc from taraflar where ad = '{}' and dosya = '{}'".format(ad,
+                                                                                                                     sorno))
+            tc = sonuc[0][1]
+            durum = 1
+
+        ttarihi = sonuc[0][0]
+        tc = sonuc[0][1]
+        uz = self.label_15.text()
+        uzsicil = self.label_17.text()
+        uztel = self.veritabani.komut("select tel from uzlasmaci where isim='{}' and sicil='{}'".format(uz, uzsicil))
+        uzte = uztel[0][0]
+        if mdl.davet_yaz(durum, ad, tc, veksicil, sorno, ttarihi, uz, uzsicil, uzte) == True:
+            baslik = "Davet Mektubu"
+            mesaj = ad + " kişisine ait davet mektubu başarıyla oluşturuldu"
+            bilgilendir(mesaj, baslik)
+        else:
+            baslik = "Dosya Oluşturma Hatası"
+            mesaj = ad + " kişisine ait Davet Mektubu oluşturulamadı"
+            bilgilendir(mesaj, baslik)
 
     def tebligat(self):
         pass
@@ -1301,6 +1333,7 @@ class Ui_MainWindow(object):
     def get_signal_taraf(self, val):
         if val == False:
             self.taraf_bul(self.comboBox.currentText())
+            self.taraf_bul_evrak(self.comboBox.currentText())
         else:
             print("Taraf Sinyali Gelmedi")
 
