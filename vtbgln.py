@@ -106,9 +106,6 @@ class VbagKur(object):
         self.vt.commit()
         return True
 
-    def taraf_cek(self):
-        self.im.execute("select ")
-
     def sahis_guncelle(self, l):
         self.im.execute("""UPDATE taraflar SET 
         ad='{}', ttarihi='{}', sifat='{}',tc='{}',

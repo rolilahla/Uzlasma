@@ -332,7 +332,7 @@ class TarafDuzenle(QtWidgets.QDialog):
             self.sahis_id_no = bilgi[0]
             self.lineEdit.setText(bilgi[1])
             self.lineEdit_13.setText(bilgi[2])
-            self.comboBox.setCurrentText(bilgi[3])
+            self.comboBox.setCurrentIndex(bilgi[3])
             self.lineEdit_2.setText(bilgi[4])
             self.lineEdit_3.setText(bilgi[5])
             self.lineEdit_4.setText(bilgi[6])

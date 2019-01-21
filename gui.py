@@ -678,20 +678,20 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Dosya Bilgileri"))
         self.groupBox_8.setTitle(_translate("MainWindow", "GroupBox"))
 
-        self.pushButton_7.setText(_translate("MainWindow", "p7"))
-        self.pushButton_8.setText(_translate("MainWindow", "p8"))
+        self.pushButton_7.setText(_translate("MainWindow", "Ekle"))
+        self.pushButton_8.setText(_translate("MainWindow", "Güncelle"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Uzlaşma Görüşmeleri"))
         self.groupBox_9.setTitle(_translate("MainWindow", "GroupBox"))
         
         #Edim butonları
-        self.pushButton_10.setText(_translate("MainWindow", "Kayde"))
-        self.pushButton_13.setText(_translate("MainWindow", "Güncell"))
+        self.pushButton_10.setText(_translate("MainWindow", "Ekle"))
+        self.pushButton_13.setText(_translate("MainWindow", "Güncelle"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Edim"))
         self.groupBox_10.setTitle(_translate("MainWindow", "GroupBox"))
         
         #başarısızlık butonları
-        self.pushButton_15.setText(_translate("MainWindow", "Kay"))
-        self.pushButton_16.setText(_translate("MainWindow", "Günce"))
+        self.pushButton_15.setText(_translate("MainWindow", "Ekle"))
+        self.pushButton_16.setText(_translate("MainWindow", "Güncelle"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("MainWindow", "Uzlaşma Başarısızlık Sebebleri"))
         self.menuUzla_t_rma_Dosyas.setTitle(_translate("MainWindow", "Uzlaştırma Dosyası"))
         self.menuUzla_mac.setTitle(_translate("MainWindow", "Uzlaşmacı"))
@@ -751,7 +751,8 @@ class Ui_MainWindow(object):
         #dosya oluşturma tetiklemeleri
         self.pushButtond_1.clicked.connect(self.davet)
         self.pushButtond_2.clicked.connect(self.teklif)
-        self.pushButtond_2.clicked.connect(self.tebligat)
+        self.pushButtond_3.clicked.connect(self.tebligat)
+        self.pushButtond_4.clicked.connect(self.raporla)
 
     def uzlasmaci(self, arg):
         sor = mdl.tek_satirlik_demet_coz(self.veritabani.komut("select isim, sicil from uzlasmaci where isim = '{}'".format(arg)))
@@ -898,6 +899,30 @@ class Ui_MainWindow(object):
                 sutun += 1
             sutun = 0
             satir += 1
+
+        tablo_satir = self.tableWidget.rowCount()
+
+        for i in range(tablo_satir):
+            satir_d = self.tableWidget.item(i, 1)
+
+            if satir_d.text() == "1":
+                self.tableWidget.setItem(i, 1, QtWidgets.QTableWidgetItem("Mağdur / Katılan"))
+            elif satir_d.text() == "2":
+                self.tableWidget.setItem(i, 1, QtWidgets.QTableWidgetItem("Mağdur / Katılan'ın Temsilcisi"))
+            elif satir_d.text() == "3":
+                self.tableWidget.setItem(i, 1, QtWidgets.QTableWidgetItem("Suçtan Zarar Gören"))
+            elif satir_d.text() == "4":
+                self.tableWidget.setItem(i, 1, QtWidgets.QTableWidgetItem("Suçtan Zarar Görenin Temsilcisi"))
+            elif satir_d.text() == "5":
+                self.tableWidget.setItem(i, 1, QtWidgets.QTableWidgetItem("Şüpheli / Sanık"))
+            elif satir_d.text() == "6":
+                self.tableWidget.setItem(i, 1, QtWidgets.QTableWidgetItem("Şüpheli Sanık Temsilcisi"))
+            elif satir_d.text() == "7":
+                self.tableWidget.setItem(i, 1, QtWidgets.QTableWidgetItem("Müşteki Şüpheli"))
+            elif satir_d.text() == "8":
+                self.tableWidget.setItem(i, 1, QtWidgets.QTableWidgetItem("Müşteki Şüpheli Temsilcisi"))
+            else:
+                pass
     
     def taraf_bul_evrak(self, ar):
         sql = """SELECT ad, sifat FROM taraflar WHERE dosya == '{0}' 
@@ -912,6 +937,27 @@ class Ui_MainWindow(object):
                 sutun += 1
             sutun = 0
             satir += 1
+        tablo_satir = self.tableWidgetd_.rowCount()
+        for i in range(tablo_satir):
+            satir_d = self.tableWidgetd_.item(i, 1)
+            if satir_d.text() == "1":
+                self.tableWidgetd_.setItem(i, 1, QtWidgets.QTableWidgetItem("Mağdur / Katılan"))
+            elif satir_d.text() == "2":
+                self.tableWidgetd_.setItem(i, 1, QtWidgets.QTableWidgetItem("Mağdur / Katılan'ın Temsilcisi"))
+            elif satir_d.text() == "3":
+                self.tableWidgetd_.setItem(i, 1, QtWidgets.QTableWidgetItem("Suçtan Zarar Gören"))
+            elif satir_d.text() == "4":
+                self.tableWidgetd_.setItem(i, 1, QtWidgets.QTableWidgetItem("Suçtan Zarar Görenin Temsilcisi"))
+            elif satir_d.text() == "5":
+                self.tableWidgetd_.setItem(i, 1, QtWidgets.QTableWidgetItem("Şüpheli / Sanık"))
+            elif satir_d.text() == "6":
+                self.tableWidgetd_.setItem(i, 1, QtWidgets.QTableWidgetItem("Şüpheli Sanık Temsilcisi"))
+            elif satir_d.text() == "7":
+                self.tableWidgetd_.setItem(i, 1, QtWidgets.QTableWidgetItem("Müşteki Şüpheli"))
+            elif satir_d.text() == "8":
+                self.tableWidgetd_.setItem(i, 1, QtWidgets.QTableWidgetItem("Müşteki Şüpheli Temsilcisi"))
+            else:
+                pass
 
     def gider_bul(self, dosya):
         sql = """SELECT aciklama, tutar FROM giderler WHERE dosya == '{}'""".format(dosya)
@@ -1265,39 +1311,36 @@ class Ui_MainWindow(object):
     def teklif(self):
         sorno = self.comboBox.currentText()
         ad = self.groupBoxd_1.title()
-        durum = None
-        veksicil = None
-        tc = None
-        if self.dosya_kisi_nitelik == "Vekil":
-            sonuc = self.veritabani.komut(
-                "select ttarihi, sicil from temsilciler where ad = '{}' and dosya = '{}'".format(ad,
-                                                                                                 sorno))
-            veksicil = sonuc[0][1]
-            durum = 0
-        else:
-            sonuc = self.veritabani.komut("select ttarihi, tc from taraflar where ad = '{}' and dosya = '{}'".format(ad,
-                                                                                                                     sorno))
-            tc = sonuc[0][1]
-            durum = 1
-
-        ttarihi = sonuc[0][0]
-        tc = sonuc[0][1]
         uz = self.label_15.text()
         uzsicil = self.label_17.text()
-        uztel = self.veritabani.komut("select tel from uzlasmaci where isim='{}' and sicil='{}'".format(uz, uzsicil))
-        uzte = uztel[0][0]
-        if mdl.davet_yaz(durum, ad, tc, veksicil, sorno, ttarihi, uz, uzsicil, uzte) == True:
-            baslik = "Davet Mektubu"
-            mesaj = ad + " kişisine ait davet mektubu başarıyla oluşturuldu"
+
+        if mdl.teklif_yaz(sorno, ad, uz, uzsicil) == True:
+            baslik = "Teklif Formu"
+            mesaj = ad + " kişisine ait Teklif Formu başarıyla oluşturuldu"
             bilgilendir(mesaj, baslik)
         else:
             baslik = "Dosya Oluşturma Hatası"
-            mesaj = ad + " kişisine ait Davet Mektubu oluşturulamadı"
+            mesaj = ad + " kişisine ait Teklif Formu oluşturulamadı"
             bilgilendir(mesaj, baslik)
 
     def tebligat(self):
-        pass
+        sorno = self.comboBox.currentText()
+        ad = self.groupBoxd_1.title()
 
+        if mdl.tebligat_yaz(sorno, ad) == True:
+            baslik = "Teklif Formu"
+            mesaj = ad + " kişisine ait Tebligat başarıyla oluşturuldu"
+            bilgilendir(mesaj, baslik)
+        else:
+            baslik = "Dosya Oluşturma Hatası"
+            mesaj = ad + " kişisine ait Tebligat oluşturulamadı"
+            bilgilendir(mesaj, baslik)
+
+    def raporla(self):
+        dosya = self.comboBox.currentText()
+        uz = self.label_15.text()
+        uz_sicil = self.label_17.text()
+        mdl.rapor_yaz(dosya, uz, uz_sicil)
 
     #Dosya Eklemesinden sonra liste yenilemek için sinyal yakalama.....................SİNYAL YAKALAMA.............
     def make_connection(self, dosyaolustur_object):

@@ -370,7 +370,7 @@ class TarafEkle(QtWidgets.QDialog):
     def sahis_ekle(self):
         ad = self.lineEdit.text()
         ttarihi = self.lineEdit_13.text()
-        sifat = self.comboBox.currentText()
+        sifat = self.comboBox.currentIndex()
         tc = self.lineEdit_2.text()
         baba = self.lineEdit_3.text()
         ana = self.lineEdit_4.text()
@@ -384,7 +384,7 @@ class TarafEkle(QtWidgets.QDialog):
         #Veritabanına Gönder
         if self.db.tarafekle(ad, ttarihi, sifat, tc, baba, ana, dyer, dtar, cins, tel, adresniteligi, adres, self.dosya_uzlasma_no) == True:
             baslik = "Dosya Bilgileri Eklendi"
-            mesaj = ad + " isimli kişinin bilgileri" + sifat + " olarak  veritabanına eklendi."
+            mesaj = ad + " isimli kişinin bilgileri veritabanına eklendi."
             bilgilendir(mesaj, baslik)
             self.lineEdit.clear()
             self.lineEdit_2.clear()
