@@ -328,7 +328,7 @@ def rapor_yaz(sorno, uz, uz_sicil):
 
             s_tc = doc.add_paragraph()
             s_tc.paragraph_format.left_indent = Inches(0.5)
-            i_s_tc = s_tc.add_run("T.C. Kimlik No \t\t:{}".format(saniklar[i][4]))
+            i_s_tc = s_tc.add_run("T.C. Kimlik No \t:{}".format(saniklar[i][4]))
             i_s_tc.bold = False
 
             s_adr = doc.add_paragraph()
@@ -352,7 +352,7 @@ def rapor_yaz(sorno, uz, uz_sicil):
 
                 v_tc = doc.add_paragraph()
                 v_tc.paragraph_format.left_indent = Inches(0.5)
-                i_v_tc = v_tc.add_run("T.C. Kimlik No \t\t:{}".format(vekil_ara[i][11]))
+                i_v_tc = v_tc.add_run("T.C. Kimlik No \t:{}".format(vekil_ara[i][11]))
                 i_v_tc.bold = False
 
                 vv_adr = doc.add_paragraph()
@@ -363,7 +363,7 @@ def rapor_yaz(sorno, uz, uz_sicil):
                 v_adr = doc.add_paragraph()
                 v_adr.paragraph_format.left_indent = Inches(0.5)
                 v_adr.paragraph_format.space_after = Pt(12)
-                i_v_adr = v_adr.add_run("Kayıtlı olduğu Baro ve Sicil No \t\t:{} / {}".format(vekil_ara[i][10], vekil_ara[i][3]))
+                i_v_adr = v_adr.add_run("Kayıtlı olduğu Baro ve Sicil No \t:{} / {}".format(vekil_ara[i][10], vekil_ara[i][3]))
                 i_v_adr.bold = False
         # ------------------------------------------------ŞÜPHELİ TEMSİLCİSİ------------
     if len(sanik_temsilcileri) == 0:
@@ -380,7 +380,7 @@ def rapor_yaz(sorno, uz, uz_sicil):
 
             s_tc = doc.add_paragraph()
             s_tc.paragraph_format.left_indent = Inches(0.5)
-            i_s_tc = s_tc.add_run("T.C. Kimlik No \t\t:{}".format(sanik_temsilcileri[i][4]))
+            i_s_tc = s_tc.add_run("T.C. Kimlik No \t:{}".format(sanik_temsilcileri[i][4]))
             i_s_tc.bold = False
 
             s_adr = doc.add_paragraph()
@@ -405,7 +405,7 @@ def rapor_yaz(sorno, uz, uz_sicil):
 
                 v_tc = doc.add_paragraph()
                 v_tc.paragraph_format.left_indent = Inches(0.5)
-                i_v_tc = v_tc.add_run("T.C. Kimlik No \t\t:{}".format(vekil_ara[i][11]))
+                i_v_tc = v_tc.add_run("T.C. Kimlik No \t:{}".format(vekil_ara[i][11]))
                 i_v_tc.bold = False
 
                 vv_adr = doc.add_paragraph()
@@ -417,7 +417,7 @@ def rapor_yaz(sorno, uz, uz_sicil):
                 v_adr.paragraph_format.left_indent = Inches(0.5)
                 v_adr.paragraph_format.space_after = Pt(12)
                 i_v_adr = v_adr.add_run(
-                    "Kayıtlı olduğu Baro ve Sicil No \t\t:{} / {}".format(vekil_ara[i][10], vekil_ara[i][3]))
+                    "Kayıtlı olduğu Baro ve Sicil No \t:{} / {}".format(vekil_ara[i][10], vekil_ara[i][3]))
                 i_v_adr.bold = False
     #------------------------------------------------MAĞDUR
     if len(magdurlar) == 0:
@@ -434,7 +434,7 @@ def rapor_yaz(sorno, uz, uz_sicil):
 
             s_tc = doc.add_paragraph()
             s_tc.paragraph_format.left_indent = Inches(0.5)
-            i_s_tc = s_tc.add_run("T.C. Kimlik No \t\t:{}".format(magdurlar[i][4]))
+            i_s_tc = s_tc.add_run("T.C. Kimlik No \t:{}".format(magdurlar[i][4]))
             i_s_tc.bold = False
 
             s_adr = doc.add_paragraph()
@@ -458,7 +458,7 @@ def rapor_yaz(sorno, uz, uz_sicil):
 
                 v_tc = doc.add_paragraph()
                 v_tc.paragraph_format.left_indent = Inches(0.5)
-                i_v_tc = v_tc.add_run("T.C. Kimlik No \t\t:{}".format(vekil_ara[i][11]))
+                i_v_tc = v_tc.add_run("T.C. Kimlik No \t:{}".format(vekil_ara[i][11]))
                 i_v_tc.bold = False
 
                 vs_adr = doc.add_paragraph()
@@ -469,13 +469,13 @@ def rapor_yaz(sorno, uz, uz_sicil):
                 v_adr = doc.add_paragraph()
                 v_adr.paragraph_format.left_indent = Inches(0.5)
                 v_adr.paragraph_format.space_after = Pt(12)
-                i_v_adr = v_adr.add_run("Kayıtlı olduğu Baro ve Sicil No \t\t:{} / {}".format(vekil_ara[i][10], vekil_ara[i][3]))
+                i_v_adr = v_adr.add_run("Kayıtlı olduğu Baro ve Sicil No \t:{} / {}".format(vekil_ara[i][10], vekil_ara[i][3]))
                 i_v_adr.bold = False
     #----------------------------------------------------------------MAĞDUR tEMSİLCİSİ
     if len(magdur_temsilcileri) == 0:
         pass
     else:
-        doc_s1 = doc.add_paragraph("Şüphelinin /Sanığın / Kanuni Temsilcisinin")
+        doc_s1 = doc.add_paragraph("Mağdur / Katılan / Suçtan zarar görenin /Kanunî temsilcisinin")
         doc_s1.paragraph_format.space_before = Pt(12)
         doc_s1.add_run()
         for i in range(len(magdur_temsilcileri)):
@@ -486,7 +486,7 @@ def rapor_yaz(sorno, uz, uz_sicil):
 
             s_tc = doc.add_paragraph()
             s_tc.paragraph_format.left_indent = Inches(0.5)
-            i_s_tc = s_tc.add_run("T.C. Kimlik No \t\t:{}".format(magdur_temsilcileri[i][4]))
+            i_s_tc = s_tc.add_run("T.C. Kimlik No \t:{}".format(magdur_temsilcileri[i][4]))
             i_s_tc.bold = False
 
             s_adr = doc.add_paragraph()
@@ -499,25 +499,237 @@ def rapor_yaz(sorno, uz, uz_sicil):
             if len(vekil_ara) == 0:
                 pass
             else:
+                doc_s1 = doc.add_paragraph("Vekil")
+                doc_s1.paragraph_format.space_before = Pt(12)
+                doc_s1.add_run()
+                v_ad = doc.add_paragraph()
+                v_ad.paragraph_format.left_indent = Inches(0.5)
+                i_v_ad = v_ad.add_run("Ad Soyad \t\t:{}".format(vekil_ara[i][1]))
+                i_v_ad.bold = False
+
+                v_tc = doc.add_paragraph()
+                v_tc.paragraph_format.left_indent = Inches(0.5)
+                i_v_tc = v_tc.add_run("T.C. Kimlik No \t:{}".format(vekil_ara[i][4]))
+                i_v_tc.bold = False
+
+                v_adr = doc.add_paragraph()
+                v_adr.paragraph_format.left_indent = Inches(0.5)
+                i_v_adr = v_adr.add_run("Adres \t\t:{}".format(vekil_ara[i][12]))
+                i_v_adr.bold = False
+
+                vb_adr = doc.add_paragraph()
+                vb_adr.paragraph_format.left_indent = Inches(0.5)
+                vb_adr.paragraph_format.space_after = Pt(12)
+                i_vb_adr = vb_adr.add_run("Kayıtlı olduğu Baro ve Sicil No \t:{} / {}".format(vekil_ara[i][10], vekil_ara[i][3]))
+                i_vb_adr.bold = False
+    #---------------------------------------------------------Zarar Görenler
+    if len(zarar_gorenler) == 0:
+        pass
+    else:
+        doc_s1 = doc.add_paragraph("Suçtan Zarar Gören / Kanuni Temsilcisinin")
+        doc_s1.paragraph_format.space_before = Pt(12)
+        doc_s1.add_run()
+        for i in range(len(zarar_gorenler)):
+            t_ad = doc.add_paragraph()
+            t_ad.paragraph_format.left_indent = Inches(0.5)
+            i_t_ad = t_ad.add_run("Ad Soyad \t\t:{}".format(zarar_gorenler[i][1]))
+            i_t_ad.bold = False
+
+            s_tc = doc.add_paragraph()
+            s_tc.paragraph_format.left_indent = Inches(0.5)
+            i_s_tc = s_tc.add_run("T.C. Kimlik No \t:{}".format(zarar_gorenler[i][4]))
+            i_s_tc.bold = False
+
+            s_adr = doc.add_paragraph()
+            s_adr.paragraph_format.left_indent = Inches(0.5)
+            s_adr.paragraph_format.space_after = Pt(12)
+            i_s_adr = s_adr.add_run("Adres \t\t:{}".format(zarar_gorenler[i][12]))
+            i_s_adr.bold = False
+
+            vekil_ara = db.komut("select * from temsilciler where dosya='{}'and kisi='{}'".format(sorno, zarar_gorenler[i][1]))
+            if len(vekil_ara) == 0:
+                pass
+            else:
+                doc_s1 = doc.add_paragraph("Vekil")
+                doc_s1.paragraph_format.space_before = Pt(12)
+                doc_s1.add_run()
+                v_ad = doc.add_paragraph()
+                v_ad.paragraph_format.left_indent = Inches(0.5)
+                i_v_ad = v_ad.add_run("Ad Soyad \t\t:{}".format(vekil_ara[i][1]))
+                i_v_ad.bold = False
+
+                v_tc = doc.add_paragraph()
+                v_tc.paragraph_format.left_indent = Inches(0.5)
+                i_v_tc = v_tc.add_run("T.C. Kimlik No \t:{}".format(vekil_ara[i][4]))
+                i_v_tc.bold = False
+
+                v_adr = doc.add_paragraph()
+                v_adr.paragraph_format.left_indent = Inches(0.5)
+                i_v_adr = v_adr.add_run("Adres \t\t:{}".format(vekil_ara[i][12]))
+                i_v_adr.bold = False
+
+                vb_adr = doc.add_paragraph()
+                vb_adr.paragraph_format.left_indent = Inches(0.5)
+                vb_adr.paragraph_format.space_after = Pt(12)
+                i_vb_adr = vb_adr.add_run("Kayıtlı olduğu Baro ve Sicil No \t:{} / {}".format(vekil_ara[i][10], vekil_ara[i][3]))
+                i_vb_adr.bold = False
+    #--------------------------------------Zarar Görenlerin Temsilcileri
+    if len(zarar_goren_temsilcileri) == 0:
+        pass
+    else:
+        doc_s1 = doc.add_paragraph("Suçtan Zarar Gören / Kanuni Temsilcisinin")
+        doc_s1.paragraph_format.space_before = Pt(12)
+        doc_s1.add_run()
+        for i in range(len(zarar_goren_temsilcileri)):
+            t_ad = doc.add_paragraph()
+            t_ad.paragraph_format.left_indent = Inches(0.5)
+            i_t_ad = t_ad.add_run("Ad Soyad \t\t:{}".format(zarar_goren_temsilcileri[i][1]))
+            i_t_ad.bold = False
+
+            s_tc = doc.add_paragraph()
+            s_tc.paragraph_format.left_indent = Inches(0.5)
+            i_s_tc = s_tc.add_run("T.C. Kimlik No \t:{}".format(zarar_goren_temsilcileri[i][4]))
+            i_s_tc.bold = False
+
+            s_adr = doc.add_paragraph()
+            s_adr.paragraph_format.left_indent = Inches(0.5)
+            s_adr.paragraph_format.space_after = Pt(12)
+            i_s_adr = s_adr.add_run("Adres \t\t:{}".format(zarar_goren_temsilcileri[i][12]))
+            i_s_adr.bold = False
+
+            vekil_ara = db.komut("select * from temsilciler where dosya='{}'and kisi='{}'".format(sorno, zarar_goren_temsilcileri[i][1]))
+            if len(vekil_ara) == 0:
+                pass
+            else:
+                doc_s1 = doc.add_paragraph("Vekil")
+                doc_s1.paragraph_format.space_before = Pt(12)
+                doc_s1.add_run()
+                v_ad = doc.add_paragraph()
+                v_ad.paragraph_format.left_indent = Inches(0.5)
+                i_v_ad = v_ad.add_run("Ad Soyad \t\t:{}".format(vekil_ara[i][1]))
+                i_v_ad.bold = False
+
+                v_tc = doc.add_paragraph()
+                v_tc.paragraph_format.left_indent = Inches(0.5)
+                i_v_tc = v_tc.add_run("T.C. Kimlik No \t:{}".format(vekil_ara[i][4]))
+                i_v_tc.bold = False
+
+                v_adr = doc.add_paragraph()
+                v_adr.paragraph_format.left_indent = Inches(0.5)
+                i_v_adr = v_adr.add_run("Adres \t\t:{}".format(vekil_ara[i][12]))
+                i_v_adr.bold = False
+
+                vb_adr = doc.add_paragraph()
+                vb_adr.paragraph_format.left_indent = Inches(0.5)
+                vb_adr.paragraph_format.space_after = Pt(12)
+                i_vb_adr = vb_adr.add_run("Kayıtlı olduğu Baro ve Sicil No \t:{} / {}".format(vekil_ara[i][10], vekil_ara[i][3]))
+                i_vb_adr.bold = False
+
+    #-----------------------------------Müşteki Şüpheli
+    if len(mustekiler) == 0:
+        pass
+    else:
+        doc_s1 = doc.add_paragraph("Müşteki Şüphelinin / Kanuni Temsilcisinin")
+        doc_s1.paragraph_format.space_before = Pt(12)
+        doc_s1.add_run()
+        for i in range(len(mustekiler)):
+            t_ad = doc.add_paragraph()
+            t_ad.paragraph_format.left_indent = Inches(0.5)
+            i_t_ad = t_ad.add_run("Ad Soyad \t\t:{}".format(mustekiler[i][1]))
+            i_t_ad.bold = False
+
+            s_tc = doc.add_paragraph()
+            s_tc.paragraph_format.left_indent = Inches(0.5)
+            i_s_tc = s_tc.add_run("T.C. Kimlik No \t:{}".format(mustekiler[i][4]))
+            i_s_tc.bold = False
+
+            s_adr = doc.add_paragraph()
+            s_adr.paragraph_format.left_indent = Inches(0.5)
+            s_adr.paragraph_format.space_after = Pt(12)
+            i_s_adr = s_adr.add_run("Adres \t\t:{}".format(mustekiler[i][12]))
+            i_s_adr.bold = False
+
+            vekil_ara = db.komut("select * from temsilciler where dosya='{}'and kisi='{}'".format(sorno, mustekiler[i][1]))
+            if len(vekil_ara) == 0:
+                pass
+            else:
                 doc_s1 = doc.add_paragraph("Müdafinin")
                 doc_s1.paragraph_format.space_before = Pt(12)
                 doc_s1.add_run()
                 v_ad = doc.add_paragraph()
                 v_ad.paragraph_format.left_indent = Inches(0.5)
-                i_v_ad = v_ad.add_run("Ad Soyad \t\t:{}".format(magdur_temsilcileri[i][1]))
+                i_v_ad = v_ad.add_run("Ad Soyad \t\t:{}".format(vekil_ara[i][1]))
                 i_v_ad.bold = False
 
                 v_tc = doc.add_paragraph()
                 v_tc.paragraph_format.left_indent = Inches(0.5)
-                i_v_tc = v_tc.add_run("T.C. Kimlik No \t\t:{}".format(magdur_temsilcileri[i][4]))
+                i_v_tc = v_tc.add_run("T.C. Kimlik No \t:{}".format(vekil_ara[i][4]))
                 i_v_tc.bold = False
 
                 v_adr = doc.add_paragraph()
                 v_adr.paragraph_format.left_indent = Inches(0.5)
-                v_adr.paragraph_format.space_after = Pt(12)
-                i_v_adr = v_adr.add_run("Adres \t\t:{}".format(magdur_temsilcileri[i][12]))
+                i_v_adr = v_adr.add_run("Adres \t\t:{}".format(vekil_ara[i][12]))
                 i_v_adr.bold = False
 
+                vb_adr = doc.add_paragraph()
+                vb_adr.paragraph_format.left_indent = Inches(0.5)
+                vb_adr.paragraph_format.space_after = Pt(12)
+                i_vb_adr = vb_adr.add_run("Kayıtlı olduğu Baro ve Sicil No \t:{} / {}".format(vekil_ara[i][10], vekil_ara[i][3]))
+                i_vb_adr.bold = False
+        #--------------Müşteki temsilcileri
+        if len(musteki_temsilcileri) == 0:
+            pass
+        else:
+            doc_s1 = doc.add_paragraph("Müşteki Şüphelinin / Kanuni Temsilcisinin")
+            doc_s1.paragraph_format.space_before = Pt(12)
+            doc_s1.add_run()
+            for i in range(len(musteki_temsilcileri)):
+                t_ad = doc.add_paragraph()
+                t_ad.paragraph_format.left_indent = Inches(0.5)
+                i_t_ad = t_ad.add_run("Ad Soyad \t\t:{}".format(musteki_temsilcileri[i][1]))
+                i_t_ad.bold = False
+
+                s_tc = doc.add_paragraph()
+                s_tc.paragraph_format.left_indent = Inches(0.5)
+                i_s_tc = s_tc.add_run("T.C. Kimlik No \t:{}".format(musteki_temsilcileri[i][4]))
+                i_s_tc.bold = False
+
+                s_adr = doc.add_paragraph()
+                s_adr.paragraph_format.left_indent = Inches(0.5)
+                s_adr.paragraph_format.space_after = Pt(12)
+                i_s_adr = s_adr.add_run("Adres \t\t:{}".format(musteki_temsilcileri[i][12]))
+                i_s_adr.bold = False
+
+                vekil_ara = db.komut("select * from temsilciler where dosya='{}'and kisi='{}'".format(sorno,
+                                                                                                      musteki_temsilcileri[
+                                                                                                          i][1]))
+                if len(vekil_ara) == 0:
+                    pass
+                else:
+                    doc_s1 = doc.add_paragraph("Müdafinin")
+                    doc_s1.paragraph_format.space_before = Pt(12)
+                    doc_s1.add_run()
+                    v_ad = doc.add_paragraph()
+                    v_ad.paragraph_format.left_indent = Inches(0.5)
+                    i_v_ad = v_ad.add_run("Ad Soyad \t\t:{}".format(vekil_ara[i][1]))
+                    i_v_ad.bold = False
+
+                    v_tc = doc.add_paragraph()
+                    v_tc.paragraph_format.left_indent = Inches(0.5)
+                    i_v_tc = v_tc.add_run("T.C. Kimlik No \t:{}".format(vekil_ara[i][4]))
+                    i_v_tc.bold = False
+
+                    v_adr = doc.add_paragraph()
+                    v_adr.paragraph_format.left_indent = Inches(0.5)
+                    i_v_adr = v_adr.add_run("Adres \t\t:{}".format(vekil_ara[i][12]))
+                    i_v_adr.bold = False
+
+                    vb_adr = doc.add_paragraph()
+                    vb_adr.paragraph_format.left_indent = Inches(0.5)
+                    vb_adr.paragraph_format.space_after = Pt(12)
+                    i_vb_adr = vb_adr.add_run(
+                        "Kayıtlı olduğu Baro ve Sicil No \t:{} / {}".format(vekil_ara[i][10], vekil_ara[i][3]))
+                    i_vb_adr.bold = False
 
 
     doc.save(hedef_dizin)
