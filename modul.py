@@ -7,7 +7,8 @@ from shutil import copy2
 import xlwings as xw
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
-from docx.shared import Inches, Pt
+from docx.shared import Inches, Pt, RGBColor
+from docx.enum.table import WD_ALIGN_VERTICAL
 
 
 db = VbagKur()
@@ -213,9 +214,14 @@ def tebligat_yaz(sorno, ad):
 
 
 def rapor_yaz(sorno, uz, uz_sicil):
-
     yersor = db.komut("select kayit_yeri from ayarlar")
     no = sorno.replace("/", "-")
+    hedef_dizini = yersor[0][0] + "\\" + no
+    try:
+        os.mkdir(hedef_dizini)
+    except FileExistsError:
+        pass
+
     hedef_dizin = yersor[0][0] + "/" + no + "/" + "rapor.docx"
 
     dosya = db.komut("select * from dosyalar where uzno = '{}'".format(sorno))
@@ -226,13 +232,39 @@ def rapor_yaz(sorno, uz, uz_sicil):
     uz_bilgileri = db.komut("select adres from uzlasmaci where isim = '{}'".format(uz))
     uz_adres = uz_bilgileri[0][0]
 
-    doc = Document()
+    doc = Document("dosyalar/default.docx")
+
     run = doc.add_paragraph().add_run()
     style = doc.styles['Normal']
     font = style.font
     font.name = 'Calibri'
     font.size = Pt(11)
     font.bold = True
+
+    section = doc.sections[0]
+    footer = section.footer
+    yl = footer.paragraphs[0]
+    yli = yl.add_run("\nT.C. İstanbul Cumhuriyet Başsavcılığı Uzlaştırma Bürosu Uzl.No: ")
+    yli.italic = True
+    yli.font.size = Pt(9)
+    yli.font.bold = False
+    yli = yl.add_run(uzlastirma_no)
+    yli.font.color.rgb = RGBColor(255, 0, 0)
+    yli.italic = True
+    yli.font.size = Pt(9)
+    yli.font.bold = False
+
+    ylll = footer.paragraphs[0]
+    yli = ylll.add_run("\nT.C. İstanbul Cumhuriyet Başsavcılığı Soruşturma No: ")
+    yli.italic = True
+    yli.font.size = Pt(9)
+    yli.font.bold = False
+    yli = yl.add_run(sorno)
+    yli.font.color.rgb = RGBColor(255, 0, 0)
+    yli.italic = True
+    yli.font.size = Pt(9)
+    yli.font.bold = False
+    yli.left_indent = Inches(0.25)
 
     baslik = doc.add_paragraph("UZLAŞTIRMA RAPORU")
     baslik.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -272,8 +304,9 @@ def rapor_yaz(sorno, uz, uz_sicil):
     doc_gorev_tarihi = doc.add_paragraph("Görevlendirme Tarihi\t\t\t:{}".format("yazılacak"))
     doc_gorev_tarihi.add_run()
 
-    doc_evrak_tarihi = doc.add_paragraph("Dosya içindeki belgelerin birer Örneğinin\n\tverildiği  /"
-                                         " Uzl. Süresinin başladığı tarih\t:{}".format("Bakılacak"))
+    doc_evrak_tarihi = doc.add_paragraph("Dosya içindeki belgelerin birer Örneğinin")
+    doc_evrak_tarihi.add_run()
+    doc_evrak_tarihi = doc.add_paragraph(" verildiği Uzl. Süresinin başladığı tarih\t:{}".format("Bakılacak"))
     doc_evrak_tarihi.add_run()
 
     doc_uzlasmateklif = doc.add_paragraph("Uzlaşma Teklif Tarihi\t\t\t:{}".format("uzlaşma teklif Tarihi"))
@@ -761,53 +794,160 @@ def rapor_yaz(sorno, uz, uz_sicil):
     doc_adr1 = doc.add_paragraph("Uzlaştırma Sonucu\t\t:{}".format("On Numara"))
     doc_adr1.paragraph_format.space_after = Pt(12)
     doc_adr1.add_run()
-    doc_adr1 = doc.add_paragraph("Açıklamalar\t\t:")
-    doc_adr1.paragraph_format.space_after = Pt(12)
-    doc_adr1.add_run()
 
-    doc_adr1 = doc.add_paragraph("Olayın Özeti\t\t:")
-    doc_adr1.add_run()
+    run = doc.add_paragraph()
+    run.paragraph_format.space_after = Pt(12)
+    run.add_run("Açıklamalar\t\t:").underline = True
+
     sor = db.komut("select ozet from olaylar where uzno='{}'".format(sorno))
-    doc_adr1 = doc.add_paragraph(sor[0][0])
-    doc_adr1.paragraph_format.space_after = Pt(12)
-    doc_adr1.add_run()
+    doc_adr1 = doc.add_paragraph()
+    doc_adr1.add_run("Olayın Özeti\t\t:").underline = True
+    if len(sor) == 0:
+        pass
+    else:
 
-    doc_adr1 = doc.add_paragraph("Uzlaşma Görüşmeleri\t\t:")
-    doc_adr1.add_run()
+        doc_adr1 = doc.add_paragraph()
+        doc_adr1.paragraph_format.space_after = Pt(12)
+        i = doc_adr1.add_run(sor[0][0])
+        i.bold = False
+
     sor = db.komut("select gorusme from uzgor where dosya='{}'".format(sorno))
-    doc_adr1 = doc.add_paragraph(sor[0][0])
-    doc_adr1.paragraph_format.space_after = Pt(12)
-    doc_adr1.add_run()
+    doc_adr1 = doc.add_paragraph()
+    doc_adr1.add_run("Uzlaşma Görüşmeleri\t\t:").underline = True
+    doc_adr1.paragraph_format.space_before = Pt(12)
+    if len(sor) == 0:
+        pass
+    else:
 
+        doc_adr1 = doc.add_paragraph()
+        doc_adr1.paragraph_format.space_after = Pt(12)
+        i = doc_adr1.add_run(sor[0][0])
+        i.bold = False
+
+    sor = db.komut("select edi from edim where dosya='{}'".format(sorno))
     doc_adr1 = doc.add_paragraph("Tarafların üzerinde anlaştıkları edim; ediminin yerine getirilme şekli ve zamanı:")
     doc_adr1.add_run()
-    sor = db.komut("select edi from edim where dosya='{}'".format(sorno))
-    doc_adr1 = doc.add_paragraph(sor[0][0])
-    doc_adr1.paragraph_format.space_after = Pt(12)
-    doc_adr1.add_run()
+    doc_adr1.paragraph_format.space_before = Pt(12)
+    if len(sor) == 0:
+        pass
+    else:
 
+        doc_adr1 = doc.add_paragraph()
+        doc_adr1.paragraph_format.space_after = Pt(12)
+        i = doc_adr1.add_run(sor[0][0])
+        i.bold = False
+
+    sor = db.komut("select sebeb from uzbas where dosya='{}'".format(sorno))
     doc_adr1 = doc.add_paragraph("Uzlaştırmanın başarısızlıkla sonuçlanması hâlinde nedenleri:")
     doc_adr1.add_run()
-    sor = db.komut("select sebeb from uzbas where dosya='{}'".format(sorno))
-    doc_adr1 = doc.add_paragraph(sor[0][0])
-    doc_adr1.paragraph_format.space_after = Pt(12)
-    doc_adr1.add_run()
+    doc_adr1.paragraph_format.space_before = Pt(12)
+    if len(sor) == 0:
+        pass
+    else:
+
+        doc_adr1 = doc.add_paragraph()
+        doc_adr1.paragraph_format.space_after = Pt(12)
+        doc_adr1.bold = False
+        i = doc_adr1.add_run(sor[0][0])
+        i.bold = False
 
 
-    gider = db.komut("select * from giderler where dosya='{}'".format(sorno))
+    gider = db.komut("select aciklama, tutar from giderler where dosya='{}'".format(sorno))
+    doc_adr1 = doc.add_paragraph()
+    doc_adr1.paragraph_format.space_before = Pt(12)
+    i = doc_adr1.add_run("Yapılan Giderler:")
+    i.underline = True
     if len(gider) == 0:
         pass
     else:
-        doc_adr1 = doc.add_paragraph("Yapılan Giderler:")
-        doc_adr1.add_run()
+
         for i in range(len(gider)):
-            pass
+            run = doc.add_paragraph()
+            run.add_run("{} - {} : {} TL".format(i+1, gider[i][0], gider[i][1]))
 
+    ekler = db.komut("select ad from ek where dosya='{}'".format(sorno))
+    doc_a = doc.add_paragraph()
+    doc_a.paragraph_format.space_before = Pt(12)
+    i = doc_a.add_run("EKLER")
+    i.underline = True
+    if len(ekler) == 0:
+        pass
+    else:
+        for i in range(len(ekler)):
+            run = doc.add_paragraph()
+            run.add_run("Ek-{} :".format(i+1)).underline = True
+            run.add_run(" {}".format(ekler[i][0]))
 
+        run.paragraph_format.space_after = Pt(12)
 
+    sor = db.komut("""SELECT ad, sifat FROM taraflar WHERE dosya == '{0}' 
+        union SELECT ad, sifat FROM temsilciler WHERE dosya == '{0}'""".format(sorno))
 
+    table = doc.add_table(rows = len(sor)+2 , cols = 3)
+    table.style = "Table Grid"
+    table.cell(0,2).text = "İmzalar"
+    sayac = 1
+    for i in range(len(sor)):
+        cell = table.cell(sayac+i, 0)
+        cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
+        table.rows[sayac + i].height = Pt(50)
+        if sor[i][1] == 1:
+            cell.text = "Mağdur / Katılan"
+        elif sor[i][1] == 2:
+            cell.text = "Mağdur / Katılan'ın Temsilcisi"
+        elif sor[i][1] == 3:
+            cell.text = "Suçtan Zarar Gören"
+        elif sor[i][1] == 4:
+            cell.text = "Suçtan Zarar Görenin Temsilcisi"
+        elif sor[i][1] == 5:
+            cell.text = "Şüpheli / Sanık"
+        elif sor[i][1] == 6:
+            cell.text = "Şüpheli Sanık Temsilcisi"
+        elif sor[i][1] == 7:
+            cell.text = "Müşteki Şüpheli"
+        elif sor[i][1] == 8:
+            cell.text = "Müşteki Şüpheli Temsilcisi"
+        else:
+            cell.text = sor[i][1]
+        cell = table.cell(sayac+i, 1)
+        cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
+        cell.text = sor[i][0]
 
+    cell = table.cell(len(sor) + 1, 0)
+    cell.text = "Uzlaştırmacı"
+    cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
+    cell = table.cell(len(sor) + 1, 1)
+    cell.text = uz
+    cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
+    table.rows[len(sor)+1].height = Pt(50)
 
+    baslik = doc.add_paragraph("ONAY ŞERHİ")
+    baslik.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    baslik.paragraph_format.space_before = Pt(100)
+    baslik.add_run()
+
+    baslik = doc.add_paragraph("Tarih, Mühür ve İmza")
+    baslik.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    baslik.add_run()
+
+    baslik = doc.add_paragraph("Cumhuriyet Savcısı / Hakim")
+    baslik.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    baslik.paragraph_format.space_after = Pt(100)
+    baslik.add_run()
+
+    baslik = doc.add_paragraph("ONAYLAMAMA GEREKÇESİ:")
+    baslik.add_run()
+    baslik.paragraph_format.space_before = Pt(40)
+    baslik.paragraph_format.space_after = Pt(140)
+
+    baslik = doc.add_paragraph("Tarih, Mühür ve İmza")
+    baslik.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    baslik.add_run()
+
+    baslik = doc.add_paragraph("Cumhuriyet Savcısı / Hakim")
+    baslik.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    baslik.paragraph_format.space_after = Pt(20)
+    baslik.add_run()
 
     doc.save(hedef_dizin)
 
