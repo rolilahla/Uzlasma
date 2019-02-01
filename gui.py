@@ -569,8 +569,6 @@ class Ui_MainWindow(object):
         self.actionAblon_Ekle.setObjectName("actionAblon_Ekle")
         self.action_ablon_D_zenle = QtWidgets.QAction(MainWindow)
         self.action_ablon_D_zenle.setObjectName("action_ablon_D_zenle")
-        self.action_ablon_Sil = QtWidgets.QAction(MainWindow)
-        self.action_ablon_Sil.setObjectName("action_ablon_Sil")
         self.actionProgram_Ayarlar = QtWidgets.QAction(MainWindow)
         self.actionProgram_Ayarlar.setObjectName("actionProgram_Ayarlar")
         self.menuUzla_t_rma_Dosyas.addAction(self.actionDosya_ekle)
@@ -579,7 +577,7 @@ class Ui_MainWindow(object):
         self.menuUzla_mac.addAction(self.actionUzla_mac_Sil)
         self.menu_ablonlar.addAction(self.actionAblon_Ekle)
         self.menu_ablonlar.addAction(self.action_ablon_D_zenle)
-        self.menu_ablonlar.addAction(self.action_ablon_Sil)
+
         self.menuAyarlar.addAction(self.actionProgram_Ayarlar)
         self.menubar.addAction(self.menuUzla_t_rma_Dosyas.menuAction())
         self.menubar.addAction(self.menuUzla_mac.menuAction())
@@ -703,7 +701,6 @@ class Ui_MainWindow(object):
         self.actionUzla_mac_Sil.setText(_translate("MainWindow", "Uzlaşmacı Sil"))
         self.actionAblon_Ekle.setText(_translate("MainWindow", "Şablon Ekle"))
         self.action_ablon_D_zenle.setText(_translate("MainWindow", "Şablon Düzenle"))
-        self.action_ablon_Sil.setText(_translate("MainWindow", "Şablon Sil"))
         self.actionProgram_Ayarlar.setText(_translate("MainWindow", "Program Ayarları"))
 
         item = self.tableWidgetd_.horizontalHeaderItem(0)
@@ -753,6 +750,9 @@ class Ui_MainWindow(object):
         self.pushButtond_2.clicked.connect(self.teklif)
         self.pushButtond_3.clicked.connect(self.tebligat)
         self.pushButtond_4.clicked.connect(self.raporla)
+        #Sablon Gui bağlantıları
+        self.actionAblon_Ekle.triggered.connect(uih.gui_sablonekle)
+        self.action_ablon_D_zenle.triggered.connect(uih.gui_sablonsil)
 
     def uzlasmaci(self, arg):
         sor = mdl.tek_satirlik_demet_coz(self.veritabani.komut("select isim, sicil from uzlasmaci where isim = '{}'".format(arg)))
@@ -1034,6 +1034,7 @@ class Ui_MainWindow(object):
                 mesaj = self.kisi_duzenle + " kişisinin bilgileri veritabanından silindi"
                 bilgilendir(mesaj, baslik)
                 self.taraf_bul(self.comboBox.currentText())
+                self.taraf_bul_evrak(self.comboBox.currentText())
             else:
                 baslik = "Bilgi Silme İptali"
                 mesaj = self.kisi_duzenle + " Veri silme işlemi iptal edildi"
@@ -1046,6 +1047,7 @@ class Ui_MainWindow(object):
                 mesaj = self.kisi_duzenle + " kişisinin bilgileri veritabanından silindi"
                 bilgilendir(mesaj, baslik)
                 self.taraf_bul(self.comboBox.currentText())
+                self.taraf_bul_evrak(self.comboBox.currentText())
             else:
                 baslik = "Bilgi Silme İptali"
                 mesaj = self.kisi_duzenle + " Veri silme işlemi iptal edildi"
@@ -1340,7 +1342,14 @@ class Ui_MainWindow(object):
         dosya = self.comboBox.currentText()
         uz = self.label_15.text()
         uz_sicil = self.label_17.text()
-        mdl.rapor_yaz(dosya, uz, uz_sicil)
+        if mdl.rapor_yaz(dosya, uz, uz_sicil) == True:
+            baslik = "Rapor Oluşturma"
+            mesaj = dosya + " No'lu Uzlaşma dosyasının uzlaşma raporu oluşturuldu"
+            bilgilendir(mesaj, baslik)
+        else:
+            baslik = "Rapor Oluşturma Hatası"
+            mesaj = dosya + " No'lu Uzlaşma dosyasının uzlaşma raporu oluşturulamadı"
+            bilgilendir(mesaj, baslik)
 
     #Dosya Eklemesinden sonra liste yenilemek için sinyal yakalama.....................SİNYAL YAKALAMA.............
     def make_connection(self, dosyaolustur_object):

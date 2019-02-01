@@ -81,7 +81,7 @@ class DosyaOlustur(QtWidgets.QDialog):
         self.label_6 = QtWidgets.QLabel(self.frame)
         self.label_6.setGeometry(QtCore.QRect(30, 50, 121, 121))
         self.label_6.setText("")
-        self.label_6.setPixmap(QtGui.QPixmap("../../Downloads/faenza-icon-theme-master/Faenza/apps/96/ubuntuone.png"))
+        self.label_6.setPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/ubuntuone.png"))
         self.label_6.setObjectName("label_6")
         self.pushButton = QtWidgets.QPushButton(self)
         self.pushButton.setGeometry(QtCore.QRect(336, 230, 75, 23))

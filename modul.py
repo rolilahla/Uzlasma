@@ -950,4 +950,4 @@ def rapor_yaz(sorno, uz, uz_sicil):
     baslik.add_run()
 
     doc.save(hedef_dizin)
-
+    return True

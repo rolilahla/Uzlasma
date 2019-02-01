@@ -61,7 +61,6 @@ class Ui_DosyaSil(QtWidgets.QDialog):
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
-        self.comboBox.addItem("")
         self.comboBox.setItemText(3, "")
         self.gridLayout.addWidget(self.comboBox, 0, 1, 1, 1)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()

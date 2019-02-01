@@ -5,6 +5,8 @@ from uzlastirmaciekle import Ui_UzlastirmaciEkle
 from uzlasmacisil import Ui_UzlasmaciSil
 from dosyasil import Ui_DosyaSil
 from settings import Ui_Settings
+from sablonekle import Ui_SablonEkle
+from sablonsil import Ui_SablonDuzenle
 
 def gui_uzlastirmaci_ekle(self):
     UzlastirmaciEkle = QtWidgets.QDialog()
@@ -33,3 +35,17 @@ def gui_settings(self):
     ui.setupUi(Sett)
     Sett.show()
     Sett.exec_()
+
+def gui_sablonekle(self):
+    Saek = QtWidgets.QDialog()
+    ui = Ui_SablonEkle()
+    ui.setupUi(Saek)
+    Saek.show()
+    Saek.exec_()
+
+def gui_sablonsil(self):
+    Sas = QtWidgets.QDialog()
+    ui = Ui_SablonDuzenle()
+    ui.setupUi(Sas)
+    Sas.show()
+    Sas.exec_()
