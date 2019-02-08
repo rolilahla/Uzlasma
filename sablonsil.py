@@ -85,7 +85,7 @@ class Ui_SablonDuzenle(object):
     def sablon_sil(self):
         if mico.sorusor("Şablon Sil",self.lineEdit.text(),
                         " Kaydını veritabanından silmek istediğinize emin misiniz ?") == True:
-            self.db.komut("Delete From sablonlar where id = '{}'".format(self.sablon_id))
+            self.db.satir_sil("Delete From sablonlar where id = '{}'".format(self.sablon_id))
             baslik = "Şablon Kaydı Sil"
             mesaj = self.lineEdit.text() + " kaydı veritabanından başarıyla silindi"
             mico.bilgilendir(mesaj, baslik)
@@ -95,11 +95,26 @@ class Ui_SablonDuzenle(object):
             self.textEdit.clear()
         else:
             baslik = "Şablon Kaydı Silme"
-            mesaj = "Kayır Sitlme İşleminden vazgeçildi"
+            mesaj = "Kayıt Silme İşleminden vazgeçildi"
             mico.bilgilendir(mesaj, baslik)
 
     def sablon_guncelle(self):
-        pass
+        if mico.sorusor("Şablon Güncelle",self.lineEdit.text(),
+                        "Şablon bilgilerini güncellemek istediğinize emin misiniz ?") == True:
+            self.db.yapistir("UPDATE sablonlar SET ad='{}', icerik='{}' where id = '{}'".format(self.lineEdit.text(),
+                                                                                         self.textEdit.toPlainText(),
+                                                                                         self.sablon_id))
+            baslik = "Şablon Güncelle"
+            mesaj = self.lineEdit.text() + " şablonu başarıyla güncellendi"
+            mico.bilgilendir(mesaj, baslik)
+            self.listWidget.clear()
+            self.hazirlik()
+            self.lineEdit.clear()
+            self.textEdit.clear()
+        else:
+            baslik = "Şablon Kaydı Güncelleme"
+            mesaj = "Kayıt güncelleme işleminden vazgeçildi"
+            mico.bilgilendir(mesaj, baslik)
 
 if __name__ == "__main__":
     import sys

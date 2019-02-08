@@ -73,17 +73,18 @@ class Ui_DosyaSil(QtWidgets.QDialog):
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout_2.addWidget(self.pushButton)
         self.gridLayout.addLayout(self.horizontalLayout_2, 2, 3, 1, 1)
-        self.tum_dosyalar()
         self.tableWidget.cellClicked.connect(self.dosya_bul)
         self.comboBox.currentIndexChanged.connect(self.adana)
+        self.pushButton.setDisabled(True)
         self.pushButton.clicked.connect(self.sil)
+        self.tum_dosyalar()
 
         self.retranslateUi(self)
         QtCore.QMetaObject.connectSlotsByName(self)
 
     def retranslateUi(self, DosyaSil):
         _translate = QtCore.QCoreApplication.translate
-        DosyaSil.setWindowTitle(_translate("DosyaSil", "Dialog"))
+        DosyaSil.setWindowTitle(_translate("DosyaSil", "Dosya Sil"))
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("DosyaSil", "Id"))
         item = self.tableWidget.horizontalHeaderItem(1)
@@ -110,6 +111,11 @@ class Ui_DosyaSil(QtWidgets.QDialog):
 
     def tum_dosyalar(self):
         sonuc = self.db.komut("select * from dosyalar")
+        if len(sonuc) == 0:
+            self.pushButton.setDisabled(True)
+        else:
+            self.pushButton.setDisabled(False)
+
         self.tableWidget.setRowCount(len(sonuc))
         satir = 0
         sutun = 0
@@ -122,6 +128,10 @@ class Ui_DosyaSil(QtWidgets.QDialog):
 
     def aktif_dosyalar(self):
         sonuc = self.db.komut("select * from dosyalar where durum ='1'")
+        if len(sonuc) == 0:
+            self.pushButton.setDisabled(True)
+        else:
+            self.pushButton.setDisabled(False)
         self.tableWidget.setRowCount(len(sonuc))
         satir = 0
         sutun = 0
@@ -134,6 +144,10 @@ class Ui_DosyaSil(QtWidgets.QDialog):
 
     def pasif_dosyalar(self):
         sonuc = self.db.komut("select * from dosyalar where durum ='0'")
+        if len(sonuc) == 0:
+            self.pushButton.setDisabled(True)
+        else:
+            self.pushButton.setDisabled(False)
         self.tableWidget.setRowCount(len(sonuc))
         satir = 0
         sutun = 0
