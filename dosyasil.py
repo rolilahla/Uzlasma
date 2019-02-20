@@ -180,7 +180,18 @@ class Ui_DosyaSil(QtWidgets.QDialog):
     def sil(self):
         if mico.sorusor("Dosya Silme Uarısı",self.dosya_ad," No'lu dosyayı silmek isteiğinize emin misiniz") == True:
             if self.db.yapistir("delete from dosyalar where id='{}'".format(self.dosya_id)) == True:
+                self.db.yapistir("delete from taraflar where dosya ='{0}'".format(self.dosya_ad))
+                self.db.yapistir("delete from edim where dosya = '{0}'".format(self.dosya_ad))
+                self.db.yapistir("delete from ek where dosya = '{0}'".format(self.dosya_ad))
+                self.db.yapistir(" delete from giderler where dosya = '{0}'".format(self.dosya_ad))
+                self.db.yapistir("delete from olaylar where uzno = '{0}'".format(self.dosya_ad))
+                self.db.yapistir("delete from temsilciler where dosya = '{0}'".format(self.dosya_ad))
+                self.db.yapistir("delete from tercuman where dosya = '{0}'".format(self.dosya_ad))
+                self.db.yapistir("delete from uzatma where dosya = '{0}'".format(self.dosya_ad))
+                self.db.yapistir("delete from uzbas where dosya = '{0}'".format(self.dosya_ad))
+                self.db.yapistir("delete from uzgor where dosya = '{0}'".format(self.dosya_ad))
                 mico.bilgilendir("Dosya başarıyla silindi", "Dosya Silme Uyarısı")
+                self.on_changed_value(False)
             else:
                 pass
             self.adana()

@@ -42,6 +42,13 @@ def dosya_cek(dosya):
     sor = db.hepsini_oku("*", "dosyalar", "uzno", dosya)
     return sor
 
+def dosya_uzatma_kontrol(dosya):
+    sor = db.komut("select * from uzatma where dosya = '{}'".format(dosya))
+    if len(sor) == 0:
+        return False
+    else:
+        return True
+
 def kmt(dosya):
     son = db.komut(dosya)
     return son
@@ -140,9 +147,12 @@ def teklif_yaz(sorno, ad, uz, uzsicil):
     hedef = hedef_dizin +"\\" +ad + " Teklif Formu.xlsx"
     copy2(kaynak, hedef)
 
+    kanun = db.komut("select icerik from sablonlar where id = '1'")
+
+
     wb = xw.Book(hedef)
     sht = wb.sheets['Sayfa1']
-    #sht.range('AU1').value = ttarihi Şimdilik sadece dosyadan bilgi alınacak
+    sht.range('AU1').value = kanun[0][0]
     sht.range('AU2').value = ttarihi
     sht.range('AU3').value = uz
     sht.range('AU4').value = uzsicil
@@ -153,17 +163,17 @@ def teklif_yaz(sorno, ad, uz, uzsicil):
     sht.range('AU10').value = dyeri
     sht.range('AU11').value = dtar
     sht.range('AU12').value = adres
-    if sifat == "Mağdur / Katılan":
+    if sifat == 1:
         sht.range('AU13').value = "( X )"
-    elif sifat == "Mağdur / Katılan'ın Kanuni Temsilcisi":
+    elif sifat == 2:
         sht.range('AU13').value = "( X )"
-    elif sifat == "Suçtan Zarar Gören":
+    elif sifat == 3:
         sht.range('AU13').value = "( X )"
-    elif sifat == "Suçtan Zarar Gören'in Kanuni Temsilcisi":
+    elif sifat == 4:
         sht.range('AU13').value = "( X )"
-    elif sifat == "Şüpheli / Sanık":
+    elif sifat == 5:
         sht.range('AU13').value = "( X )"
-    elif sifat == "Şüpheli Sanığın Kanuni Temsilcisi":
+    elif sifat == 6:
         sht.range('AU13').value = "( X )"
     else:
         print("Sicil durumu veya nitelik durumunda hata var.")
@@ -211,6 +221,7 @@ def tebligat_yaz(sorno, ad):
     else:
         sht.range('Q10').value = "Soruşturma"
     return True
+
 
 
 def rapor_yaz(sorno, uz, uz_sicil):

@@ -59,9 +59,10 @@ class TarafEkle(QtWidgets.QDialog):
         self.label_21.setGeometry(QtCore.QRect(0, 40, 90, 20))
         self.label_21.setObjectName("label_21")
         self.label_21.setText("Teklif Tarihi")
-        self.lineEdit_13 = QtWidgets.QLineEdit(self.page)
-        self.lineEdit_13.setGeometry(QtCore.QRect(70, 40, 182, 20))
-        self.lineEdit_13.setObjectName("lineEdit_13")
+
+        self.lineEdit_28 = QtWidgets.QLineEdit(self.page)
+        self.lineEdit_28.setGeometry(QtCore.QRect(70, 40, 182, 20))
+        self.lineEdit_28.setObjectName("lineEdit_28")
 
         self.label_2 = QtWidgets.QLabel(self.page)
         self.label_2.setGeometry(QtCore.QRect(0, 70, 90, 20))
@@ -209,8 +210,8 @@ class TarafEkle(QtWidgets.QDialog):
         self.label_21.setObjectName("label_21")
         self.lineEdit_13 = QtWidgets.QLineEdit(self.page_2)
         self.lineEdit_13.setGeometry(QtCore.QRect(100, 200, 150, 20))
-        self.lineEdit_13.setText("")
         self.lineEdit_13.setObjectName("lineEdit_13")
+
         self.label_15 = QtWidgets.QLabel(self.page_2)
         self.label_15.setGeometry(QtCore.QRect(0, 230, 90, 20))
         self.label_15.setObjectName("label_15")
@@ -286,7 +287,7 @@ class TarafEkle(QtWidgets.QDialog):
 
         self.radioButton_2.setText(_translate("Dialog", "Vekil"))
         self.radioButton.setText(_translate("Dialog", "Şahıs"))
-        self.radioButton_3.setText(_translate("Dialog", "Tarcüman"))
+        self.radioButton_3.setText(_translate("Dialog", "Tercüman"))
         self.label.setText(_translate("Dialog", "Ad Soyad"))
         self.comboBox_2.setItemText(0, _translate("Dialog", "Cinsiyet"))
         self.comboBox_2.setItemText(1, _translate("Dialog", "Kadın"))
@@ -369,7 +370,7 @@ class TarafEkle(QtWidgets.QDialog):
 
     def sahis_ekle(self):
         ad = self.lineEdit.text()
-        ttarihi = self.lineEdit_13.text()
+        ttarihi = self.lineEdit_28.text()
         sifat = self.comboBox.currentIndex()
         tc = self.lineEdit_2.text()
         baba = self.lineEdit_3.text()
@@ -380,6 +381,12 @@ class TarafEkle(QtWidgets.QDialog):
         tel = self.lineEdit_7.text()
         adresniteligi = self.comboBox_5.currentIndex()
         adres = self.textEdit.toPlainText()
+
+        print("""
+        ad = {}
+        teklif tarihi = {}
+        sifat = {}
+        """.format(ad, ttarihi, sifat))
 
         #Veritabanına Gönder
         if self.db.tarafekle(ad, ttarihi, sifat, tc, baba, ana, dyer, dtar, cins, tel, adresniteligi, adres, self.dosya_uzlasma_no) == True:
@@ -393,7 +400,7 @@ class TarafEkle(QtWidgets.QDialog):
             self.lineEdit_5.clear()
             self.lineEdit_6.clear()
             self.lineEdit_7.clear()
-            self.lineEdit_13.clear()
+            self.lineEdit_28.clear()
             self.textEdit.clear()
             self.comboBox.setCurrentIndex(0)
             self.comboBox_2.setCurrentIndex(0)

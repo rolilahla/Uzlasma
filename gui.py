@@ -19,6 +19,7 @@ from tarafduzenle import TarafDuzenle
 from gider import Gider
 from ek import Ekler
 from vtbgln import VbagKur
+import datetime
 import icon
 
 class Ui_MainWindow(object):
@@ -1097,8 +1098,29 @@ class Ui_MainWindow(object):
     def uzatmaEkle(self):
         yeni_tarih = self.lineEdit.text()
         dosya = self.comboBox.currentText()
-        print(yeni_tarih)
-        print(dosya)
+        yaz = self.veritabani.yapistir("Insert Into uzatma Values(Null, '{}', '{}')".format(yeni_tarih, dosya))
+        if yaz == True:
+            baslik = "Ek Süre Ekleme"
+            mesaj = "Dosya Bilgilerine {} tarihi eklendi.".format(yeni_tarih)
+            bilgilendir(mesaj, baslik)
+            self.lineEdit.clear()
+        else:
+            baslik = "Ek Süre Ekleme Hatası"
+            mesaj = "Dosya Bilgilerine ek süre tarihi eklenemedi"
+            bilgilendir(mesaj, baslik)
+
+        sure = self.veritabani.komut("select uzatma_suresi from ayarlar")
+        t = yeni_tarih.replace(".", "/")
+        formatstr = '%d/%m/%Y'
+        t3 = datetime.datetime.strptime(t, formatstr)
+
+        fark = datetime.timedelta(days=int(sure[0][0]))
+        gelecek = t3 + fark
+        uzatmatar = gelecek.date()
+
+        self.veritabani.yapistir("UPDATE dosyalar SET uzatmatar = "
+                                 "'{}' where uzno = '{}'".format(uzatmatar, self.comboBox.currentText()))
+        self.dosya_durumu()
 
     def olay_ekle(self):
         yazi = self.textEdit.toPlainText()
@@ -1366,8 +1388,8 @@ class Ui_MainWindow(object):
     def ek_connection(self, ek_object):
         ek_object.clicked.connect(self.get_signal_ek)
 
-    def dosya_sil_connection(self, val):
-        pass
+    def dosya_sil_connection(self, dosyasil_object):
+        dosyasil_object.clicked.connect(self.get_signal_sil)
 
     @pyqtSlot(bool)
     def get_signal_dosya(self, val):
@@ -1402,6 +1424,14 @@ class Ui_MainWindow(object):
             self.ek_bul(self.comboBox.currentText())
         else:
             print("Taraf Sinyali Gelmedi")
+
+    @pyqtSlot(bool)
+    def get_signal_sil(self, val):
+        if val == False:
+            self.comboBox.setCurrentIndex(0)
+            self.dosya_kimlik()
+        else:
+            print("Sinyal Gelmedi")
 
 
 if __name__ == "__main__":
