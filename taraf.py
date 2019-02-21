@@ -155,8 +155,8 @@ class TarafEkle(QtWidgets.QDialog):
         self.pushButton = QtWidgets.QPushButton(self.page)
         self.pushButton.setGeometry(QtCore.QRect(180, 435, 75, 23))
         self.pushButton.setObjectName("pushButton")
-
         self.stackedWidget.addWidget(self.page)
+
         self.page_2 = QtWidgets.QWidget()
         self.page_2.setObjectName("page_2")
         self.label_10 = QtWidgets.QLabel(self.page_2)
