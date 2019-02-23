@@ -323,9 +323,18 @@ def rapor_yaz(sorno, uz, uz_sicil):
     doc_uzlasmateklif = doc.add_paragraph("Uzlaşma Teklif Tarihi\t\t\t:{}".format("uzlaşma teklif Tarihi"))
     doc_uzlasmateklif.add_run()
 
-    doc_eksure = doc.add_paragraph("Ek süre verilme tarihi ve süresi\t\t:{}".format("Ek süre 10 gün"))
-    doc_eksure.paragraph_format.space_after = Pt(12)
-    doc_eksure.add_run()
+    uzatma = db.komut("select tarih from uzatma where dosya = '{}'".format(sorno))
+    uzsure = db.komut("select uzatma_suresi from ayarlar")
+    print(uzsure[0][0])
+    if len(uzatma) == 0:
+        doc_eksure = doc.add_paragraph("Ek süre verilme tarihi ve süresi\t\t:{}".format(" "))
+        doc_eksure.paragraph_format.space_after = Pt(12)
+        doc_eksure.add_run()
+    else:
+        doc_eksure = doc.add_paragraph("Ek süre verilme tarihi ve süresi\t\t:{} / {} gün".format(uzatma[0][0], uzsure[0][0]))
+        doc_eksure.paragraph_format.space_after = Pt(12)
+        doc_eksure.add_run()
+
 
     saniklar = db.komut("select * from taraflar where dosya='{}'and sifat='5'".format(sorno))
     sanik_temsilcileri = db.komut("select * from taraflar where dosya='{}'and sifat='6'".format(sorno))

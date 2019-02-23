@@ -58,9 +58,9 @@ class TarafDuzenle(QtWidgets.QDialog):
         self.label_21.setGeometry(QtCore.QRect(0, 40, 90, 20))
         self.label_21.setObjectName("label_21")
         self.label_21.setText("Teklif Tarihi")
-        self.lineEdit_13 = QtWidgets.QLineEdit(self.page)
-        self.lineEdit_13.setGeometry(QtCore.QRect(70, 40, 182, 20))
-        self.lineEdit_13.setObjectName("lineEdit_13")
+        self.lineEdit_133 = QtWidgets.QLineEdit(self.page)
+        self.lineEdit_133.setGeometry(QtCore.QRect(70, 40, 182, 20))
+        self.lineEdit_133.setObjectName("lineEdit_133")
 
         self.label_2 = QtWidgets.QLabel(self.page)
         self.label_2.setGeometry(QtCore.QRect(0, 70, 90, 20))
@@ -374,7 +374,7 @@ class TarafDuzenle(QtWidgets.QDialog):
         if len(bilgi) == 14:
             self.sahis_id_no = bilgi[0]
             self.lineEdit.setText(bilgi[1])
-            self.lineEdit_13.setText(bilgi[2])
+            self.lineEdit_133.setText(bilgi[2])
             self.comboBox.setCurrentIndex(bilgi[3])
             self.lineEdit_2.setText(bilgi[4])
             self.lineEdit_3.setText(bilgi[5])
@@ -408,7 +408,7 @@ class TarafDuzenle(QtWidgets.QDialog):
     def sahis_guncelle(self):
         l = []
         l.append(self.lineEdit.text())
-        l.append(self.lineEdit_13.text())
+        l.append(self.lineEdit_133.text())
         l.append(self.comboBox.currentText())
         l.append(self.lineEdit_2.text())
         l.append(self.lineEdit_3.text())
@@ -428,7 +428,7 @@ class TarafDuzenle(QtWidgets.QDialog):
                 mesaj = l[0] + " isimli kişinin bilgileri güncellendi"
                 bilgilendir(mesaj, baslik)
                 self.lineEdit.clear()
-                self.lineEdit_13.clear()
+                self.lineEdit_133.clear()
                 self.lineEdit_2.clear()
                 self.lineEdit_3.clear()
                 self.lineEdit_4.clear()
@@ -447,12 +447,15 @@ class TarafDuzenle(QtWidgets.QDialog):
 
     def vekil_guncelle(self):
         v = []
+        v.append(self.lineEdit_13.text())
+        v.append(self.lineEdit_29.text())
         v.append(self.lineEdit_14.text())
-        v.append(self.lineEdit_8.text())
-        v.append(self.lineEdit_9.text())
         v.append(self.lineEdit_10.text())
         v.append(self.textEdit_2.toPlainText())
         v.append(self.comboBox_3.currentText())
+        v.append(self.comboBox_11.currentText())
+        v.append(self.lineEdit_8.text())
+        v.append(self.lineEdit_9.text())
         v.append(self.vekil_id_no)
 
         # Veritabanına Gönder
@@ -462,12 +465,15 @@ class TarafDuzenle(QtWidgets.QDialog):
                 baslik = "Bilgi Güncelleme "
                 mesaj = v[1] + " isimli kişinin bilgileri güncellendi"
                 bilgilendir(mesaj, baslik)
+                self.lineEdit_13.clear()
+                self.lineEdit_29.clear()
                 self.lineEdit_14.clear()
-                self.lineEdit_8.clear()
-                self.lineEdit_9.clear()
                 self.lineEdit_10.clear()
                 self.textEdit_2.clear()
                 self.comboBox_3.setCurrentIndex(0)
+                self.comboBox_11.setCurrentIndex(0)
+                self.lineEdit_8.clear()
+                self.lineEdit_9.clear()
                 self.on_changed_value(False)
             else:
                 pass

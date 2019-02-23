@@ -87,6 +87,9 @@ class Ui_MainWindow(object):
 
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1011, 534)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/uzlastırma.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
@@ -244,7 +247,7 @@ class Ui_MainWindow(object):
         self.pushButton_4 = QtWidgets.QPushButton(self.groupBox_6)
         self.pushButton_4.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("lib/icon/new.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/new.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_4.setIcon(icon)
         self.pushButton_4.setIconSize(QtCore.QSize(22, 22))
         self.pushButton_4.setObjectName("pushButton_4")
@@ -986,6 +989,8 @@ class Ui_MainWindow(object):
         oge_nitelik = self.tableWidget.item(row, 1)
         if oge_nitelik.text() == "Vekil":
             self.kisi_nitelik_duzenle = "Vekil"
+        elif oge_nitelik.text() == "Müdafi":
+            self.kisi_nitelik_duzenle = "Vekil"
         elif oge_nitelik.text() == "Tercüman":
             self.kisi_nitelik_duzenle = "Tercüman"
         else:
@@ -1392,6 +1397,7 @@ class Ui_MainWindow(object):
         dosyasil_object.clicked.connect(self.get_signal_sil)
 
     @pyqtSlot(bool)
+
     def get_signal_dosya(self, val):
         if val == False:
             say = self.comboBox.count()

@@ -25,7 +25,7 @@ class DosyaOlustur(QtWidgets.QDialog):
         self.db = VbagKur()
         self.resize(423, 263)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../Downloads/faenza-icon-theme-master/Faenza/apps/32/ubuntuone.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/ubuntuone.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.setWindowIcon(icon)
         self.radioButton = QtWidgets.QRadioButton(self)
         self.radioButton.setGeometry(QtCore.QRect(240, 10, 82, 17))

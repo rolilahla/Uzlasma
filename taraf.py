@@ -421,7 +421,7 @@ class TarafEkle(QtWidgets.QDialog):
         ttarihi = self.lineEdit_13.text()
         telefon = self.lineEdit_10.text()
         adres = self.textEdit_2.toPlainText()
-        sifat = "Vekil"
+        sifat = nitelik
 
         # Veritabanına Gönder
         if self.db.temsilci_ekle(ttarihi,ad, sicil, telefon, adres, self.dosya_uzlasma_no, vekalet, sifat, nitelik, baro, tc) == True:

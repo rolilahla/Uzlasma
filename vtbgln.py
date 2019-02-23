@@ -118,7 +118,8 @@ class VbagKur(object):
     def vekil_guncelle(self, l):
         self.im.execute("""UPDATE temsilciler SET 
         ttarihi='{}', ad='{}',sicil='{}',tel='{}',
-        adres='{}',kisi='{}' WHERE id = '{}'""".format(l[0],l[1],l[2],l[3],l[4],l[5], l[6]))
+        adres='{}',kisi='{}', nitelik='{}',baro='{}',tc='{}' WHERE id = '{}'"""
+                        .format(l[0],l[1],l[2],l[3],l[4],l[5],l[6],l[7],l[8], l[9]))
         self.vt.commit()
         return True
 

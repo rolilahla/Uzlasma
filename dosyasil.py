@@ -22,6 +22,9 @@ class Ui_DosyaSil(QtWidgets.QDialog):
         self.dosya_ad = None
         self.db = VbagKur()
         self.setObjectName("DosyaSil")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/ubuntuone.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.setWindowIcon(icon)
         self.resize(721, 336)
         self.gridLayout = QtWidgets.QGridLayout(self)
         self.gridLayout.setObjectName("gridLayout")
