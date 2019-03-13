@@ -409,7 +409,7 @@ class TarafDuzenle(QtWidgets.QDialog):
         l = []
         l.append(self.lineEdit.text())
         l.append(self.lineEdit_133.text())
-        l.append(self.comboBox.currentText())
+        l.append(self.comboBox.currentIndex())
         l.append(self.lineEdit_2.text())
         l.append(self.lineEdit_3.text())
         l.append(self.lineEdit_4.text())

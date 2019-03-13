@@ -60,7 +60,7 @@ class Ui_SablonDuzenle(object):
 
     def retranslateUi(self, SablonDuzenle):
         _translate = QtCore.QCoreApplication.translate
-        SablonDuzenle.setWindowTitle(_translate("SablonDuzenle", "Dialog"))
+        SablonDuzenle.setWindowTitle(_translate("SablonDuzenle", "Şablon Düzenle & Sil"))
         self.label.setText(_translate("SablonDuzenle", "Şablonlar"))
         self.label_3.setText(_translate("SablonDuzenle", "Şablon Adı"))
         self.label_2.setText(_translate("SablonDuzenle", "Şablon Metni"))

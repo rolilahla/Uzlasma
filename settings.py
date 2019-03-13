@@ -52,7 +52,7 @@ class Ui_Settings(object):
 
     def retranslateUi(self, Settings):
         _translate = QtCore.QCoreApplication.translate
-        Settings.setWindowTitle(_translate("Settings", "Dialog"))
+        Settings.setWindowTitle(_translate("Settings", "Ayarlar"))
         self.label.setText(_translate("Settings", "Uzlaştırma Dosya Kayıt Yeri"))
         self.pushButton.setText(_translate("Settings", "Seç"))
         self.label_2.setText(_translate("Settings", "Dosya Teslim Süresi"))

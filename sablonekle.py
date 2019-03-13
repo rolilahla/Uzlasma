@@ -50,7 +50,7 @@ class Ui_SablonEkle(object):
 
     def retranslateUi(self, SablonEkle):
         _translate = QtCore.QCoreApplication.translate
-        SablonEkle.setWindowTitle(_translate("SablonEkle", "Dialog"))
+        SablonEkle.setWindowTitle(_translate("SablonEkle", "Şablon Ekle"))
         self.label.setText(_translate("SablonEkle", "Şablon Adı"))
         self.label_2.setText(_translate("SablonEkle", "Şablon Adı"))
         self.pushButton.setText(_translate("SablonEkle", "Ekle"))

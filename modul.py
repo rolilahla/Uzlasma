@@ -163,18 +163,19 @@ def teklif_yaz(sorno, ad, uz, uzsicil):
     sht.range('AU10').value = dyeri
     sht.range('AU11').value = dtar
     sht.range('AU12').value = adres
+    sht.range('AU19').value = sorno
     if sifat == 1:
         sht.range('AU13').value = "( X )"
     elif sifat == 2:
-        sht.range('AU13').value = "( X )"
+        sht.range('AU14').value = "( X )"
     elif sifat == 3:
-        sht.range('AU13').value = "( X )"
+        sht.range('AU15').value = "( X )"
     elif sifat == 4:
-        sht.range('AU13').value = "( X )"
+        sht.range('AU16').value = "( X )"
     elif sifat == 5:
-        sht.range('AU13').value = "( X )"
+        sht.range('AU17').value = "( X )"
     elif sifat == 6:
-        sht.range('AU13').value = "( X )"
+        sht.range('AU18').value = "( X )"
     else:
         print("Sicil durumu veya nitelik durumunda hata var.")
     return True
@@ -312,15 +313,18 @@ def rapor_yaz(sorno, uz, uz_sicil):
     i_dos_uzad = dos_uzad.add_run("İletişim Adresi \t\t\t:{}".format(uz_bilgileri[0][0]))
     i_dos_uzad.bold = False
 
-    doc_gorev_tarihi = doc.add_paragraph("Görevlendirme Tarihi\t\t\t:{}".format("yazılacak"))
+    gortar = db.komut("select tektar from dosyalar where uzno = '{}'".format(sorno))
+    doc_gorev_tarihi = doc.add_paragraph("Görevlendirme Tarihi\t\t\t:{}".format(gortar[0][0]))
     doc_gorev_tarihi.add_run()
 
     doc_evrak_tarihi = doc.add_paragraph("Dosya içindeki belgelerin birer Örneğinin")
     doc_evrak_tarihi.add_run()
-    doc_evrak_tarihi = doc.add_paragraph(" verildiği Uzl. Süresinin başladığı tarih\t:{}".format("Bakılacak"))
+    doc_evrak_tarihi = doc.add_paragraph(" verildiği Uzl. Süresinin başladığı tarih\t:{}".format(gortar[0][0]))
     doc_evrak_tarihi.add_run()
 
-    doc_uzlasmateklif = doc.add_paragraph("Uzlaşma Teklif Tarihi\t\t\t:{}".format("uzlaşma teklif Tarihi"))
+    ilkteklif = db.komut("""select ttarihi from temsilciler where dosya='{0}' union select ttarihi from taraflar
+                         where dosya='{0}' order by ttarihi asc """.format(sorno))
+    doc_uzlasmateklif = doc.add_paragraph("Uzlaşma Teklif Tarihi\t\t\t:{}".format(ilkteklif[0][0]))
     doc_uzlasmateklif.add_run()
 
     uzatma = db.komut("select tarih from uzatma where dosya = '{}'".format(sorno))

@@ -119,6 +119,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.groupBox_3 = QtWidgets.QGroupBox(self.frame_2)
         self.groupBox_3.setObjectName("groupBox_3")
+
         self.gridLayout_11 = QtWidgets.QGridLayout(self.groupBox_3)
         self.gridLayout_11.setObjectName("gridLayout_11")
         self.label = QtWidgets.QLabel(self.groupBox_3)
@@ -466,27 +467,28 @@ class Ui_MainWindow(object):
         self.gridLayout_6.setObjectName("gridLayout_6")
 
         self.frame = QtWidgets.QFrame(self.tab_5)
-        self.frame.setMinimumSize(QtCore.QSize(175, 300))
-        self.frame.setMaximumSize(QtCore.QSize(250, 500))
+        self.frame.setMinimumSize(QtCore.QSize(800, 300))
+        self.frame.setMaximumSize(QtCore.QSize(1024, 500))
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.frame.setObjectName("frame")
         self.gridLayout_8 = QtWidgets.QGridLayout(self.frame)
         self.gridLayout_8.setObjectName("gridLayout_8")
         self.tableWidgetd_ = QtWidgets.QTableWidget(self.frame)
-        self.tableWidgetd_.setMinimumSize(QtCore.QSize(240, 147))
-        self.tableWidgetd_.setMaximumSize(QtCore.QSize(200, 140))
+        self.tableWidgetd_.setMinimumSize(QtCore.QSize(800, 180))
+        self.tableWidgetd_.setMaximumSize(QtCore.QSize(1024, 180))
         self.tableWidgetd_.setObjectName("tableWidgetd_")
         self.tableWidgetd_.setColumnCount(2)
         self.tableWidgetd_.setRowCount(0)
+        self.tableWidgetd_.setAlternatingRowColors(True)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidgetd_.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidgetd_.setHorizontalHeaderItem(1, item)
         self.gridLayout_8.addWidget(self.tableWidgetd_, 0, 0, 1, 1)
         self.groupBoxd_1 = QtWidgets.QGroupBox(self.frame)
-        self.groupBoxd_1.setMinimumSize(QtCore.QSize(240, 110))
-        self.groupBoxd_1.setMaximumSize(QtCore.QSize(240, 110))
+        self.groupBoxd_1.setMinimumSize(QtCore.QSize(600, 110))
+        self.groupBoxd_1.setMaximumSize(QtCore.QSize(600, 110))
         self.groupBoxd_1.setObjectName("groupBoxd_1")
         self.pushButtond_1 = QtWidgets.QPushButton(self.groupBoxd_1)
         self.pushButtond_1.setGeometry(QtCore.QRect(10, 20, 64, 64))
@@ -534,14 +536,7 @@ class Ui_MainWindow(object):
         self.gridLayout_7.addWidget(self.pushButtond_4, 0, 0, 1, 1)
         self.gridLayout_8.addWidget(self.groupBoxd_2, 2, 0, 1, 1)
         self.gridLayout_6.addWidget(self.frame, 0, 0, 2, 1)
-        self.textEditd_1 = QtWidgets.QTextEdit(self.tab_5)
-        self.textEditd_1.setObjectName("textEditd_1")
-        self.gridLayout_6.addWidget(self.textEditd_1, 0, 1, 1, 2)
-        spacerItem3 = QtWidgets.QSpacerItem(536, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_6.addItem(spacerItem3, 1, 1, 1, 1)
-        self.pushButtond_5 = QtWidgets.QPushButton(self.tab_5)
-        self.pushButtond_5.setObjectName("pushButtond_5")
-        self.gridLayout_6.addWidget(self.pushButtond_5, 1, 2, 1, 1)
+
         self.tabWidget.addTab(self.tab_5, "")
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
         #----------------------------------------------------------------------yeni tab bitiş
@@ -561,20 +556,48 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/list-add.png"), QtGui.QIcon.Normal,
+                       QtGui.QIcon.Off)
         self.actionDosya_ekle = QtWidgets.QAction(MainWindow)
         self.actionDosya_ekle.setObjectName("actionDosya_ekle")
+        self.actionDosya_ekle.setIcon(icon)
         self.actionDosya_Sil = QtWidgets.QAction(MainWindow)
         self.actionDosya_Sil.setObjectName("actionDosya_Sil")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/list-remove.png"), QtGui.QIcon.Normal,
+                       QtGui.QIcon.Off)
+        self.actionDosya_Sil.setIcon(icon)
         self.actionUzla_mac_Ekle = QtWidgets.QAction(MainWindow)
         self.actionUzla_mac_Ekle.setObjectName("actionUzla_mac_Ekle")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/credentials-preferences.png"), QtGui.QIcon.Normal,
+                       QtGui.QIcon.Off)
+        self.actionUzla_mac_Ekle.setIcon(icon)
         self.actionUzla_mac_Sil = QtWidgets.QAction(MainWindow)
         self.actionUzla_mac_Sil.setObjectName("actionUzla_mac_Sil")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/user-trash.png"), QtGui.QIcon.Normal,
+                       QtGui.QIcon.Off)
+        self.actionUzla_mac_Sil.setIcon(icon)
         self.actionAblon_Ekle = QtWidgets.QAction(MainWindow)
         self.actionAblon_Ekle.setObjectName("actionAblon_Ekle")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/accessories-text-editor.png"), QtGui.QIcon.Normal,
+                       QtGui.QIcon.Off)
+        self.actionAblon_Ekle.setIcon(icon)
         self.action_ablon_D_zenle = QtWidgets.QAction(MainWindow)
         self.action_ablon_D_zenle.setObjectName("action_ablon_D_zenle")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/logviewer.png"), QtGui.QIcon.Normal,
+                       QtGui.QIcon.Off)
+        self.action_ablon_D_zenle.setIcon(icon)
         self.actionProgram_Ayarlar = QtWidgets.QAction(MainWindow)
         self.actionProgram_Ayarlar.setObjectName("actionProgram_Ayarlar")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/application-default-icon.png"), QtGui.QIcon.Normal,
+                       QtGui.QIcon.Off)
+        self.actionProgram_Ayarlar.setIcon(icon)
         self.menuUzla_t_rma_Dosyas.addAction(self.actionDosya_ekle)
         self.menuUzla_t_rma_Dosyas.addAction(self.actionDosya_Sil)
         self.menuUzla_mac.addAction(self.actionUzla_mac_Ekle)
@@ -596,6 +619,7 @@ class Ui_MainWindow(object):
         self.comboBox_2.setDisabled(True)
         self.triggerfinger()
         self.dosya_tara("1")
+
         #-----------------------------------------Olay - Görüşme - Edim - Başarısızlık Buton Ayarları
 
         # Olay Özeti
@@ -647,7 +671,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), _translate("MainWindow", "Dökümana çevir"))
         self.groupBox_2.setTitle(_translate("MainWindow", "Dosya durumu"))
         self.label_11.setText(_translate("MainWindow", "Teslim Tarihine"))
-        self.label_12.setText(_translate("MainWindow", "3"))
+        self.label_12.setText(_translate("MainWindow", "x"))
         self.label_13.setText(_translate("MainWindow", "gün var."))
         self.lineEdit.setText(_translate("MainWindow", "Uzatma Tarihi Ekle"))
         self.pushButton_3.setText(_translate("MainWindow", "Ekle"))
@@ -716,7 +740,6 @@ class Ui_MainWindow(object):
         self.labeld_2.setText(_translate("MainWindow", "Teklif"))
         self.labeld_3.setText(_translate("MainWindow", "Tebligat"))
         self.groupBoxd_2.setTitle(_translate("MainWindow", "Rapor hazırla"))
-        self.pushButtond_5.setText(_translate("MainWindow", "PushButton"))
         self.groupBoxd_1.hide()
 
     def triggerfinger(self):
@@ -1101,31 +1124,37 @@ class Ui_MainWindow(object):
             bilgilendir(mesaj, baslik)
 
     def uzatmaEkle(self):
-        yeni_tarih = self.lineEdit.text()
         dosya = self.comboBox.currentText()
-        yaz = self.veritabani.yapistir("Insert Into uzatma Values(Null, '{}', '{}')".format(yeni_tarih, dosya))
-        if yaz == True:
-            baslik = "Ek Süre Ekleme"
-            mesaj = "Dosya Bilgilerine {} tarihi eklendi.".format(yeni_tarih)
-            bilgilendir(mesaj, baslik)
-            self.lineEdit.clear()
+        uzatma_kontrol = self.veritabani.komut("select * from uzatma where dosya = '{}'".format(dosya))
+        if len(uzatma_kontrol) == 0:
+            yeni_tarih = self.lineEdit.text()
+            yaz = self.veritabani.yapistir("Insert Into uzatma Values(Null, '{}', '{}')".format(yeni_tarih, dosya))
+            if yaz == True:
+                baslik = "Ek Süre Ekleme"
+                mesaj = "Dosya Bilgilerine {} tarihi eklendi.".format(yeni_tarih)
+                bilgilendir(mesaj, baslik)
+                self.lineEdit.clear()
+            else:
+                baslik = "Ek Süre Ekleme Hatası"
+                mesaj = "Dosya Bilgilerine ek süre tarihi eklenemedi"
+                bilgilendir(mesaj, baslik)
+
+            sure = self.veritabani.komut("select uzatma_suresi from ayarlar")
+            t = yeni_tarih.replace(".", "/")
+            formatstr = '%d/%m/%Y'
+            t3 = datetime.datetime.strptime(t, formatstr)
+
+            fark = datetime.timedelta(days=int(sure[0][0]))
+            gelecek = t3 + fark
+            uzatmatar = gelecek.date()
+
+            self.veritabani.yapistir("UPDATE dosyalar SET uzatmatar = "
+                                     "'{}' where uzno = '{}'".format(uzatmatar, self.comboBox.currentText()))
+            self.dosya_durumu()
         else:
-            baslik = "Ek Süre Ekleme Hatası"
-            mesaj = "Dosya Bilgilerine ek süre tarihi eklenemedi"
+            baslik = "Ek Süre Tanımlama Hatası"
+            mesaj = "Bu dosyaya daha önceden ek süre alınmıştır."
             bilgilendir(mesaj, baslik)
-
-        sure = self.veritabani.komut("select uzatma_suresi from ayarlar")
-        t = yeni_tarih.replace(".", "/")
-        formatstr = '%d/%m/%Y'
-        t3 = datetime.datetime.strptime(t, formatstr)
-
-        fark = datetime.timedelta(days=int(sure[0][0]))
-        gelecek = t3 + fark
-        uzatmatar = gelecek.date()
-
-        self.veritabani.yapistir("UPDATE dosyalar SET uzatmatar = "
-                                 "'{}' where uzno = '{}'".format(uzatmatar, self.comboBox.currentText()))
-        self.dosya_durumu()
 
     def olay_ekle(self):
         yazi = self.textEdit.toPlainText()
