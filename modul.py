@@ -220,7 +220,7 @@ def tebligat_yaz(sorno, ad):
     if sorno_sor[0][0] == "":
         sht.range('Q10').value = "Mahkeme"
     else:
-        sht.range('Q10').value = "Soruşturma"
+        sht.range('Q10').value = "Savcılık"
     return True
 
 

@@ -655,7 +655,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate  # type: Callable[[Any, Any, Any, int], str]
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Uzlaştırma"))
         self.groupBox_3.setTitle(_translate("MainWindow", "Dosya Bilgileri"))
         self.label.setText(_translate("MainWindow", "Dosya Durumu"))
         self.radioButton.setText(_translate("MainWindow", "Aktif"))

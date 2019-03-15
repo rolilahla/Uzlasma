@@ -288,6 +288,10 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionDosya_Ekle">
+   <property name="icon">
+    <iconset>
+     <normaloff>application-default-icon.png</normaloff>application-default-icon.png</iconset>
+   </property>
    <property name="text">
     <string>Dosya Ekle</string>
    </property>
