@@ -508,6 +508,3 @@ class TarafDuzenle(QtWidgets.QDialog):
     # Sinyali Gönder
     def on_changed_value(self, value):
         self.clicked.emit(value)
-
-
-

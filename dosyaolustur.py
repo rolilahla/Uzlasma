@@ -148,7 +148,6 @@ class DosyaOlustur(QtWidgets.QDialog):
             self.lineEdit_3.clear()
             self.lineEdit_4.clear()
             self.lineEdit_5.clear()
-
         else:
             pass
 

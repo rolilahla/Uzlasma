@@ -188,4 +188,3 @@ class VbagKur(object):
 
     def veritabanini_kapat(self):
         self.vt.close()
-

@@ -125,6 +125,8 @@ def davet_yaz(durum, sahis, tc, veksicil, no, ttarihi, uz, uzsicil, uzte):
 
 def teklif_yaz(sorno, ad, uz, uzsicil):
     sor = db.komut("select * from taraflar where dosya='{}' and ad='{}'".format(sorno, ad))
+    esas_sor = db.komut("select mahesno from dosyalar where uzno='{}'".format(sorno))
+
     ttarihi = sor[0][2]
     sifat = sor[0][3]
     tc = sor[0][4]
@@ -164,6 +166,7 @@ def teklif_yaz(sorno, ad, uz, uzsicil):
     sht.range('AU11').value = dtar
     sht.range('AU12').value = adres
     sht.range('AU19').value = sorno
+    sht.range('AU20').value = esas_sor[0][0]
     if sifat == 1:
         sht.range('AU13').value = "( X )"
     elif sifat == 2:

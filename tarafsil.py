@@ -308,11 +308,6 @@ class TarafDuzenle(QtWidgets.QDialog):
         sonuc = tek_satirlik_demet_coz(self.db.komut(sql))
         self.veri_doldur(sonuc)
 
-
-
     # Sinyali Gönder
     def on_changed_value(self, value):
         self.clicked.emit(value)
-
-
-

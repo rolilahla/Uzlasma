@@ -382,12 +382,6 @@ class TarafEkle(QtWidgets.QDialog):
         adresniteligi = self.comboBox_5.currentIndex()
         adres = self.textEdit.toPlainText()
 
-        print("""
-        ad = {}
-        teklif tarihi = {}
-        sifat = {}
-        """.format(ad, ttarihi, sifat))
-
         #Veritabanına Gönder
         if self.db.tarafekle(ad, ttarihi, sifat, tc, baba, ana, dyer, dtar, cins, tel, adresniteligi, adres, self.dosya_uzlasma_no) == True:
             baslik = "Dosya Bilgileri Eklendi"
@@ -471,5 +465,3 @@ class TarafEkle(QtWidgets.QDialog):
     #Sinyali Gönder
     def on_changed_value(self, value):
         self.clicked.emit(value)
-
-
