@@ -96,6 +96,9 @@ def edim_cek(arg):
 def uzbas_cek(arg):
     return db.komut("select sebeb from uzbas where dosya = '{}'".format(arg))
 
+def sonuc_cek(arg):
+    return db.komut("select metin from sonuc where dosya = '{}'".format(arg))
+
 def davet_yaz(durum, sahis, tc, veksicil, no, ttarihi, uz, uzsicil, uzte):
     ana_dizin = os.getcwd()
     ana_dosya_yolu = "\\dosyalar\\uzfile\\Davet Mektubu.xlsx"
@@ -274,7 +277,7 @@ def rapor_yaz(sorno, uz, uz_sicil):
     yli.italic = True
     yli.font.size = Pt(9)
     yli.font.bold = False
-    yli = yl.add_run(sorno)
+    yli = yl.add_run(sorusturma_no)
     yli.font.color.rgb = RGBColor(255, 0, 0)
     yli.italic = True
     yli.font.size = Pt(9)
@@ -818,9 +821,19 @@ def rapor_yaz(sorno, uz, uz_sicil):
     doc_adr1.add_run()
     doc_adr1 = doc.add_paragraph("Uzlaştırma Süresi\t\t:{}".format("17 Gün"))
     doc_adr1.add_run()
-    doc_adr1 = doc.add_paragraph("Uzlaştırma Sonucu\t\t:{}".format("On Numara"))
-    doc_adr1.paragraph_format.space_after = Pt(12)
-    doc_adr1.add_run()
+
+    sor = db.komut("select metin from sonuc where dosya='{}'".format(sorno))
+    doc_adr1 = doc.add_paragraph()
+    doc_adr1.add_run("Uzlaştırma Sonucu\t\t:").underline = True
+    doc_adr1.paragraph_format.space_before = Pt(12)
+    if len(sor) == 0:
+        pass
+    else:
+        doc_adr1 = doc.add_paragraph()
+        doc_adr1.paragraph_format.space_after = Pt(12)
+        i = doc_adr1.add_run(sor[0][0])
+        i.bold = False
+
 
     run = doc.add_paragraph()
     run.paragraph_format.space_after = Pt(12)

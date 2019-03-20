@@ -414,6 +414,7 @@ class Ui_MainWindow(object):
         self.gridLayout_14.addWidget(self.pushButton_8, 1, 1, 1, 1)
         self.gridLayout_13.addWidget(self.groupBox_8, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab_2, "")
+
         self.tab_3 = QtWidgets.QWidget()
         self.tab_3.setObjectName("tab_3")
         self.gridLayout_16 = QtWidgets.QGridLayout(self.tab_3)
@@ -436,6 +437,7 @@ class Ui_MainWindow(object):
         self.gridLayout_15.addWidget(self.pushButton_13, 1, 1, 1, 1)
         self.gridLayout_16.addWidget(self.groupBox_9, 0, 0, 1, 1)
         self.tabWidget.addTab(self.tab_3, "")
+
         self.tab_4 = QtWidgets.QWidget()
         self.tab_4.setObjectName("tab_4")
         self.gridLayout_18 = QtWidgets.QGridLayout(self.tab_4)
@@ -460,6 +462,32 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.tab_4, "")
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
         #---------------------------------------------------------------------yeni tab başlangıç
+        self.tab_6 = QtWidgets.QWidget()
+        self.tab_6.setObjectName("tab_4")
+        self.gridLayout_68 = QtWidgets.QGridLayout(self.tab_6)
+        self.gridLayout_68.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_68.setObjectName("gridLayout_68")
+        self.groupBox_60 = QtWidgets.QGroupBox(self.tab_6)
+        self.groupBox_60.setObjectName("groupBox_60")
+        self.gridLayout_67 = QtWidgets.QGridLayout(self.groupBox_60)
+        self.gridLayout_67.setObjectName("gridLayout_67")
+        self.textEdit_64 = QtWidgets.QTextEdit(self.groupBox_60)
+        self.textEdit_64.setObjectName("textEdit_64")
+        self.gridLayout_67.addWidget(self.textEdit_64, 0, 0, 1, 3)
+        spacerItem66 = QtWidgets.QSpacerItem(784, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_67.addItem(spacerItem66, 1, 0, 1, 1)
+        self.pushButton_65 = QtWidgets.QPushButton(self.groupBox_60)
+        self.pushButton_65.setObjectName("pushButton_65")
+        self.pushButton_65.setText("Ekle")
+        self.gridLayout_67.addWidget(self.pushButton_65, 1, 2, 1, 1)
+        self.pushButton_66 = QtWidgets.QPushButton(self.groupBox_60)
+        self.pushButton_66.setObjectName("pushButton_66")
+        self.pushButton_66.setText("Güncelle")
+        self.gridLayout_67.addWidget(self.pushButton_66, 1, 1, 1, 1)
+        self.gridLayout_68.addWidget(self.groupBox_60, 0, 0, 1, 1)
+        self.tabWidget.addTab(self.tab_6, "")
+        self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
+
         self.tab_5 = QtWidgets.QWidget()
         self.tab_5.setObjectName("tab_5")
         self.gridLayout_6 = QtWidgets.QGridLayout(self.tab_5)
@@ -539,6 +567,8 @@ class Ui_MainWindow(object):
 
         self.tabWidget.addTab(self.tab_5, "")
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
+        #-----------------------------Son Tab
+
         #----------------------------------------------------------------------yeni tab bitiş
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -642,6 +672,10 @@ class Ui_MainWindow(object):
         self.pushButton_15.setDisabled(True)
         self.pushButton_16.setDisabled(True)
 
+        # Sonuç
+        self.pushButton_65.setDisabled(True)
+        self.pushButton_66.setDisabled(True)
+
         self.ayarlar()
 
         self.pushButton_5.setDisabled(True)
@@ -662,11 +696,8 @@ class Ui_MainWindow(object):
         self.radioButton_2.setText(_translate("MainWindow", "Kapanmış"))
         self.label_2.setText(_translate("MainWindow", "Uzlaşma No"))
         self.label_3.setText(_translate("MainWindow", "Soruşturma No"))
-
         self.label_4.setText(_translate("MainWindow", "M. Esas No"))
-
         self.label_5.setText(_translate("MainWindow", "Suç"))
-
         self.label_6.setText(_translate("MainWindow", "Tevdi Tarihi"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), _translate("MainWindow", "Dökümana çevir"))
         self.groupBox_2.setTitle(_translate("MainWindow", "Dosya durumu"))
@@ -736,6 +767,8 @@ class Ui_MainWindow(object):
         item = self.tableWidgetd_.horizontalHeaderItem(1)
         item.setText(_translate("MainWindow", "NİTELİK"))
 
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_6), _translate("MainWindow", "Uzlaştırma Sonuçları"))
+
         self.labeld_1.setText(_translate("MainWindow", "Davet"))
         self.labeld_2.setText(_translate("MainWindow", "Teklif"))
         self.labeld_3.setText(_translate("MainWindow", "Tebligat"))
@@ -769,6 +802,8 @@ class Ui_MainWindow(object):
         self.pushButton_13.clicked.connect(self.edim_guncelle)
         self.pushButton_15.clicked.connect(self.uzbas_ekle)
         self.pushButton_16.clicked.connect(self.uzbas_guncelle)
+        self.pushButton_65.clicked.connect(self.sonuc_ekle)
+        self.pushButton_66.clicked.connect(self.sonuc_guncelle)
         self.actionDosya_Sil.triggered.connect(self.gui_dosya_sil)
         self.tableWidgetd_.cellClicked.connect(self.dosya_icin_parametre_olustur)
         self.actionProgram_Ayarlar.triggered.connect(uih.gui_settings)
@@ -825,6 +860,7 @@ class Ui_MainWindow(object):
             self.textEdit_2.clear()
             self.textEdit_3.clear()
             self.textEdit_4.clear()
+            self.textEdit_64.clear()
             self.label_7.clear()
             self.label_8.clear()
             self.label_9.clear()
@@ -860,10 +896,12 @@ class Ui_MainWindow(object):
             gorusme = mdl.gorusme_cek(dosya)
             edim = mdl.edim_cek(dosya)
             uzba = mdl.uzbas_cek(dosya)
+            sonuc = mdl.sonuc_cek(dosya)
             self.textEdit.clear()
             self.textEdit_2.clear()
             self.textEdit_3.clear()
             self.textEdit_4.clear()
+            self.textEdit_64.clear()
             self.label_12.setStyleSheet("color: rgb(0, 0, 0);")
             self.dosya_durumu()
 
@@ -890,6 +928,12 @@ class Ui_MainWindow(object):
             else:
                 self.pushButton_16.setDisabled(False)
                 self.textEdit_4.setPlainText(uzba[0][0])
+
+            if len(sonuc) == 0:
+                self.pushButton_65.setDisabled(False)
+            else:
+                self.pushButton_66.setDisabled(False)
+                self.textEdit_64.setPlainText(sonuc[0][0])
 
     #Uzlaşma dosyasının ne durumda olduğunu göster
     def dosya_durumu(self):
@@ -1284,8 +1328,8 @@ class Ui_MainWindow(object):
             else:
                 self.veritabani.yapistir("insert into uzbas values(NULL, '{}', '{}')"
                                          .format(yazi, self.comboBox.currentText()))
-                mesaj = "Dosya Edim'i bilgilerine eklendi"
-                baslik = "Edim Ekleme"
+                mesaj = "Uzlaşma Başarısızlıkları dosya bilgilerine eklendi"
+                baslik = "Uzlaşma Başarısızlık Ekleme"
                 bilgilendir(mesaj, baslik)
                 self.pushButton_15.setDisabled(True)
                 self.pushButton_16.setDisabled(False)
@@ -1303,6 +1347,42 @@ class Ui_MainWindow(object):
                 bilgilendir(mesaj, baslik)
             else:
                 self.veritabani.yapistir("update uzbas set sebeb='{}' where dosya = '{}'"
+                                         .format(yazi, self.comboBox.currentText()))
+                mesaj = "Veri başarıyla güncellendi"
+                baslik = "Veri Güncellemesi"
+                bilgilendir(mesaj, baslik)
+    def sonuc_ekle(self):
+        yazi = self.textEdit_64.toPlainText()
+        if self.comboBox.currentIndex() == 0:
+            mesaj = "Lütfen uzlaştırma sonucu eklemek istediğiniz dosyayı seçiniz.Herhangi bir dosya seçilmemiş"
+            baslik = "Dosya Seçim Hatası"
+            bilgilendir(mesaj, baslik)
+        else:
+            if len(yazi) == 0:
+                mesaj = "Yazı editörünü boş bırakamazsınız."
+                baslik = "Ekleme Hatası"
+                bilgilendir(mesaj, baslik)
+            else:
+                self.veritabani.yapistir("insert into sonuc values(NULL, '{}', '{}')"
+                                         .format(yazi, self.comboBox.currentText()))
+                mesaj = "Uzlaşma sonuçları dosya bilgilerine eklendi"
+                baslik = "Uzlaşma Sonuç Ekleme"
+                bilgilendir(mesaj, baslik)
+                self.pushButton_65.setDisabled(True)
+                self.pushButton_66.setDisabled(False)
+    def sonuc_guncelle(self):
+        yazi = self.textEdit_64.toPlainText()
+        if self.comboBox.currentIndex() == 0:
+            mesaj = "Öncelikle güncellenecek bir uzlaştırma dosyası seçmeniz gerekmektedir."
+            baslik = "Dosya Seçim Hatası"
+            bilgilendir(mesaj, baslik)
+        else:
+            if len(yazi) == 0:
+                mesaj = "Veritabanı yazma hatasından kaynaklı yazı güncellenemedi."
+                baslik = "Veri Güncelleme Hatası"
+                bilgilendir(mesaj, baslik)
+            else:
+                self.veritabani.yapistir("update sonuc set metin='{}' where dosya = '{}'"
                                          .format(yazi, self.comboBox.currentText()))
                 mesaj = "Veri başarıyla güncellendi"
                 baslik = "Veri Güncellemesi"

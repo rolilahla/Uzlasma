@@ -112,45 +112,57 @@ class DosyaOlustur(QtWidgets.QDialog):
         self.label_8.setText(_translate("DosyaOlustur", "Uzlaştırmacı"))
 
     def buton_birinci_gorev(self):
-        if self.radioButton.isChecked() == True:
-            uzno = self.lineEdit.text()
-            sorno = self.lineEdit_2.text()
-            meno = self.lineEdit_3.text()
-            suc = self.lineEdit_4.text()
-            ttarih = self.lineEdit_5.text()
-            uzlastirici = self.comboBox.currentText()
-            tevdi = "Savcılık"
-            # Dosya teslim tarihini bulmak için
-            # teslim alınma süresinin üzerine veritabanından gelen süreyi ekliyoruz
-        elif self.radioButton_2.isChecked() == True:
-            uzno = self.lineEdit.text()
-            sorno = self.lineEdit_2.text()
-            meno = self.lineEdit_3.text()
-            suc = self.lineEdit_4.text()
-            ttarih = self.lineEdit_5.text()
-            uzlastirici = self.comboBox.currentText()
-            tevdi = "Mahkeme"
-
-        sure = self.db.komut("select teslim_suresi from ayarlar")
-        t = ttarih.replace(".", "/")
-        formatstr = '%d/%m/%Y'
-        t3 = datetime.datetime.strptime(t, formatstr)
-
-        fark = datetime.timedelta(days=int(sure[0][0]))
-        gelecek = t3 + fark
-        uzatmatar = gelecek.date()
-        if self.db.dosya_ekle(uzno, sorno, meno, suc, ttarih, tevdi, 1, uzatmatar, uzlastirici) == True:
-            baslik = "Dosya Bilgileri Eklendi"
-            mesaj = uzno + " Uzlaşma No'lu dosya bilgileri veritabanına başarıyla eklendi"
+        if self.lineEdit.text() == "":
+            mesaj = "Uzlaşma No'su girmeniz gerek"
+            baslik = "Uzlaşma No Hatası"
             bilgilendir(mesaj, baslik)
-            self.lineEdit.clear()
-            self.lineEdit_2.clear()
-            self.lineEdit_3.clear()
-            self.lineEdit_4.clear()
-            self.lineEdit_5.clear()
+        elif self.lineEdit_4.text() == "":
+            mesaj = "Dava konusu suç girmeniz gerek"
+            baslik = "Suç Hatası"
+            bilgilendir(mesaj, baslik)
+        elif self.lineEdit_5.text() == "":
+            mesaj = "Teklif Tarihi eklemeniz gerek"
+            baslik = "Teklif Tarihi Hatası"
+            bilgilendir(mesaj, baslik)
         else:
-            pass
+            if self.radioButton.isChecked() == True:
+                uzno = self.lineEdit.text()
+                sorno = self.lineEdit_2.text()
+                meno = self.lineEdit_3.text()
+                suc = self.lineEdit_4.text()
+                ttarih = self.lineEdit_5.text()
+                uzlastirici = self.comboBox.currentText()
+                tevdi = "Savcılık"
+                # Dosya teslim tarihini bulmak için
+                # teslim alınma süresinin üzerine veritabanından gelen süreyi ekliyoruz
+            elif self.radioButton_2.isChecked() == True:
+                uzno = self.lineEdit.text()
+                sorno = self.lineEdit_2.text()
+                meno = self.lineEdit_3.text()
+                suc = self.lineEdit_4.text()
+                ttarih = self.lineEdit_5.text()
+                uzlastirici = self.comboBox.currentText()
+                tevdi = "Mahkeme"
 
+            sure = self.db.komut("select teslim_suresi from ayarlar")
+            t = ttarih.replace(".", "/")
+            formatstr = '%d/%m/%Y'
+            t3 = datetime.datetime.strptime(t, formatstr)
+
+            fark = datetime.timedelta(days=int(sure[0][0]))
+            gelecek = t3 + fark
+            uzatmatar = gelecek.date()
+            if self.db.dosya_ekle(uzno, sorno, meno, suc, ttarih, tevdi, 1, uzatmatar, uzlastirici) == True:
+                baslik = "Dosya Bilgileri Eklendi"
+                mesaj = uzno + " Uzlaşma No'lu dosya bilgileri veritabanına başarıyla eklendi"
+                bilgilendir(mesaj, baslik)
+                self.lineEdit.clear()
+                self.lineEdit_2.clear()
+                self.lineEdit_3.clear()
+                self.lineEdit_4.clear()
+                self.lineEdit_5.clear()
+            else:
+                pass
         self.on_changed_value(False)
 
     def uzlastirmaci_cek(self):
