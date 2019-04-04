@@ -48,15 +48,22 @@ class Gider(QtWidgets.QDialog):
     def bilgi_topla(self):
         harcama = self.lineEdit.text()
         tutar = self.lineEdit_2.text()
-        if self.db.gider_ekle(harcama, tutar, self.dosya) == True:
-            baslik = "Gider Ekleme"
-            mesaj = self.dosya + " No'lu dosya gider bilgilerine " + harcama + " gideri " + tutar + " TL olarak eklendi "
+        if harcama == "" or tutar =="":
+            baslik = "Gider Ekleme Hatası"
+            mesaj = "Gider eklemek için boş alanların tamamını doldurmalısınız"
             bilgilendir(mesaj, baslik)
-            self.lineEdit.clear()
-            self.lineEdit_2.clear()
-            self.on_changed_value(False)
         else:
-            pass
+            if self.db.gider_ekle(harcama, tutar, self.dosya) == True:
+                baslik = "Gider Ekleme"
+                mesaj = self.dosya + " No'lu dosya gider bilgilerine " + harcama + " gideri " + tutar + " TL olarak eklendi "
+                bilgilendir(mesaj, baslik)
+                self.lineEdit.clear()
+                self.lineEdit_2.clear()
+                self.on_changed_value(False)
+            else:
+                baslik = "Gider Ekleme Hatası"
+                mesaj = "Veritabanı probleminden kaynaklı veri eklenemedi"
+                bilgilendir(mesaj, baslik)
 
     # Sinyali Gönder
     def on_changed_value(self, value):

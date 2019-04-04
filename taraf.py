@@ -243,6 +243,7 @@ class TarafEkle(QtWidgets.QDialog):
         self.lineEdit_11 = QtWidgets.QLineEdit(self.page_3)
         self.lineEdit_11.setGeometry(QtCore.QRect(70, 50, 182, 20))
         self.lineEdit_11.setText("")
+        self.lineEdit_11.setObjectName("lineEdit_11")
 
         self.lineEdit_12 = QtWidgets.QLineEdit(self.page_3)
         self.lineEdit_12.setGeometry(QtCore.QRect(70, 80, 182, 20))
@@ -262,7 +263,7 @@ class TarafEkle(QtWidgets.QDialog):
         self.textEdit_3.setObjectName("textEdit_3")
 
 
-        self.lineEdit_11.setObjectName("lineEdit_11")
+
         self.label_19 = QtWidgets.QLabel(self.page_3)
         self.label_19.setGeometry(QtCore.QRect(0, 110, 90, 20))
         self.label_19.setObjectName("label_19")
@@ -447,14 +448,13 @@ class TarafEkle(QtWidgets.QDialog):
         # Veritabanına Gönder
         if self.db.tercuman_ekle(ad, tc, adres, self.dosya_uzlasma_no, vekalet, sifat) == True:
             baslik = "Temsilci Bilgileri Eklendi"
-            mesaj = ad + " isimli kişinin bilgileri " + vekalet + " kişisinin kanuni temsilcisi " \
+            mesaj = ad + " isimli kişinin bilgileri " + vekalet + " kişisinin tercümanı " \
                                                                   "olarak  veritabanına eklendi."
             bilgilendir(mesaj, baslik)
-            self.comboBox_3.setCurrentIndex(0)
-            self.lineEdit_8.clear()
-            self.lineEdit_9.clear()
-            self.lineEdit_10.clear()
-            self.textEdit_2.clear()
+            self.comboBox_4.setCurrentIndex(0)
+            self.lineEdit_11.clear()
+            self.lineEdit_12.clear()
+            self.textEdit_3.clear()
             self.on_changed_value(False)
         else:
             baslik = "Veritabanı Yazma Sorunu"

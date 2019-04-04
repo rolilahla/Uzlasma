@@ -194,6 +194,7 @@ class Ui_MainWindow(object):
         self.gridLayout_12.addWidget(self.label_13, 0, 2, 1, 1)
         self.lineEdit = QtWidgets.QLineEdit(self.groupBox_2)
         self.lineEdit.setObjectName("lineEdit")
+        self.lineEdit.setClearButtonEnabled(True)
         self.gridLayout_12.addWidget(self.lineEdit, 1, 0, 1, 2)
         self.pushButton_3 = QtWidgets.QPushButton(self.groupBox_2)
         self.pushButton_3.setObjectName("pushButton_3")
@@ -490,21 +491,23 @@ class Ui_MainWindow(object):
 
         self.tab_5 = QtWidgets.QWidget()
         self.tab_5.setObjectName("tab_5")
+
         self.gridLayout_6 = QtWidgets.QGridLayout(self.tab_5)
         self.gridLayout_6.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_6.setObjectName("gridLayout_6")
 
         self.frame = QtWidgets.QFrame(self.tab_5)
-        self.frame.setMinimumSize(QtCore.QSize(800, 300))
-        self.frame.setMaximumSize(QtCore.QSize(1024, 500))
+        self.frame.setMinimumSize(QtCore.QSize(800, 500))
+        self.frame.setMaximumSize(QtCore.QSize(11024, 1200))
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.frame.setObjectName("frame")
+
         self.gridLayout_8 = QtWidgets.QGridLayout(self.frame)
         self.gridLayout_8.setObjectName("gridLayout_8")
         self.tableWidgetd_ = QtWidgets.QTableWidget(self.frame)
-        self.tableWidgetd_.setMinimumSize(QtCore.QSize(800, 180))
-        self.tableWidgetd_.setMaximumSize(QtCore.QSize(1024, 180))
+        self.tableWidgetd_.setMinimumSize(QtCore.QSize(1800, 300))
+        self.tableWidgetd_.setMaximumSize(QtCore.QSize(19024, 500))
         self.tableWidgetd_.setObjectName("tableWidgetd_")
         self.tableWidgetd_.setColumnCount(2)
         self.tableWidgetd_.setRowCount(0)
@@ -514,9 +517,11 @@ class Ui_MainWindow(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidgetd_.setHorizontalHeaderItem(1, item)
         self.gridLayout_8.addWidget(self.tableWidgetd_, 0, 0, 1, 1)
+
+
         self.groupBoxd_1 = QtWidgets.QGroupBox(self.frame)
-        self.groupBoxd_1.setMinimumSize(QtCore.QSize(600, 110))
-        self.groupBoxd_1.setMaximumSize(QtCore.QSize(600, 110))
+        self.groupBoxd_1.setMinimumSize(QtCore.QSize(1600, 110))
+        self.groupBoxd_1.setMaximumSize(QtCore.QSize(1600, 110))
         self.groupBoxd_1.setObjectName("groupBoxd_1")
         self.pushButtond_1 = QtWidgets.QPushButton(self.groupBoxd_1)
         self.pushButtond_1.setGeometry(QtCore.QRect(10, 20, 64, 64))
@@ -549,21 +554,36 @@ class Ui_MainWindow(object):
         self.labeld_3.setGeometry(QtCore.QRect(163, 90, 41, 16))
         self.labeld_3.setObjectName("labeld_3")
         self.gridLayout_8.addWidget(self.groupBoxd_1, 1, 0, 1, 1)
+
         self.groupBoxd_2 = QtWidgets.QGroupBox(self.frame)
         self.groupBoxd_2.setObjectName("groupBoxd_2")
         self.gridLayout_7 = QtWidgets.QGridLayout(self.groupBoxd_2)
         self.gridLayout_7.setObjectName("gridLayout_7")
+
         self.pushButtond_4 = QtWidgets.QPushButton(self.groupBoxd_2)
+        self.pushButtond_4.setMinimumSize(QtCore.QSize(200, 0))
+        self.pushButtond_4.setMaximumSize(QtCore.QSize(1200, 300))
         self.pushButtond_4.setText("")
-        icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/application-msword.png"), QtGui.QIcon.Normal,
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(":/newPrefix/lib/icon/application-msword.png"), QtGui.QIcon.Normal,
                         QtGui.QIcon.Off)
-        self.pushButtond_4.setIcon(icon5)
+        self.pushButtond_4.setIcon(icon2)
         self.pushButtond_4.setIconSize(QtCore.QSize(90, 90))
         self.pushButtond_4.setObjectName("pushButtond_4")
-        self.gridLayout_7.addWidget(self.pushButtond_4, 0, 0, 1, 1)
+        self.gridLayout_7.addWidget(self.pushButtond_4, 0, 3, 1, 1)
+        self.lineEdit_rap = QtWidgets.QLineEdit(self.groupBoxd_2)
+        self.lineEdit_rap.setMinimumSize(QtCore.QSize(202, 20))
+        self.lineEdit_rap.setMaximumSize(QtCore.QSize(210, 20))
+        self.lineEdit_rap.setObjectName("lineEdit_rap")
+        self.gridLayout_7.addWidget(self.lineEdit_rap, 0, 1, 1, 1)
+        self.label_rap = QtWidgets.QLabel(self.groupBoxd_2)
+        self.label_rap.setObjectName("label_rap")
+        self.label_rap.setText("Uzlaştırma Raporunun Hazırlandığı Yer")
+        self.gridLayout_7.addWidget(self.label_rap, 0, 0, 1, 1)
+        spacerItem = QtWidgets.QSpacerItem(50, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout_7.addItem(spacerItem, 0, 2, 1, 1)
         self.gridLayout_8.addWidget(self.groupBoxd_2, 2, 0, 1, 1)
-        self.gridLayout_6.addWidget(self.frame, 0, 0, 2, 1)
+        self.gridLayout_6.addWidget(self.frame, 1, 0, 1, 3)
 
         self.tabWidget.addTab(self.tab_5, "")
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
@@ -1475,10 +1495,27 @@ class Ui_MainWindow(object):
             bilgilendir(mesaj, baslik)
 
     def raporla(self):
+        if self.comboBox.currentIndex() == 0:
+            baslik = "Dosya Seçme Hatası"
+            mesaj ="Rapor hazırlayabilmek için öncelikle bir dosya seçmeniz gerekli"
+            bilgilendir(mesaj, baslik)
+            return
+        else:
+            pass
+        
         dosya = self.comboBox.currentText()
+        rapor_yeri = self.lineEdit_rap.text()
+        if rapor_yeri == "":
+            baslik = "Yer Hatası"
+            mesaj = dosya + " No'lu dosya için lütfen Rapor Hazırlama yeri giriniz"
+            bilgilendir(mesaj, baslik)
+            return
+        else:
+            pass
+
         uz = self.label_15.text()
         uz_sicil = self.label_17.text()
-        if mdl.rapor_yaz(dosya, uz, uz_sicil) == True:
+        if mdl.rapor_yaz(dosya, uz, uz_sicil, rapor_yeri) == True:
             baslik = "Rapor Oluşturma"
             mesaj = dosya + " No'lu Uzlaşma dosyasının uzlaşma raporu oluşturuldu"
             bilgilendir(mesaj, baslik)

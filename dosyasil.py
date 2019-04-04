@@ -193,6 +193,7 @@ class Ui_DosyaSil(QtWidgets.QDialog):
                 self.db.yapistir("delete from uzatma where dosya = '{0}'".format(self.dosya_ad))
                 self.db.yapistir("delete from uzbas where dosya = '{0}'".format(self.dosya_ad))
                 self.db.yapistir("delete from uzgor where dosya = '{0}'".format(self.dosya_ad))
+                self.db.yapistir("delete from sonuc where dosya = '{0}'".format(self.dosya_ad))
                 mico.bilgilendir("Dosya başarıyla silindi", "Dosya Silme Uyarısı")
                 self.on_changed_value(False)
             else:

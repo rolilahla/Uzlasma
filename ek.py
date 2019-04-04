@@ -40,14 +40,21 @@ class Ekler(QtWidgets.QDialog):
 
     def bilgi_topla(self):
         dosya_adi = self.lineEdit.text()
-        if self.db.ek_ekle(dosya_adi, self.dosya) == True:
-            baslik = "Dosya Ekleme"
-            mesaj = self.dosya + " No'lu soruşturmanın Ek Dosya bilgilerine " + dosya_adi + " dosyası eklendi "
+        if dosya_adi == "":
+            baslik = "Dosya Eki Ekleme Hatası"
+            mesaj = "Dosya Ek'i eklemek için boş alanların tamamını doldurmalısınız"
             bilgilendir(mesaj, baslik)
-            self.lineEdit.clear()
-            self.on_changed_value(False)
         else:
-            pass
+            if self.db.ek_ekle(dosya_adi, self.dosya) == True:
+                baslik = "Dosya Ekleme"
+                mesaj = self.dosya + " No'lu soruşturmanın Ek Dosya bilgilerine " + dosya_adi + " dosyası eklendi "
+                bilgilendir(mesaj, baslik)
+                self.lineEdit.clear()
+                self.on_changed_value(False)
+            else:
+                baslik = "Ek Ekleme Hatası"
+                mesaj = "Veritabanı probleminden kaynaklı veri eklenemedi"
+                bilgilendir(mesaj, baslik)
 
     # Sinyali Gönder
     def on_changed_value(self, value):
