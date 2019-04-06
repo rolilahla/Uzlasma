@@ -403,6 +403,9 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
     zarar_goren_temsilcileri = db.komut("select * from taraflar where dosya='{}'and sifat='4'".format(sorno))
     mustekiler = db.komut("select * from taraflar where dosya='{}'and sifat='7'".format(sorno))
     musteki_temsilcileri = db.komut("select * from taraflar where dosya='{}'and sifat='8'".format(sorno))
+
+    #rapor imza kısmında kullanılacakkisi ve sifatları tutacak boş liste
+    kisi_listesi = []
     #------------------------------------------------ŞÜPHELİ------------
     if len(saniklar) == 0:
         pass
@@ -411,6 +414,9 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
         doc_s1.paragraph_format.space_before = Pt(12)
         doc_s1.add_run()
         for i in range(len(saniklar)):
+            tup_liste = (saniklar[i][1], "5")
+            kisi_listesi.append(tup_liste)
+
             s_ad = doc.add_paragraph()
             s_ad.paragraph_format.left_indent = Inches(0.5)
             i_s_ad = s_ad.add_run("Ad Soyad \t\t:{}".format(saniklar[i][1]))
@@ -433,6 +439,9 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
                 pass
             else:
                 for im in range(len(vekil_ara)):
+                    tup_liste_vekil = (vekil_ara[im][2], "Müdafii")
+                    kisi_listesi.append(tup_liste_vekil)
+
                     doc_s1 = doc.add_paragraph("Müdafiin")
                     doc_s1.paragraph_format.space_before = Pt(12)
                     doc_s1.add_run()
@@ -466,6 +475,9 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
         doc_s1.paragraph_format.space_before = Pt(12)
         doc_s1.add_run()
         for i in range(len(sanik_temsilcileri)):
+            tup_sanik = (sanik_temsilcileri[i][1], "6")
+            kisi_listesi.append(tup_sanik)
+
             s_ad = doc.add_paragraph()
             s_ad.paragraph_format.left_indent = Inches(0.5)
             i_s_ad = s_ad.add_run("Ad Soyad \t\t:{}".format(sanik_temsilcileri[i][1]))
@@ -488,6 +500,9 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
                 pass
             else:
                 for im in range(len(vekil_ara)):
+                    tup_san_vekil = (vekil_ara[im][2], "Müdafii")
+                    kisi_listesi.append(tup_san_vekil)
+
                     doc_s1 = doc.add_paragraph("Müdafiin")
                     doc_s1.paragraph_format.space_before = Pt(12)
                     doc_s1.add_run()
@@ -992,7 +1007,7 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
 
     sor = db.komut("""SELECT ad, sifat FROM taraflar WHERE dosya == '{0}' 
         union all SELECT ad, sifat FROM temsilciler WHERE dosya == '{0}'
-        union all SELECT ad,sifat FROM tercuman WHERE dosya == '{0}'""".format(sorno))
+        union all SELECT ad, sifat FROM tercuman WHERE dosya == '{0}'""".format(sorno))
 
     table = doc.add_table(rows = len(sor)+2 , cols = 3)
     table.style = "Table Grid"
@@ -1061,4 +1076,5 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
     baslik.add_run()
 
     doc.save(hedef_dizin)
+    print(kisi_listesi)
     return True
