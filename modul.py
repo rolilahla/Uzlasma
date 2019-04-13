@@ -536,6 +536,8 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
         doc_s1.paragraph_format.space_before = Pt(12)
         doc_s1.add_run()
         for i in range(len(magdurlar)):
+            tup_magdur = (magdurlar[i][1], "1")
+            kisi_listesi.append(tup_magdur)
             s_ad = doc.add_paragraph()
             s_ad.paragraph_format.left_indent = Inches(0.5)
             i_s_ad = s_ad.add_run("Ad Soyad \t\t:{}".format(magdurlar[i][1]))
@@ -557,6 +559,11 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
                 pass
             else:
                 for im in range(len(vekil_ara)):
+                    print(vekil_ara)
+
+                    tup_magdur_vekil = (vekil_ara[im][2], "Vekil")
+                    kisi_listesi.append(tup_magdur_vekil)
+
                     doc_s1 = doc.add_paragraph("Vekilin")
                     doc_s1.paragraph_format.space_before = Pt(12)
                     doc_s1.add_run()
@@ -590,6 +597,9 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
         doc_s1.paragraph_format.space_before = Pt(12)
         doc_s1.add_run()
         for i in range(len(magdur_temsilcileri)):
+            tup_mt = (magdur_temsilcileri[i][1], "2")
+            kisi_listesi.append(tup_mt)
+
             t_ad = doc.add_paragraph()
             t_ad.paragraph_format.left_indent = Inches(0.5)
             i_t_ad = t_ad.add_run("Ad Soyad \t\t:{}".format(magdur_temsilcileri[i][1]))
@@ -611,6 +621,9 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
                 pass
             else:
                 for im in range(len(vekil_ara)):
+                    tup_mt_v = (vekil_ara[im][2], "Vekil")
+                    kisi_listesi.append(tup_mt_v)
+
                     doc_s1 = doc.add_paragraph("Vekil")
                     doc_s1.paragraph_format.space_before = Pt(12)
                     doc_s1.add_run()
@@ -643,6 +656,8 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
         doc_s1.paragraph_format.space_before = Pt(12)
         doc_s1.add_run()
         for i in range(len(zarar_gorenler)):
+            tup_zg = (zarar_gorenler[i][1], "3")
+            kisi_listesi.append(tup_zg)
             t_ad = doc.add_paragraph()
             t_ad.paragraph_format.left_indent = Inches(0.5)
             i_t_ad = t_ad.add_run("Ad Soyad \t\t:{}".format(zarar_gorenler[i][1]))
@@ -664,6 +679,10 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
                 pass
             else:
                 for im in range(len(vekil_ara)):
+                    tup_zg_v = (vekil_ara[im][2], "Vekil")
+                    kisi_listesi.append(tup_zg_v)
+
+
                     doc_s1 = doc.add_paragraph("Vekil")
                     doc_s1.paragraph_format.space_before = Pt(12)
                     doc_s1.add_run()
@@ -696,6 +715,8 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
         doc_s1.paragraph_format.space_before = Pt(12)
         doc_s1.add_run()
         for i in range(len(zarar_goren_temsilcileri)):
+            tup_zg_t = (zarar_goren_temsilcileri[i][1], "4")
+            kisi_listesi.append(tup_zg_t)
             t_ad = doc.add_paragraph()
             t_ad.paragraph_format.left_indent = Inches(0.5)
             i_t_ad = t_ad.add_run("Ad Soyad \t\t:{}".format(zarar_goren_temsilcileri[i][1]))
@@ -717,6 +738,9 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
                 pass
             else:
                 for im in range(len(vekil_ara)):
+                    tup_zg_t_v = (vekil_ara[im][2], "Vekil")
+                    kisi_listesi.append(tup_zg_t_v)
+
                     doc_s1 = doc.add_paragraph("Vekil")
                     doc_s1.paragraph_format.space_before = Pt(12)
                     doc_s1.add_run()
@@ -750,6 +774,9 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
         doc_s1.paragraph_format.space_before = Pt(12)
         doc_s1.add_run()
         for i in range(len(mustekiler)):
+            tup_m = (mustekiler[i][1], "7")
+            kisi_listesi.append(tup_m)
+
             t_ad = doc.add_paragraph()
             t_ad.paragraph_format.left_indent = Inches(0.5)
             i_t_ad = t_ad.add_run("Ad Soyad \t\t:{}".format(mustekiler[i][1]))
@@ -771,6 +798,9 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
                 pass
             else:
                 for im in range(len(vekil_ara)):
+                    tup_m_v = (vekil_ara[im][2], "Müdafi")
+                    kisi_listesi.append(tup_m_v)
+
                     doc_s1 = doc.add_paragraph("Müdafinin")
                     doc_s1.paragraph_format.space_before = Pt(12)
                     doc_s1.add_run()
@@ -804,6 +834,9 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
             doc_s1.paragraph_format.space_before = Pt(12)
             doc_s1.add_run()
             for i in range(len(musteki_temsilcileri)):
+                tup_m_t = (musteki_temsilcileri[i][1], "8")
+                kisi_listesi.append(tup_m_t)
+
                 t_ad = doc.add_paragraph()
                 t_ad.paragraph_format.left_indent = Inches(0.5)
                 i_t_ad = t_ad.add_run("Ad Soyad \t\t:{}".format(musteki_temsilcileri[i][1]))
@@ -827,6 +860,9 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
                     pass
                 else:
                     for im in range(len(vekil_ara)):
+                        tup_m_t_v = (vekil_ara[im][2], "Müdafi")
+                        kisi_listesi.append(tup_m_t_v)
+
                         doc_s1 = doc.add_paragraph("Müdafinin")
                         doc_s1.paragraph_format.space_before = Pt(12)
                         doc_s1.add_run()
@@ -1005,9 +1041,7 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
 
         run.paragraph_format.space_after = Pt(12)
 
-    sor = db.komut("""SELECT ad, sifat FROM taraflar WHERE dosya == '{0}' 
-        union all SELECT ad, sifat FROM temsilciler WHERE dosya == '{0}'
-        union all SELECT ad, sifat FROM tercuman WHERE dosya == '{0}'""".format(sorno))
+    sor = kisi_listesi
 
     table = doc.add_table(rows = len(sor)+2 , cols = 3)
     table.style = "Table Grid"
@@ -1017,21 +1051,21 @@ def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
         cell = table.cell(sayac+i, 0)
         cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
         table.rows[sayac + i].height = Pt(50)
-        if sor[i][1] == 1:
+        if sor[i][1] == "1":
             cell.text = "Mağdur / Katılan"
-        elif sor[i][1] == 2:
+        elif sor[i][1] == "2":
             cell.text = "Mağdur / Katılan'ın Temsilcisi"
-        elif sor[i][1] == 3:
+        elif sor[i][1] == "3":
             cell.text = "Suçtan Zarar Gören"
-        elif sor[i][1] == 4:
+        elif sor[i][1] == "4":
             cell.text = "Suçtan Zarar Görenin Temsilcisi"
-        elif sor[i][1] == 5:
+        elif sor[i][1] == "5":
             cell.text = "Şüpheli / Sanık"
-        elif sor[i][1] == 6:
+        elif sor[i][1] == "6":
             cell.text = "Şüpheli Sanık Temsilcisi"
-        elif sor[i][1] == 7:
+        elif sor[i][1] == "7":
             cell.text = "Müşteki Şüpheli"
-        elif sor[i][1] == 8:
+        elif sor[i][1] == "8":
             cell.text = "Müşteki Şüpheli Temsilcisi"
         else:
             cell.text = sor[i][1]
