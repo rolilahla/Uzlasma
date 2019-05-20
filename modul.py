@@ -1,5 +1,7 @@
 # -*- coding:utf-8 -*-
 
+from builtins import FileExistsError
+
 from vtbgln import VbagKur
 import datetime
 import math, time, os
@@ -126,6 +128,13 @@ def klasor_dogrula(yol, mesaj, baslik):
         inf.exec_()
         return False
 
+
+def kisi_tanimla(ad):
+    if len(db.komut("select id from taraflar where ad = '{}'".format(ad))) == 0:
+        return False
+    else:
+        return True
+
 def davet_yaz(durum, sahis, tc, veksicil, no, ttarihi, uz, uzsicil, uzte):
     ana_dizin = os.getcwd()
     ana_dosya_yolu = "\\dosyalar\\uzfile\\Davet Mektubu.xlsx"
@@ -144,8 +153,11 @@ def davet_yaz(durum, sahis, tc, veksicil, no, ttarihi, uz, uzsicil, uzte):
         os.mkdir(hedef_dizin)
     except FileExistsError:
         pass
+
     kaynak = ana_dizin + ana_dosya_yolu
-    hedef = hedef_dizin +"\\" +sahis + " Davet Mektubu.xlsx"
+    sahis_isim_duzenle = sahis.lower()
+
+    hedef = hedef_dizin +"\\" + sahis_isim_duzenle + " Davet Mektubu.xlsx"
     copy2(kaynak, hedef)
 
     wb = xw.Book(hedef)
@@ -162,119 +174,220 @@ def davet_yaz(durum, sahis, tc, veksicil, no, ttarihi, uz, uzsicil, uzte):
     return True
 
 def teklif_yaz(sorno, ad, uz, uzsicil):
-    sor = db.komut("select * from taraflar where dosya='{}' and ad='{}'".format(sorno, ad))
     esas_sor = db.komut("select mahesno from dosyalar where uzno='{}'".format(sorno))
 
-    ttarihi = sor[0][2]
-    sifat = sor[0][3]
-    tc = sor[0][4]
-    badı = sor[0][5]
-    aadı = sor[0][6]
-    dyeri = sor[0][7]
-    dtar = sor[0][8]
-    adres = sor[0][12]
+    if kisi_tanimla(ad) == False:
+        sor = db.komut("select * from temsilciler where dosya='{}' and ad='{}'".format(sorno, ad))
+        ttarihi = sor[0][1]
+        sicil = sor[0][3]
+        tel = sor[0][4]
+        adres = sor[0][5]
+        baro = sor[0][10]
+        tc = sor[0][11]
 
-    ana_dizin = os.getcwd()
-    ana_dosya_yolu = "\\dosyalar\\uzfile\\Teklif Formu.xlsx"
-    yersor = db.komut("select kayit_yeri from ayarlar")
-    if klasor_dogrula(yersor[0][0],
-                   "Dosyaları oluşturabilmek için dosya kayıt yeri belirlemeniz gerek."
-                   "Ayarlar'dan geçerli bir dizin seçiniz",
-                   "Dosya Kayıt Yeri Hatası") == False:
-        return
+        ana_dizin = os.getcwd()
+        ana_dosya_yolu = "\\dosyalar\\uzfile\\Teklif Formu.xlsx"
+        yersor = db.komut("select kayit_yeri from ayarlar")
+        if klasor_dogrula(yersor[0][0],
+                          "Dosyaları oluşturabilmek için dosya kayıt yeri belirlemeniz gerek."
+                          "Ayarlar'dan geçerli bir dizin seçiniz",
+                          "Dosya Kayıt Yeri Hatası") == False:
+            return
+        else:
+            pass
+        no = sorno.replace("/", "-")
+        hedef_dizin = yersor[0][0] + "\\" + no
+        try:
+            os.mkdir(hedef_dizin)
+        except FileExistsError:
+            pass
+        kaynak = ana_dizin + ana_dosya_yolu
+        ada = ad.lower()
+        hedef = hedef_dizin + "\\" + ada + " Teklif Formu.xlsx"
+        copy2(kaynak, hedef)
+
+        kanun = db.komut("select icerik from sablonlar where id = '1'")
+        wb = xw.Book(hedef)
+        sht = wb.sheets['Sayfa1']
+        sht.range('AU1').value = kanun[0][0]
+        sht.range('AU2').value = ttarihi
+        sht.range('AU3').value = uz
+        sht.range('AU4').value = uzsicil
+        sht.range('AU6').value = tc
+        sht.range('AU7').value = ad
+        sht.range('AU12').value = adres
+        sht.range('AU19').value = sorno
+        sht.range('AU20').value = esas_sor[0][0]
+        sht.range('AU21').value = tel
+        return True
+
+    elif kisi_tanimla(ad) == True:
+        sor = db.komut("select * from taraflar where dosya='{}' and ad='{}'".format(sorno, ad))
+        ttarihi = sor[0][2]
+        sifat = sor[0][3]
+        tc = sor[0][4]
+        badı = sor[0][5]
+        aadı = sor[0][6]
+        dyeri = sor[0][7]
+        dtar = sor[0][8]
+        tel = sor[0][10]
+        adres = sor[0][12]
+
+        ana_dizin = os.getcwd()
+        ana_dosya_yolu = "\\dosyalar\\uzfile\\Teklif Formu.xlsx"
+        yersor = db.komut("select kayit_yeri from ayarlar")
+        if klasor_dogrula(yersor[0][0],
+                          "Dosyaları oluşturabilmek için dosya kayıt yeri belirlemeniz gerek."
+                          "Ayarlar'dan geçerli bir dizin seçiniz",
+                          "Dosya Kayıt Yeri Hatası") == False:
+            return
+        else:
+            pass
+        no = sorno.replace("/", "-")
+        hedef_dizin = yersor[0][0] + "\\" + no
+        try:
+            os.mkdir(hedef_dizin)
+        except FileExistsError:
+            pass
+        kaynak = ana_dizin + ana_dosya_yolu
+        ada = ad.lower()
+        hedef = hedef_dizin + "\\" + ada + " Teklif Formu.xlsx"
+        copy2(kaynak, hedef)
+
+        kanun = db.komut("select icerik from sablonlar where id = '1'")
+        wb = xw.Book(hedef)
+        sht = wb.sheets['Sayfa1']
+        sht.range('AU1').value = kanun[0][0]
+        sht.range('AU2').value = ttarihi
+        sht.range('AU3').value = uz
+        sht.range('AU4').value = uzsicil
+        sht.range('AU6').value = tc
+        sht.range('AU7').value = ad
+        sht.range('AU8').value = badı
+        sht.range('AU9').value = aadı
+        sht.range('AU10').value = dyeri
+        sht.range('AU11').value = dtar
+        sht.range('AU12').value = adres
+        sht.range('AU19').value = sorno
+        sht.range('AU20').value = esas_sor[0][0]
+        sht.range('AU21').value = tel
+
+        if sifat == 1:
+            sht.range('AU13').value = "( X )"
+        elif sifat == 2:
+            sht.range('AU14').value = "( X )"
+        elif sifat == 3:
+            sht.range('AU15').value = "( X )"
+        elif sifat == 4:
+            sht.range('AU16').value = "( X )"
+        elif sifat == 5:
+            sht.range('AU17').value = "( X )"
+        elif sifat == 6:
+            sht.range('AU18').value = "( X )"
+        else:
+            print("Sicil durumu veya nitelik durumunda hata var.")
+        return True
     else:
         pass
-    no = sorno.replace("/", "-")
-    hedef_dizin = yersor[0][0] + "\\" + no
-    try:
-        os.mkdir(hedef_dizin)
-    except FileExistsError:
-        pass
-    kaynak = ana_dizin + ana_dosya_yolu
-    hedef = hedef_dizin +"\\" +ad + " Teklif Formu.xlsx"
-    copy2(kaynak, hedef)
-
-    kanun = db.komut("select icerik from sablonlar where id = '1'")
-    wb = xw.Book(hedef)
-    sht = wb.sheets['Sayfa1']
-    sht.range('AU1').value = kanun[0][0]
-    sht.range('AU2').value = ttarihi
-    sht.range('AU3').value = uz
-    sht.range('AU4').value = uzsicil
-    sht.range('AU6').value = tc
-    sht.range('AU7').value = ad
-    sht.range('AU8').value = badı
-    sht.range('AU9').value = aadı
-    sht.range('AU10').value = dyeri
-    sht.range('AU11').value = dtar
-    sht.range('AU12').value = adres
-    sht.range('AU19').value = sorno
-    sht.range('AU20').value = esas_sor[0][0]
-    if sifat == 1:
-        sht.range('AU13').value = "( X )"
-    elif sifat == 2:
-        sht.range('AU14').value = "( X )"
-    elif sifat == 3:
-        sht.range('AU15').value = "( X )"
-    elif sifat == 4:
-        sht.range('AU16').value = "( X )"
-    elif sifat == 5:
-        sht.range('AU17').value = "( X )"
-    elif sifat == 6:
-        sht.range('AU18').value = "( X )"
-    else:
-        print("Sicil durumu veya nitelik durumunda hata var.")
-    return True
 
 def tebligat_yaz(sorno, ad):
-    sor = db.komut("select * from taraflar where dosya='{}' and ad='{}'".format(sorno, ad))
-    ttarihi = sor[0][2]
-    sifat = sor[0][3]
-    tc = sor[0][4]
-    badı = sor[0][5]
-    aadı = sor[0][6]
-    dyeri = sor[0][7]
-    dtar = sor[0][8]
-    cinsiyet = sor[0][9]
-    adres = sor[0][12]
+    if kisi_tanimla(ad) == False:
+        sor = db.komut("select * from temsilciler where dosya='{}' and ad='{}'".format(sorno, ad))
+        ttarihi = sor[0][1]
+        sicil = sor[0][3]
+        tel = sor[0][4]
+        adres = sor[0][5]
+        baro = sor[0][10]
+        tc = sor[0][11]
+        ana_dizin = os.getcwd()
+        ana_dosya_yolu = "\\dosyalar\\uzfile\\Tebligat.xlsx"
+        yersor = db.komut("select kayit_yeri from ayarlar")
+        if klasor_dogrula(yersor[0][0],
+                          "Dosyaları oluşturabilmek için dosya kayıt yeri belirlemeniz gerek."
+                          "Ayarlar'dan geçerli bir dizin seçiniz",
+                          "Dosya Kayıt Yeri Hatası") == False:
+            return
+        else:
+            pass
+        no = sorno.replace("/", "-")
+        hedef_dizin = yersor[0][0] + "\\" + no
+        try:
+            os.mkdir(hedef_dizin)
+        except FileExistsError:
+            pass
+        kaynak = ana_dizin + ana_dosya_yolu
+        ada = ad.lower()
 
-    ana_dizin = os.getcwd()
-    ana_dosya_yolu = "\\dosyalar\\uzfile\\Tebligat.xlsx"
-    yersor = db.komut("select kayit_yeri from ayarlar")
-    if klasor_dogrula(yersor[0][0],
-                   "Dosyaları oluşturabilmek için dosya kayıt yeri belirlemeniz gerek."
-                   "Ayarlar'dan geçerli bir dizin seçiniz",
-                   "Dosya Kayıt Yeri Hatası") == False:
-        return
+        hedef = hedef_dizin + "\\" + ada + " Tebligat.xlsx"
+        copy2(kaynak, hedef)
+
+        wb = xw.Book(hedef)
+        sht = wb.sheets['Sayfa1']
+        sht.range('Q1').value = sorno
+        sht.range('Q2').value = ad
+        sht.range('Q7').value = tc
+        sht.range('Q8').value = adres
+        sht.range('Q9').value = ttarihi
+        sorno_sor = db.komut("select sorno, mahesno from dosyalar where uzno='{}'".format(sorno))
+        if sorno_sor[0][0] == "":
+            sht.range('Q10').value = "Mahkeme"
+        else:
+            sht.range('Q10').value = "Savcılık"
+        return True
+
+    elif kisi_tanimla(ad) == True:
+        sor = db.komut("select * from taraflar where dosya='{}' and ad='{}'".format(sorno, ad))
+        ttarihi = sor[0][2]
+        sifat = sor[0][3]
+        tc = sor[0][4]
+        badı = sor[0][5]
+        aadı = sor[0][6]
+        dyeri = sor[0][7]
+        dtar = sor[0][8]
+        cinsiyet = sor[0][9]
+        adres = sor[0][12]
+
+        ana_dizin = os.getcwd()
+        ana_dosya_yolu = "\\dosyalar\\uzfile\\Tebligat.xlsx"
+        yersor = db.komut("select kayit_yeri from ayarlar")
+        if klasor_dogrula(yersor[0][0],
+                          "Dosyaları oluşturabilmek için dosya kayıt yeri belirlemeniz gerek."
+                          "Ayarlar'dan geçerli bir dizin seçiniz",
+                          "Dosya Kayıt Yeri Hatası") == False:
+            return
+        else:
+            pass
+        no = sorno.replace("/", "-")
+        hedef_dizin = yersor[0][0] + "\\" + no
+        try:
+            os.mkdir(hedef_dizin)
+        except FileExistsError:
+            pass
+        kaynak = ana_dizin + ana_dosya_yolu
+        ada = ad.lower()
+
+        hedef = hedef_dizin + "\\" + ada + " Tebligat.xlsx"
+        copy2(kaynak, hedef)
+
+        wb = xw.Book(hedef)
+        sht = wb.sheets['Sayfa1']
+        sht.range('Q1').value = sorno
+        sht.range('Q2').value = ad
+        sht.range('Q3').value = badı
+        sht.range('Q4').value = aadı
+        sht.range('Q5').value = cinsiyet
+        sht.range('Q6').value = dtar
+        sht.range('Q7').value = tc
+        sht.range('Q8').value = adres
+        sht.range('Q9').value = ttarihi
+        sorno_sor = db.komut("select sorno, mahesno from dosyalar where uzno='{}'".format(sorno))
+        if sorno_sor[0][0] == "":
+            sht.range('Q10').value = "Mahkeme"
+        else:
+            sht.range('Q10').value = "Savcılık"
+        return True
     else:
         pass
-    no = sorno.replace("/", "-")
-    hedef_dizin = yersor[0][0] + "\\" + no
-    try:
-        os.mkdir(hedef_dizin)
-    except FileExistsError:
-        pass
-    kaynak = ana_dizin + ana_dosya_yolu
-    hedef = hedef_dizin +"\\" +ad + " Tebligat.xlsx"
-    copy2(kaynak, hedef)
-
-    wb = xw.Book(hedef)
-    sht = wb.sheets['Sayfa1']
-    sht.range('Q1').value = sorno
-    sht.range('Q2').value = ad
-    sht.range('Q3').value = badı
-    sht.range('Q4').value = aadı
-    sht.range('Q5').value = cinsiyet
-    sht.range('Q6').value = dtar
-    sht.range('Q7').value = tc
-    sht.range('Q8').value = adres
-    sht.range('Q9').value = ttarihi
-    sorno_sor = db.komut("select sorno, mahesno from dosyalar where uzno='{}'".format(sorno))
-    if sorno_sor[0][0] == "":
-        sht.range('Q10').value = "Mahkeme"
-    else:
-        sht.range('Q10').value = "Savcılık"
-    return True
 
 def rapor_yaz(sorno, uz, uz_sicil, rapor_yeri):
     yersor = db.komut("select kayit_yeri from ayarlar")
